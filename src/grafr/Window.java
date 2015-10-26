@@ -17,13 +17,15 @@ public class Window {
 
 	private JFrame frame;
 	private int height;
-	private int widht;
+	private int width;
 
 
 	/**
 	 * Create the application.
 	 */
-	public Window(int width,int heigth) {
+	public Window(int width,int height) {
+		this.width = width;
+		this.height= height;
 		initialize();
 	}
 
@@ -45,7 +47,7 @@ public class Window {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, this.width, this.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JMenuBar menuBar = new JMenuBar();
