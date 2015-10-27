@@ -1,18 +1,5 @@
 package grafr;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.Canvas;
-import javax.swing.JInternalFrame;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.JDesktopPane;
-
 public class Window {
 
 	private JFrame frame;
