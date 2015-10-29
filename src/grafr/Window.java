@@ -1,5 +1,9 @@
 package grafr;
 
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
 public class Window {
 
 	private JFrame frame;
@@ -16,7 +20,7 @@ public class Window {
 		initialize();
 	}
 
-	public static void startWindow(int width,int heigth){
+	public static void startWindow(final int width,final int heigth){
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -47,7 +51,7 @@ public class Window {
 		mntmOpenFile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-
+				System.out.println("Open File");
 			}
 		});
 		mnFile.add(mntmOpenFile);
@@ -67,7 +71,7 @@ public class Window {
 			@Override
 			public void mousePressed(MouseEvent e){
 				Canvas draw = (Canvas) e.getComponent();
-				draw.getGraphics().drawOval(e.getX(), e.getY(), 10, 10);
+				draw.getGraphics().drawOval(e.getX()-50, e.getY()-50, 100, 100);
 			}
 		});
 
