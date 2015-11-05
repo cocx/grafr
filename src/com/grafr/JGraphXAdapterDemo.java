@@ -10,12 +10,18 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-package MyPackage;
+package com.grafr;
 
 import com.mxgraph.layout.*;
 import com.mxgraph.swing.*;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.view.mxGraph;
+import com.mxgraph.view.mxStylesheet;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.Hashtable;
 
 import javax.swing.*;
 
@@ -41,6 +47,8 @@ public class JGraphXAdapterDemo
     
 
     private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
+    
+    public static final String CUSTOM_STYLE = "CUSTUM_STYLE";
 
     
 
@@ -52,7 +60,7 @@ public class JGraphXAdapterDemo
      */
     public static void main(String [] args)
     {
-        JGraphAdapterDemo applet = new JGraphAdapterDemo();
+        JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
         applet.init();
 
         JFrame frame = new JFrame();
@@ -61,6 +69,29 @@ public class JGraphXAdapterDemo
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+        
+
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+
+		JMenuItem mntmOpenFile = new JMenuItem("Open File...");
+		mntmOpenFile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("Open File");
+			}
+		});
+		mnFile.add(mntmOpenFile);
+
+		JMenu mnEdit = new JMenu("Edit");
+		menuBar.add(mnEdit);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+
+		JPanel panel = new JPanel();
+		frame.getContentPane().add(panel, BorderLayout.WEST);
     }
 
     /**
@@ -75,8 +106,8 @@ public class JGraphXAdapterDemo
 
         // create a visualization using JGraph, via an adapter
         jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
-
-        getContentPane().add(new mxGraphComponent(jgxAdapter));
+        mxGraphComponent graph = new mxGraphComponent(jgxAdapter);
+        getContentPane().add(graph);
         resize(DEFAULT_SIZE);
 
         String v1 = "v1";
@@ -96,10 +127,21 @@ public class JGraphXAdapterDemo
         g.addEdge(v4, v3);
 
         // positioning via jgraphx layouts
-        mxCircleLayout layout = new mxCircleLayout(jgxAdapter);
+        mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
+        
         layout.execute(jgxAdapter.getDefaultParent());
 
         // that's all there is to it!...
+    }
+    
+    public static void setStyleSheet(mxGraph graph){
+    	Hashtable<String, Object> style = new Hashtable<>();
+    	mxStylesheet stylesheet = graph.getStylesheet();
+    	style.put(mxConstants.STYLE_SHAPE,mxConstants.SHAPE_ELLIPSE);
+    	stylesheet.putCellStyle();
+
+    	
+    	Hashtable<String,Object> baseStyle = new Hashtable<String,Object>();
     }
 }
 
