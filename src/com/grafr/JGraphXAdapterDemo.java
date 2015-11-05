@@ -18,7 +18,10 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxStylesheet;
 
+import java.util.Hashtable;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Hashtable;
@@ -62,36 +65,14 @@ public class JGraphXAdapterDemo
     {
         JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
         applet.init();
-
+        
         JFrame frame = new JFrame();
         frame.getContentPane().add(applet);
+        frame.setSize(600, 600);
+        frame.setVisible(true);
         frame.setTitle("JGraphT Adapter to JGraph Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
-        
-
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
-
-		JMenuItem mntmOpenFile = new JMenuItem("Open File...");
-		mntmOpenFile.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("Open File");
-			}
-		});
-		mnFile.add(mntmOpenFile);
-
-		JMenu mnEdit = new JMenu("Edit");
-		menuBar.add(mnEdit);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.WEST);
     }
 
     /**
@@ -106,42 +87,68 @@ public class JGraphXAdapterDemo
 
         // create a visualization using JGraph, via an adapter
         jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
-        mxGraphComponent graph = new mxGraphComponent(jgxAdapter);
-        getContentPane().add(graph);
+        mxGraph graph = new mxGraph();
+        Object parent = graph.getDefaultParent();
+        mxStylesheet stylesheet = graph.getStylesheet();
+        Hashtable<String, Object> style = new Hashtable<String, Object>();
+        style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
+        style.put(mxConstants.STYLE_OPACITY, 50);
+        style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+        style.put(mxConstants.STYLE_EDITABLE, false);
+        stylesheet.putCellStyle("ROUNDED", style);
         resize(DEFAULT_SIZE);
+        
+        JMenuBar menubar = new JMenuBar();
 
-        String v1 = "v1";
-        String v2 = "v2";
-        String v3 = "v3";
-        String v4 = "v4";
+        JMenu menuOption = new JMenu("File");
 
-        // add some sample data (graph manipulated via JGraphX)
-        g.addVertex(v1);
-        g.addVertex(v2);
-        g.addVertex(v3);
-        g.addVertex(v4);
+        JMenuItem NewGame = new JMenuItem("Add stuff");
+        menuOption.add(NewGame);
 
-        g.addEdge(v1, v2);
-        g.addEdge(v2, v3);
-        g.addEdge(v3, v1);
-        g.addEdge(v4, v3);
+        JMenuItem exitGame = new JMenuItem("stuff");
+        menuOption.add(exitGame);
 
+        JMenu menuLevel = new JMenu("Algoritme");
+
+        JMenuItem Dijkstra = new JMenuItem("Dijkstra");
+        JMenuItem ASter = new JMenuItem("A*");
+        JMenuItem Kruskal = new JMenuItem("Kruskal");
+
+        // the menu items, menus and menu bar all need
+        // to be ADDED to something!
+        menubar.add(menuOption);
+        menuOption.add(NewGame);
+        menuOption.add(exitGame);
+        menubar.add(menuLevel);
+        menuLevel.add(Dijkstra);
+        menuLevel.add(ASter);
+        menuLevel.add(Kruskal);
+        setJMenuBar(menubar);
+        
+        
+        
+        graph.getModel().beginUpdate();
+        try
+        {
+            Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80,
+                    30, "ROUNDED");
+            Object v2 = graph.insertVertex(parent, null, "World!", 240, 150,
+                    80, 30);
+            graph.insertEdge(parent, null, "Edge", v1, v2);
+        }
+        finally
+        {
+            graph.getModel().endUpdate();
+        }
+
+        mxGraphComponent graphComponent = new mxGraphComponent(graph);
+        getContentPane().add(graphComponent);
+    
         // positioning via jgraphx layouts
         mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
         
         layout.execute(jgxAdapter.getDefaultParent());
 
-        // that's all there is to it!...
-    }
-    
-    public static void setStyleSheet(mxGraph graph){
-    	Hashtable<String, Object> style = new Hashtable<>();
-    	mxStylesheet stylesheet = graph.getStylesheet();
-    	style.put(mxConstants.STYLE_SHAPE,mxConstants.SHAPE_ELLIPSE);
-    	stylesheet.putCellStyle();
-
-    	
-    	Hashtable<String,Object> baseStyle = new Hashtable<String,Object>();
     }
 }
 
