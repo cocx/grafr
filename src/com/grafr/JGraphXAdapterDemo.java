@@ -78,14 +78,22 @@ public class JGraphXAdapterDemo
         JPanel panel_W = new JPanel();
     	frame.getContentPane().add(panel_W, BorderLayout.WEST);
     	panel_W.setLayout(new GridBagLayout());
-    	GridBagConstraints gbcW = new GridBagConstraints();
-    	gbcW.gridx = 0;
-    	gbcW.gridy = GridBagConstraints.RELATIVE;
+    	GridBagConstraints c = new GridBagConstraints();
+    	
+    	c.gridx = 0;
+    	c.gridy = 0;
+    	c.anchor = GridBagConstraints.NORTHWEST;
     	//buttons
     	JButton tstBtnW = new JButton("add vertex");
-    	panel_W.add(tstBtnW, gbcW);
+    	panel_W.add(tstBtnW, c);
+    	
+    	c.gridx = 0;
+    	c.gridy = 1;
+    	c.weightx = 1;
+    	c.weighty = 1;
+    	c.anchor = GridBagConstraints.NORTHWEST;
     	JButton tstBtnW2 = new JButton("add edge");
-    	panel_W.add(tstBtnW2, gbcW);
+    	panel_W.add(tstBtnW2, c);
     	
     	
     	//East panel
