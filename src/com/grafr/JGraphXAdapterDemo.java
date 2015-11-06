@@ -91,6 +91,7 @@ public class JGraphXAdapterDemo
     	c.gridy = 1;
     	c.weightx = 1;
     	c.weighty = 1;
+    	c.insets = new Insets(arg0, arg1, arg2, arg3)
     	c.anchor = GridBagConstraints.NORTHWEST;
     	JButton tstBtnW2 = new JButton("add edge");
     	panel_W.add(tstBtnW2, c);
@@ -110,7 +111,7 @@ public class JGraphXAdapterDemo
     	panel_E.add(btnAlgo2, gbcE);
         
         frame.setVisible(true);
-        frame.setTitle("JGraphT Adapter to JGraph Demo");
+        frame.setTitle("JGraph Adapter to JGraph Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         
