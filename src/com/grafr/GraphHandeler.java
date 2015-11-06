@@ -21,6 +21,8 @@ import com.mxgraph.view.mxStylesheet;
 import java.util.Hashtable;
 
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -39,8 +41,8 @@ import org.jgrapht.graph.*;
  *
  * @since July 9, 2013
  */
-public class JGraphXAdapterDemo
-    extends JApplet
+public class GraphHandeler
+    extends JPanel
 {
     
 
@@ -52,79 +54,10 @@ public class JGraphXAdapterDemo
     private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
     
     public static final String CUSTOM_STYLE = "CUSTUM_STYLE";
-
     
+	mxGraphComponent graphComponent;
 
-    /**
-     * An alternative starting point for this demo, to also allow running this
-     * applet as an application.
-     *
-     * @param args ignored.
-     */
-    public static void main(String [] args)
-    {
-        JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
-        applet.init();
-        
-        JFrame frame = new JFrame();
-        frame.getContentPane().setPreferredSize(new Dimension(800, 600));
-        
-        frame.getContentPane().add(applet, BorderLayout.CENTER);
-    	
-        JMenuBar menuBar = new JMenuBar();
-        frame.setJMenuBar(menuBar);
-    	
-    	//west panel
-        JPanel panel_W = new JPanel();
-    	frame.getContentPane().add(panel_W, BorderLayout.WEST);
-    	panel_W.setLayout(new GridBagLayout());
-    	GridBagConstraints c = new GridBagConstraints();
-    	
-    	c.gridx = 0;
-    	c.gridy = 0;
-    	c.anchor = GridBagConstraints.NORTHWEST;
-    	//buttons
-    	JButton tstBtnW = new JButton("add vertex");
-    	panel_W.add(tstBtnW, c);
-    	
-    	c.gridx = 0;
-    	c.gridy = 1;
-    	c.weightx = 1;
-    	c.weighty = 1;
-    	c.insets = new Insets(2, 2, 2, 2);
-    	c.anchor = GridBagConstraints.NORTHWEST;
-    	JButton tstBtnW2 = new JButton("add edge");
-    	panel_W.add(tstBtnW2, c);
-    	
-    	
-    	//East panel
-        JPanel panel_E = new JPanel();
-    	frame.getContentPane().add(panel_E, BorderLayout.EAST);
-    	panel_E.setLayout(new GridBagLayout());
-    	GridBagConstraints gbcE = new GridBagConstraints();
-    	gbcE.gridx = 0;
-    	gbcE.gridy = GridBagConstraints.RELATIVE;
-    	//buttons
-    	JButton btnAlgo1 = new JButton("Algoritme1");
-    	panel_E.add(btnAlgo1, gbcE);    	
-    	JButton btnAlgo2 = new JButton("Algoritme2");
-    	panel_E.add(btnAlgo2, gbcE);
-        
-        frame.setVisible(true);
-        frame.setTitle("JGraph Adapter to JGraph Demo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        
-
-    }
-    
-
-	
-
-    /**
-     * {@inheritDoc}
-     */
-    public void init()
+    public GraphHandeler()
     {
         // create a JGraphT graph
         ListenableGraph<String, DefaultEdge> g =
@@ -142,8 +75,6 @@ public class JGraphXAdapterDemo
         style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
         style.put(mxConstants.STYLE_EDITABLE, false);
         stylesheet.putCellStyle("ROUNDED", style);
-        resize(DEFAULT_SIZE);
-        
    
         
         graph.getModel().beginUpdate();
@@ -159,13 +90,20 @@ public class JGraphXAdapterDemo
         {
             graph.getModel().endUpdate();
         }
+        
+        this.addComponentListener(new ComponentAdapter(){
+        	public void componentResized(ComponentEvent e){
+        		GraphHandeler gh = (GraphHandeler) e.getComponent();
+        		gh.graphComponent.setBounds(gh.getBounds());
+        	}
+        });
 
-        mxGraphComponent graphComponent = new mxGraphComponent(graph);
-        getContentPane().add(graphComponent);
-    
+        graphComponent = new mxGraphComponent(graph);
+        this.add(graphComponent);
+
         // positioning via jgraphx layouts
         mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
-        
+
         layout.execute(jgxAdapter.getDefaultParent());
 
     }
