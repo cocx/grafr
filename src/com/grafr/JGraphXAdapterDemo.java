@@ -91,7 +91,7 @@ public class JGraphXAdapterDemo
     	c.gridy = 1;
     	c.weightx = 1;
     	c.weighty = 1;
-    	c.insets = new Insets(arg0, arg1, arg2, arg3)
+    	c.insets = new Insets(2, 2, 2, 2);
     	c.anchor = GridBagConstraints.NORTHWEST;
     	JButton tstBtnW2 = new JButton("add edge");
     	panel_W.add(tstBtnW2, c);
