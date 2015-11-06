@@ -67,13 +67,44 @@ public class JGraphXAdapterDemo
         applet.init();
         
         JFrame frame = new JFrame();
-        frame.getContentPane().add(applet);
-        frame.setSize(600, 600);
+        frame.getContentPane().setPreferredSize(new Dimension(800, 600));
+        frame.getContentPane().add(applet, BorderLayout.CENTER);
+    	
+        JPanel panel_E = new JPanel();
+    	frame.getContentPane().add(panel_E, BorderLayout.EAST);
+    	JButton tstBtnE = new JButton("TestE");
+    	panel_E.add(tstBtnE);    	
+    	
+        JPanel panel_W = new JPanel();
+    	frame.getContentPane().add(panel_W, BorderLayout.WEST);
+    	JButton tstBtnW = new JButton("TestW");
+    	panel_W.add(tstBtnW);
+
+        
         frame.setVisible(true);
         frame.setTitle("JGraphT Adapter to JGraph Demo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        
+
     }
+    
+    
+
+
+    /*
+	Canvas drawingFrame = new Canvas();
+	frame.getContentPane().add(drawingFrame, BorderLayout.CENTER);
+
+	drawingFrame.addMouseListener(new MouseAdapter(){
+		@Override
+		public void mousePressed(MouseEvent e){
+			Canvas draw = (Canvas) e.getComponent();
+			draw.getGraphics().drawOval(e.getX()-50, e.getY()-50, 100, 100);
+		}
+	});*/
+
+	
 
     /**
      * {@inheritDoc}
