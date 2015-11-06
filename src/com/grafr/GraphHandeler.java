@@ -91,15 +91,13 @@ public class GraphHandeler
             graph.getModel().endUpdate();
         }
         
-        this.addComponentListener(new ComponentAdapter(){
-        	public void componentResized(ComponentEvent e){
-        		GraphHandeler gh = (GraphHandeler) e.getComponent();
-        		gh.graphComponent.setBounds(gh.getBounds());
-        	}
-        });
+        this.setBackground(new Color(1, 0, 0));
+        
+        this.setLayout(new BorderLayout());
+        
 
         graphComponent = new mxGraphComponent(graph);
-        this.add(graphComponent);
+        this.add(graphComponent,BorderLayout.CENTER);
 
         // positioning via jgraphx layouts
         mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);

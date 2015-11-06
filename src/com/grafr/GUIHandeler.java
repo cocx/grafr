@@ -20,6 +20,7 @@ public class GUIHandeler {
 	JFrame frame;
 	JMenuBar menuBar;
 	JPanel panelW;
+	JPanel panelE;
 	JButton tstBtnW;
 	JButton btnAlgo2;
 	JButton btnAlgo1;
@@ -30,11 +31,6 @@ public class GUIHandeler {
         frame.getContentPane().setPreferredSize(new Dimension(800, 600));
         GraphHandeler graph = new GraphHandeler();
         
-        graph.addComponentListener(new ComponentAdapter(){
-        	public void componentResized(ComponentEvent e){
-        		System.out.println("Resize");
-        	}
-        });
         
         frame.getContentPane().add(graph, BorderLayout.CENTER);
     	
@@ -68,20 +64,27 @@ public class GUIHandeler {
     	
     	
     	//East panel
-        JPanel panel_E = new JPanel();
-    	frame.getContentPane().add(panel_E, BorderLayout.EAST);
-    	panel_E.setLayout(new GridBagLayout());
-    	GridBagConstraints gbcE = new GridBagConstraints();
-    	gbcE.gridx = 0;
-    	gbcE.gridy = GridBagConstraints.RELATIVE;
-    	//buttons
+        panelE = new JPanel();
+    	frame.getContentPane().add(panelE, BorderLayout.EAST);
+    	panelE.setLayout(new GridBagLayout());
+    	GridBagConstraints gc = new GridBagConstraints();
+    	gc.gridx = 0;
+    	gc.gridy = 0;
+    	gc.anchor = GridBagConstraints.NORTHEAST;
     	btnAlgo1 = new JButton("Algoritme1");
-    	panel_E.add(btnAlgo1, gbcE);    	
+    	panelE.add(btnAlgo1, gc);    	
+    	
+    	
+    	gc.gridx = 0;
+    	gc.gridy = 1;
+    	gc.weightx = 1;
+    	gc.weighty = 1;
+    	gc.insets = new Insets(2, 2, 2, 2);
     	btnAlgo2 = new JButton("Algoritme2");
-    	panel_E.add(btnAlgo2, gbcE);
+    	panelE.add(btnAlgo2, gc);
         
         frame.setVisible(true);
-        frame.setTitle("JGraph Adapter to JGraph Demo");
+        frame.setTitle("Grafr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
 	}
