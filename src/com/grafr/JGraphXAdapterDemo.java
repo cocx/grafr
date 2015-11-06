@@ -68,18 +68,38 @@ public class JGraphXAdapterDemo
         
         JFrame frame = new JFrame();
         frame.getContentPane().setPreferredSize(new Dimension(800, 600));
+        
         frame.getContentPane().add(applet, BorderLayout.CENTER);
     	
-        JPanel panel_E = new JPanel();
-    	frame.getContentPane().add(panel_E, BorderLayout.EAST);
-    	JButton tstBtnE = new JButton("TestE");
-    	panel_E.add(tstBtnE);    	
+        JMenuBar menuBar = new JMenuBar();
+        frame.setJMenuBar(menuBar);
     	
+    	//west panel
         JPanel panel_W = new JPanel();
     	frame.getContentPane().add(panel_W, BorderLayout.WEST);
-    	JButton tstBtnW = new JButton("TestW");
-    	panel_W.add(tstBtnW);
-
+    	panel_W.setLayout(new GridBagLayout());
+    	GridBagConstraints gbcW = new GridBagConstraints();
+    	gbcW.gridx = 0;
+    	gbcW.gridy = GridBagConstraints.RELATIVE;
+    	//buttons
+    	JButton tstBtnW = new JButton("add vertex");
+    	panel_W.add(tstBtnW, gbcW);
+    	JButton tstBtnW2 = new JButton("add edge");
+    	panel_W.add(tstBtnW2, gbcW);
+    	
+    	
+    	//East panel
+        JPanel panel_E = new JPanel();
+    	frame.getContentPane().add(panel_E, BorderLayout.EAST);
+    	panel_E.setLayout(new GridBagLayout());
+    	GridBagConstraints gbcE = new GridBagConstraints();
+    	gbcE.gridx = 0;
+    	gbcE.gridy = GridBagConstraints.RELATIVE;
+    	//buttons
+    	JButton btnAlgo1 = new JButton("Algoritme1");
+    	panel_E.add(btnAlgo1, gbcE);    	
+    	JButton btnAlgo2 = new JButton("Algoritme2");
+    	panel_E.add(btnAlgo2, gbcE);
         
         frame.setVisible(true);
         frame.setTitle("JGraphT Adapter to JGraph Demo");
@@ -89,20 +109,6 @@ public class JGraphXAdapterDemo
 
     }
     
-    
-
-
-    /*
-	Canvas drawingFrame = new Canvas();
-	frame.getContentPane().add(drawingFrame, BorderLayout.CENTER);
-
-	drawingFrame.addMouseListener(new MouseAdapter(){
-		@Override
-		public void mousePressed(MouseEvent e){
-			Canvas draw = (Canvas) e.getComponent();
-			draw.getGraphics().drawOval(e.getX()-50, e.getY()-50, 100, 100);
-		}
-	});*/
 
 	
 
@@ -129,34 +135,7 @@ public class JGraphXAdapterDemo
         stylesheet.putCellStyle("ROUNDED", style);
         resize(DEFAULT_SIZE);
         
-        JMenuBar menubar = new JMenuBar();
-
-        JMenu menuOption = new JMenu("File");
-
-        JMenuItem NewGame = new JMenuItem("Add stuff");
-        menuOption.add(NewGame);
-
-        JMenuItem exitGame = new JMenuItem("stuff");
-        menuOption.add(exitGame);
-
-        JMenu menuLevel = new JMenu("Algoritme");
-
-        JMenuItem Dijkstra = new JMenuItem("Dijkstra");
-        JMenuItem ASter = new JMenuItem("A*");
-        JMenuItem Kruskal = new JMenuItem("Kruskal");
-
-        // the menu items, menus and menu bar all need
-        // to be ADDED to something!
-        menubar.add(menuOption);
-        menuOption.add(NewGame);
-        menuOption.add(exitGame);
-        menubar.add(menuLevel);
-        menuLevel.add(Dijkstra);
-        menuLevel.add(ASter);
-        menuLevel.add(Kruskal);
-        setJMenuBar(menubar);
-        
-        
+   
         
         graph.getModel().beginUpdate();
         try
