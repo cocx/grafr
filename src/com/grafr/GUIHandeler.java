@@ -87,6 +87,8 @@ public class GUIHandeler {
         frame.setTitle("Grafr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        //setLocation MUST be done after .pack()
+        frame.setLocationRelativeTo( null );
 	}
 
 }

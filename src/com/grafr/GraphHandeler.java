@@ -70,20 +70,36 @@ public class GraphHandeler
         Object parent = graph.getDefaultParent();
         mxStylesheet stylesheet = graph.getStylesheet();
         Hashtable<String, Object> style = new Hashtable<String, Object>();
+        //text style
+        style.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
+        style.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
+        style.put(mxConstants.STYLE_FONTSIZE, 20);
+        style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+        //label position
+        style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_BOTTOM);
+        style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_MIDDLE);
+        style.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
+        //vertex style
         style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
         style.put(mxConstants.STYLE_OPACITY, 50);
-        style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
         style.put(mxConstants.STYLE_EDITABLE, false);
-        stylesheet.putCellStyle("ROUNDED", style);
+        style.put(mxConstants.STYLE_RESIZABLE, false);
+        //assign style to string
+        stylesheet.putCellStyle("STDvertex", style);
    
         
         graph.getModel().beginUpdate();
         try
         {
-            Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80,
-                    30, "ROUNDED");
-            Object v2 = graph.insertVertex(parent, null, "World!", 240, 150,
-                    80, 30);
+            Object v1 = graph.insertVertex(parent, null, "A", 20, 20, 
+            		80, 80, "STDvertex");
+            Object v2 = graph.insertVertex(parent, null, "B", 240, 150,
+                    80, 80, "STDvertex");
+            Object v3 = graph.insertVertex(parent, null, "C", 240, 20, 
+            		80, 80, "STDvertex");
+            Object v4 = graph.insertVertex(parent, null, "D", 20, 150,
+                    80, 80, "STDvertex");
+          
             graph.insertEdge(parent, null, "Edge", v1, v2);
         }
         finally
