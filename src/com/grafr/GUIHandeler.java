@@ -31,14 +31,9 @@ public class GUIHandeler {
         frame.getContentPane().setPreferredSize(new Dimension(800, 600));
         GraphHandeler graph = new GraphHandeler();
         
-        
+        //center panel
         frame.getContentPane().add(graph, BorderLayout.CENTER);
     	
-        menuBar = new JMenuBar();
-        frame.setJMenuBar(menuBar);
-        
-        file = new JMenuItem("File");
-        menuBar.add(file);
     	
     	//west panel
         panelW = new JPanel();
@@ -83,7 +78,6 @@ public class GUIHandeler {
     	btnAlgo2 = new JButton("Algoritme2");
     	panelE.add(btnAlgo2, gc);
         
-        frame.setVisible(true);
         frame.setTitle("Grafr");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();

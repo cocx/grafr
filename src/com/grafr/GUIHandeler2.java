@@ -13,6 +13,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTree;
@@ -53,6 +54,7 @@ public class GUIHandeler2 {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
+		//frame.setPreferredSize(new Dimension(800, 600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -106,22 +108,11 @@ public class GUIHandeler2 {
 		JButton btnNewButton_2 = new JButton("New button");
 		panel_3.add(btnNewButton_2);
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Color.WHITE);
-		frame.getContentPane().add(panel_4, BorderLayout.CENTER);
+        GraphHandeler graph = new GraphHandeler();    
+
+        frame.getContentPane().add(graph, BorderLayout.CENTER);
 		
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		JMenu menu = new JMenu("New menu");
-		menuBar.add(menu);
-		
-		JMenuItem a = new JMenuItem("iets");
-		menu.add(a);
-		JMenuItem b = new JMenuItem("iets anders");
-		menu.add(b);
-		JMenuItem c = new JMenuItem("nog iets anders");
-		menu.add(c);
+
 	}
 
 }
