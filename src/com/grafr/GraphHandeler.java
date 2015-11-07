@@ -54,9 +54,13 @@ public class GraphHandeler
     private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
     
     public static final String CUSTOM_STYLE = "CUSTUM_STYLE";
-    
+    mxStylesheet stylesheet;
+    Hashtable<String, Object> stdStyle;
+    Hashtable<String, Object> endStyle;
 	mxGraphComponent graphComponent;
-
+	mxGraph graph;
+	Object parent;
+	
     public GraphHandeler()
     {
         // create a JGraphT graph
@@ -66,26 +70,36 @@ public class GraphHandeler
 
         // create a visualization using JGraph, via an adapter
         jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
-        mxGraph graph = new mxGraph();
-        Object parent = graph.getDefaultParent();
-        mxStylesheet stylesheet = graph.getStylesheet();
-        Hashtable<String, Object> style = new Hashtable<String, Object>();
+        graph = new mxGraph();
+        parent = graph.getDefaultParent();
+        stylesheet = graph.getStylesheet();
+        stdStyle = new Hashtable<String, Object>();
         //text style
-        style.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
-        style.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
-        style.put(mxConstants.STYLE_FONTSIZE, 20);
-        style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
+        stdStyle.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
+        stdStyle.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
+        stdStyle.put(mxConstants.STYLE_FONTSIZE, 20);
+        stdStyle.put(mxConstants.STYLE_FONTCOLOR, "#774400");
         //label position
-        style.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_BOTTOM);
-        style.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_MIDDLE);
-        style.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
+        stdStyle.put(mxConstants.STYLE_LABEL_POSITION, mxConstants.ALIGN_BOTTOM);
+        stdStyle.put(mxConstants.STYLE_VERTICAL_LABEL_POSITION, mxConstants.ALIGN_MIDDLE);
+        stdStyle.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
         //vertex style
-        style.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
-        style.put(mxConstants.STYLE_OPACITY, 50);
-        style.put(mxConstants.STYLE_EDITABLE, false);
-        style.put(mxConstants.STYLE_RESIZABLE, false);
+        stdStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
+        stdStyle.put(mxConstants.STYLE_OPACITY, 50);
+        stdStyle.put(mxConstants.STYLE_EDITABLE, false);
+        stdStyle.put(mxConstants.STYLE_RESIZABLE, false);
+        
+        
+        //end vertex
+        endStyle = new Hashtable<String, Object>(stdStyle);
+        //vertex style
+        endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
+        
+        
         //assign style to string
-        stylesheet.putCellStyle("STDvertex", style);
+        stylesheet.putCellStyle("STDvertex", stdStyle);
+        stylesheet.putCellStyle("ENDvertex", endStyle);
+        
    
         
         graph.getModel().beginUpdate();
@@ -98,9 +112,14 @@ public class GraphHandeler
             Object v3 = graph.insertVertex(parent, null, "C", 240, 20, 
             		80, 80, "STDvertex");
             Object v4 = graph.insertVertex(parent, null, "D", 20, 150,
-                    80, 80, "STDvertex");
+                    80, 80, "ENDvertex");
           
-            graph.insertEdge(parent, null, "Edge", v1, v2);
+            graph.insertEdge(parent, null, null, v1, v2);
+            graph.insertEdge(parent, null, null, v2, v3);
+            graph.insertEdge(parent, null, null, v2, v4);
+            graph.insertEdge(parent, null, null, v4, v3);
+            graph.insertEdge(parent, null, null, v4, v1);
+            
         }
         finally
         {
