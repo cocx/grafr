@@ -44,19 +44,11 @@ import org.jgrapht.graph.*;
 public class GraphHandeler
     extends JPanel
 {
-    
-
-    private static final long serialVersionUID = 2202072534703043194L;
-    private static final Dimension DEFAULT_SIZE = new Dimension(530, 320);
-
-    
-
     private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
-    
-    public static final String CUSTOM_STYLE = "CUSTUM_STYLE";
     mxStylesheet stylesheet;
     Hashtable<String, Object> stdStyle;
     Hashtable<String, Object> endStyle;
+    Hashtable<String, Object> edgeStyle;
 	mxGraphComponent graphComponent;
 	mxGraph graph;
 	Object parent;
@@ -73,7 +65,7 @@ public class GraphHandeler
         graph = new mxGraph();
         parent = graph.getDefaultParent();
         stylesheet = graph.getStylesheet();
-        stdStyle = new Hashtable<String, Object>();
+        stdStyle = new Hashtable<String, Object>(stylesheet.getDefaultVertexStyle());
         //text style
         stdStyle.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
         stdStyle.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
@@ -85,9 +77,11 @@ public class GraphHandeler
         stdStyle.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_CENTER);
         //vertex style
         stdStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_ELLIPSE);
+        stdStyle.put(mxConstants.STYLE_STROKEWIDTH, 5);
         stdStyle.put(mxConstants.STYLE_OPACITY, 50);
         stdStyle.put(mxConstants.STYLE_EDITABLE, false);
         stdStyle.put(mxConstants.STYLE_RESIZABLE, false);
+        
         
         
         //end vertex
@@ -96,9 +90,21 @@ public class GraphHandeler
         endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
         
         
+        edgeStyle = new Hashtable<String, Object>(stylesheet.getDefaultEdgeStyle());
+        edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 6);
+        
+        
+        
+        
+        
         //assign style to string
+        stylesheet.setDefaultVertexStyle(stdStyle);
         stylesheet.putCellStyle("STDvertex", stdStyle);
         stylesheet.putCellStyle("ENDvertex", endStyle);
+        stylesheet.setDefaultEdgeStyle(edgeStyle);
+        stylesheet.putCellStyle("Edge", edgeStyle);
+
+        //the above is a bit double but useful example code for our tool selection
         
    
         
@@ -114,11 +120,11 @@ public class GraphHandeler
             Object v4 = graph.insertVertex(parent, null, "D", 20, 150,
                     80, 80, "ENDvertex");
           
-            graph.insertEdge(parent, null, null, v1, v2);
-            graph.insertEdge(parent, null, null, v2, v3);
-            graph.insertEdge(parent, null, null, v2, v4);
-            graph.insertEdge(parent, null, null, v4, v3);
-            graph.insertEdge(parent, null, null, v4, v1);
+            graph.insertEdge(parent, null, null, v1, v2, "Edge");
+            graph.insertEdge(parent, null, null, v2, v3, "Edge");
+            graph.insertEdge(parent, null, null, v2, v4, "Edge");
+            graph.insertEdge(parent, null, null, v4, v3, "Edge");
+            graph.insertEdge(parent, null, null, v4, v1, "Edge");
             
         }
         finally
