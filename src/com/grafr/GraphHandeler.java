@@ -63,6 +63,13 @@ public class GraphHandeler
         // create a visualization using JGraph, via an adapter
         jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
         graph = new mxGraph();
+        
+        //disable a few features of jgraph
+        graph.setAllowDanglingEdges(false);
+        graph.setCellsResizable(false);
+        graph.setCellsEditable(false);
+        
+        
         parent = graph.getDefaultParent();
         stylesheet = graph.getStylesheet();
         stdStyle = new Hashtable<String, Object>(stylesheet.getDefaultVertexStyle());
@@ -106,7 +113,7 @@ public class GraphHandeler
 
         //the above is a bit double but useful example code for our tool selection
         
-   
+        
         
         graph.getModel().beginUpdate();
         try
@@ -136,8 +143,9 @@ public class GraphHandeler
         
         this.setLayout(new BorderLayout());
         
-
         graphComponent = new mxGraphComponent(graph);
+        
+        graphComponent.setConnectable(false);
         this.add(graphComponent,BorderLayout.CENTER);
 
         // positioning via jgraphx layouts
