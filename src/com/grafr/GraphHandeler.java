@@ -18,6 +18,7 @@ import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxStylesheet;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 
 import java.awt.*;
@@ -49,6 +50,9 @@ public class GraphHandeler
     Hashtable<String, Object> stdStyle;
     Hashtable<String, Object> endStyle;
     Hashtable<String, Object> edgeStyle;
+    
+    HashMap<String, Object> Vertecies;
+    
 	mxGraphComponent graphComponent;
 	mxGraph graph;
 	Object parent;
@@ -68,7 +72,6 @@ public class GraphHandeler
         graph.setAllowDanglingEdges(false);
         graph.setCellsResizable(false);
         graph.setCellsEditable(false);
-        
         
         parent = graph.getDefaultParent();
         stylesheet = graph.getStylesheet();
@@ -96,13 +99,8 @@ public class GraphHandeler
         //vertex style
         endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
         
-        
         edgeStyle = new Hashtable<String, Object>(stylesheet.getDefaultEdgeStyle());
         edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 6);
-        
-        
-        
-        
         
         //assign style to string
         stylesheet.setDefaultVertexStyle(stdStyle);
@@ -113,18 +111,18 @@ public class GraphHandeler
 
         //the above is a bit double but useful example code for our tool selection
         
-        
-        
         graph.getModel().beginUpdate();
         try
         {
-            Object v1 = graph.insertVertex(parent, null, "A", 20, 20, 
+            Object v1 = graph.insertVertex(parent, null, "A", 40, 20, 
             		80, 80, "STDvertex");
-            Object v2 = graph.insertVertex(parent, null, "B", 240, 150,
+            Object v2 = graph.insertVertex(parent, null, "B", 340, 250,
                     80, 80, "STDvertex");
-            Object v3 = graph.insertVertex(parent, null, "C", 240, 20, 
+            Object v3 = graph.insertVertex(parent, null, "C", 320, 20, 
             		80, 80, "STDvertex");
-            Object v4 = graph.insertVertex(parent, null, "D", 20, 150,
+            Object v4 = graph.insertVertex(parent, null, "D", 20, 250,
+                    80, 80, "ENDvertex");
+            Object v5 = graph.insertVertex(parent, null, "E", 170, 450,
                     80, 80, "ENDvertex");
           
             graph.insertEdge(parent, null, null, v1, v2, "Edge");
@@ -132,6 +130,14 @@ public class GraphHandeler
             graph.insertEdge(parent, null, null, v2, v4, "Edge");
             graph.insertEdge(parent, null, null, v4, v3, "Edge");
             graph.insertEdge(parent, null, null, v4, v1, "Edge");
+            graph.insertEdge(parent, null, null, v5, v1, "Edge");
+            graph.insertEdge(parent, null, null, v5, v2, "Edge");
+            graph.insertEdge(parent, null, null, v5, v3, "Edge");
+            graph.insertEdge(parent, null, null, v5, v4, "Edge");
+            
+            graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "red",new Object[]{v4});
+            graph.setCellStyle("ENDvertex", new Object[]{v4});
+            
             
         }
         finally
@@ -152,7 +158,6 @@ public class GraphHandeler
         mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
 
         layout.execute(jgxAdapter.getDefaultParent());
-
     }
 }
 
