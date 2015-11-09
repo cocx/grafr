@@ -49,9 +49,11 @@ public class GraphHandeler
     mxStylesheet stylesheet;
     Hashtable<String, Object> stdStyle;
     Hashtable<String, Object> endStyle;
+    Hashtable<String, Object> startStyle;
     Hashtable<String, Object> edgeStyle;
     
-    HashMap<String, Object> Vertecies;
+    Object startVertex;
+    Object endVertex;
     
 	mxGraphComponent graphComponent;
 	mxGraph graph;
@@ -99,13 +101,20 @@ public class GraphHandeler
         //vertex style
         endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
         
+        startStyle = new Hashtable<>(stdStyle);
+        startStyle.put(mxConstants.STYLE_FILLCOLOR, "green");
+        
         edgeStyle = new Hashtable<String, Object>(stylesheet.getDefaultEdgeStyle());
         edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 6);
         
+        
         //assign style to string
         stylesheet.setDefaultVertexStyle(stdStyle);
+        
         stylesheet.putCellStyle("STDvertex", stdStyle);
         stylesheet.putCellStyle("ENDvertex", endStyle);
+        stylesheet.putCellStyle("STARTvertex", startStyle);
+        
         stylesheet.setDefaultEdgeStyle(edgeStyle);
         stylesheet.putCellStyle("Edge", edgeStyle);
 
@@ -114,17 +123,15 @@ public class GraphHandeler
         graph.getModel().beginUpdate();
         try
         {
-            Object v1 = graph.insertVertex(parent, null, "A", 40, 20, 
-            		80, 80, "STDvertex");
-            Object v2 = graph.insertVertex(parent, null, "B", 340, 250,
-                    80, 80, "STDvertex");
-            Object v3 = graph.insertVertex(parent, null, "C", 320, 20, 
-            		80, 80, "STDvertex");
-            Object v4 = graph.insertVertex(parent, null, "D", 20, 250,
-                    80, 80, "ENDvertex");
-            Object v5 = graph.insertVertex(parent, null, "E", 170, 450,
-                    80, 80, "ENDvertex");
-          
+            Object v1 = addVertex("A", 40, 20, 80, 80);
+            Object v2 = addVertex("B", 340, 250, 80, 80);
+            Object v3 = addVertex("C", 320, 20, 80, 80);
+            Object v4 = addVertex("D", 20, 250, 80, 80);
+            Object v5 = addVertex("E", 170, 450, 80, 80);
+            
+            setAsEnd(v5);
+            setAsStart(v1);
+            
             graph.insertEdge(parent, null, null, v1, v2, "Edge");
             graph.insertEdge(parent, null, null, v2, v3, "Edge");
             graph.insertEdge(parent, null, null, v2, v4, "Edge");
@@ -158,6 +165,26 @@ public class GraphHandeler
         mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
 
         layout.execute(jgxAdapter.getDefaultParent());
+    }
+    
+    public Object addVertex(String name,double x,double y,double width,double height){
+    	return graph.insertVertex(graph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
+    }
+    
+    public void setAsEnd(Object vertex){
+    	if(this.endVertex!= null){
+    		graph.setCellStyle("STDvertex", new Object[]{endVertex});
+    	}
+    	this.endVertex = vertex;
+    	graph.setCellStyle("ENDvertex",new Object[]{vertex});
+    }
+    
+    public void setAsStart(Object vertex){
+    	if(this.startVertex != null){
+    		graph.setCellStyle("STDvertex", new Object[]{startVertex});
+    	}
+    	this.startVertex = vertex;
+    	graph.setCellStyle("STARTvertex",new Object[]{vertex});
     }
 }
 
