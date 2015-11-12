@@ -19,8 +19,8 @@ import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxStylesheet;
 
 import java.util.Hashtable;
-
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -86,15 +86,20 @@ public class JGraphXAdapterDemo
     	//buttons
     	JButton tstBtnW = new JButton("add vertex");
     	panel_W.add(tstBtnW, c);
-    	
+
     	c.gridx = 0;
     	c.gridy = 1;
     	c.weightx = 1;
     	c.weighty = 1;
-    	c.insets = new Insets(arg0, arg1, arg2, arg3)
+//    	c.insets = new Insets(arg0, arg1, arg2, arg3);
     	c.anchor = GridBagConstraints.NORTHWEST;
     	JButton tstBtnW2 = new JButton("add edge");
     	panel_W.add(tstBtnW2, c);
+    	c.gridx = 0;
+    	c.gridy = 2;
+    	c.weightx = 2;
+    	c.weighty = 2;
+    	c.anchor = GridBagConstraints.NORTHWEST;
     	
     	
     	//East panel
@@ -118,7 +123,46 @@ public class JGraphXAdapterDemo
 
     }
     
-
+public void colorNode(mxGraph graph, Object cell, String color){
+	switch(color){
+	case "green":
+		graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "green", new Object[] {cell});
+	    graph.refresh();
+	    break;
+	case "red":
+		graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "red", new Object[] {cell});
+	    graph.refresh();
+	    break;
+	case "blue":
+		graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "blue", new Object[] {cell});
+	    graph.refresh();
+	    break;
+	case "yellow":
+		graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "yellow", new Object[] {cell});
+	    graph.refresh();
+	    break;
+	}
+}
+public void colorLine(mxGraph graph, Object line, String color){
+	switch(color){
+	case "green":
+		graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, "green", new Object[] {line});
+	    graph.refresh();
+	    break;
+	case "red":
+		graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, "red", new Object[] {line});
+	    graph.refresh();
+	    break;
+	case "blue":
+		graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, "blue", new Object[] {line});
+	    graph.refresh();
+	    break;
+	case "yellow":
+		graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, "yellow", new Object[] {line});
+	    graph.refresh();
+	    break;
+	}
+}
 	
 
     /**
@@ -142,30 +186,38 @@ public class JGraphXAdapterDemo
         style.put(mxConstants.STYLE_FONTCOLOR, "#774400");
         style.put(mxConstants.STYLE_EDITABLE, false);
         stylesheet.putCellStyle("ROUNDED", style);
+        mxStylesheet stylesheetEdge = graph.getStylesheet();
+        Hashtable<String, Object> EdgeStyle = new Hashtable<String, Object>();
+        EdgeStyle.put(mxConstants.STYLE_DASHED, true);
+        stylesheetEdge.putCellStyle("DASHED", EdgeStyle);
         resize(DEFAULT_SIZE);
-        
-   
+        Object v1=null;
+        Object v2=null;
+        Object v3=null;
         
         graph.getModel().beginUpdate();
         try
         {
-            Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80,
-                    30, "ROUNDED");
-            Object v2 = graph.insertVertex(parent, null, "World!", 240, 150,
+            v1 = graph.insertVertex(parent, null, "Test", 20, 20, 80,
+                    30, "ROUNDED;fillColor=red");
+            v2 = graph.insertVertex(parent, null, "World!", 240, 150,
                     80, 30);
-            graph.insertEdge(parent, null, "Edge", v1, v2);
+            v3 = graph.insertEdge(parent, null, "Edge", v1, v2);
+            
         }
         finally
         {
             graph.getModel().endUpdate();
         }
-
+        colorNode(graph, v1, "red");
+        colorNode(graph, v2, "yellow");
+        colorLine(graph, v3, "green");
         mxGraphComponent graphComponent = new mxGraphComponent(graph);
         getContentPane().add(graphComponent);
+
     
         // positioning via jgraphx layouts
         mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
-        
         layout.execute(jgxAdapter.getDefaultParent());
 
     }
