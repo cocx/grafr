@@ -13,6 +13,7 @@
 package com.grafr;
 
 import com.mxgraph.layout.*;
+import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.*;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
@@ -45,38 +46,44 @@ import org.jgrapht.graph.*;
 public class GraphHandeler
     extends JPanel
 {
-    private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
+    private JGraphXAdapter<String, CustomEdge> jgxAdapter;
     mxStylesheet stylesheet;
     Hashtable<String, Object> stdStyle;
     Hashtable<String, Object> endStyle;
     Hashtable<String, Object> startStyle;
     Hashtable<String, Object> edgeStyle;
     
-    Object startVertex;
-    Object endVertex;
+    mxCell startVertex;
+    mxCell endVertex;
     
 	mxGraphComponent graphComponent;
-	mxGraph graph;
+	mxGraph xgraph;
+	ListenableUndirectedWeightedGraph<String, CustomEdge> graph;
+	
 	Object parent;
 	
     public GraphHandeler()
     {
         // create a JGraphT graph
-        ListenableGraph<String, DefaultEdge> g =
-            new ListenableDirectedGraph<String, DefaultEdge>(
-                DefaultEdge.class);
-
+        graph = new ListenableUndirectedWeightedGraph<String, CustomEdge>(CustomEdge.class);
+        
         // create a visualization using JGraph, via an adapter
-        jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
-        graph = new mxGraph();
+        xgraph = new JGraphXAdapter<String, CustomEdge>(graph);
+        
+        //add component to panel
+        this.setLayout(new BorderLayout());
+        graphComponent = new mxGraphComponent(xgraph);
+        graphComponent.setConnectable(false);
+        this.add(graphComponent,BorderLayout.CENTER);
         
         //disable a few features of jgraph
-        graph.setAllowDanglingEdges(false);
-        graph.setCellsResizable(false);
-        graph.setCellsEditable(false);
+        xgraph.setAllowDanglingEdges(false);
+        xgraph.setCellsResizable(false);
+        xgraph.setCellsEditable(false);
+        xgraph.setEdgeLabelsMovable(false);
         
-        parent = graph.getDefaultParent();
-        stylesheet = graph.getStylesheet();
+        parent = xgraph.getDefaultParent();
+        stylesheet = xgraph.getStylesheet();
         stdStyle = new Hashtable<String, Object>(stylesheet.getDefaultVertexStyle());
         //text style
         stdStyle.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
@@ -100,92 +107,62 @@ public class GraphHandeler
         endStyle = new Hashtable<String, Object>(stdStyle);
         //vertex style
         endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
-        
         startStyle = new Hashtable<>(stdStyle);
         startStyle.put(mxConstants.STYLE_FILLCOLOR, "green");
-        
         edgeStyle = new Hashtable<String, Object>(stylesheet.getDefaultEdgeStyle());
         edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 6);
         
         
         //assign style to string
         stylesheet.setDefaultVertexStyle(stdStyle);
-        
         stylesheet.putCellStyle("STDvertex", stdStyle);
         stylesheet.putCellStyle("ENDvertex", endStyle);
         stylesheet.putCellStyle("STARTvertex", startStyle);
-        
         stylesheet.setDefaultEdgeStyle(edgeStyle);
         stylesheet.putCellStyle("Edge", edgeStyle);
 
         //the above is a bit double but useful example code for our tool selection
         
-        graph.getModel().beginUpdate();
-        try
-        {
-            Object v1 = addVertex("A", 40, 20, 80, 80);
-            Object v2 = addVertex("B", 340, 250, 80, 80);
-            Object v3 = addVertex("C", 320, 20, 80, 80);
-            Object v4 = addVertex("D", 20, 250, 80, 80);
-            Object v5 = addVertex("E", 170, 450, 80, 80);
-            
-            setAsEnd(v5);
-            setAsStart(v1);
-            
-            graph.insertEdge(parent, null, null, v1, v2, "Edge");
-            graph.insertEdge(parent, null, null, v2, v3, "Edge");
-            graph.insertEdge(parent, null, null, v2, v4, "Edge");
-            graph.insertEdge(parent, null, null, v4, v3, "Edge");
-            graph.insertEdge(parent, null, null, v4, v1, "Edge");
-            graph.insertEdge(parent, null, null, v5, v1, "Edge");
-            graph.insertEdge(parent, null, null, v5, v2, "Edge");
-            graph.insertEdge(parent, null, null, v5, v3, "Edge");
-            graph.insertEdge(parent, null, null, v5, v4, "Edge");
-            
-            graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "red",new Object[]{v4});
-            graph.setCellStyle("ENDvertex", new Object[]{v4});
-            
-            
-        }
-        finally
-        {
-            graph.getModel().endUpdate();
-        }
+        String c1 = "v1";
+        String c2 = "v2";
+        String c3 = "v3";
+        String c4 = "v4";
         
-        this.setBackground(new Color(1, 0, 0));
+        graph.addVertex(c1);
+        graph.addVertex(c2);
+        graph.addVertex(c3);
+        graph.addVertex(c4);
         
-        this.setLayout(new BorderLayout());
-        
-        graphComponent = new mxGraphComponent(graph);
-        
-        graphComponent.setConnectable(false);
-        this.add(graphComponent,BorderLayout.CENTER);
+        graph.addEdge(c1, c2);
+        graph.addEdge(c3, c2);
+        graph.addEdge(c4, c1);
 
         // positioning via jgraphx layouts
-        mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
-
-        layout.execute(jgxAdapter.getDefaultParent());
+        mxCompactTreeLayout layout = new mxCompactTreeLayout(xgraph);
+        layout.execute(xgraph.getDefaultParent());
+        
     }
     
     public Object addVertex(String name,double x,double y,double width,double height){
-    	return graph.insertVertex(graph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
+    	return xgraph.insertVertex(xgraph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
     }
     
-    public void setAsEnd(Object vertex){
+    public void setAsEnd(mxCell vertex){
     	if(this.endVertex!= null){
-    		graph.setCellStyle("STDvertex", new Object[]{endVertex});
+    		xgraph.setCellStyle("STDvertex", new Object[]{endVertex});
     	}
     	this.endVertex = vertex;
-    	graph.setCellStyle("ENDvertex",new Object[]{vertex});
+    	xgraph.setCellStyle("ENDvertex",new Object[]{vertex});
     }
     
-    public void setAsStart(Object vertex){
+    public void setAsStart(mxCell vertex){
     	if(this.startVertex != null){
-    		graph.setCellStyle("STDvertex", new Object[]{startVertex});
+    		xgraph.setCellStyle("STDvertex", new Object[]{startVertex});
     	}
     	this.startVertex = vertex;
-    	graph.setCellStyle("STARTvertex",new Object[]{vertex});
+    	xgraph.setCellStyle("STARTvertex",new Object[]{vertex});
     }
+    
 }
 
 //End JGraphXAdapterDemo.java
