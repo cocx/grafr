@@ -1,17 +1,6 @@
-/* This program and the accompanying materials are dual-licensed under
- * either
- *
- * (a) the terms of the GNU Lesser General Public License version 2.1
- * as published by the Free Software Foundation, or (at your option) any
- * later version.
- *
- * or (per the licensee's choosing)
- *
- * (b) the terms of the Eclipse Public License v1.0 as published by
- * the Eclipse Foundation.
- */
 package com.grafr;
 
+import com.grafr.GraphBackend.Vertex;
 import com.mxgraph.layout.*;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.*;
@@ -37,12 +26,6 @@ import org.jgrapht.ext.*;
 import org.jgrapht.graph.*;
 
 
-/**
- * A demo applet that shows how to use JGraphX to visualize JGraphT graphs.
- * Applet based on JGraphAdapterDemo.
- *
- * @since July 9, 2013
- */
 public class GraphHandeler
     extends JPanel
 {
@@ -53,14 +36,16 @@ public class GraphHandeler
     Hashtable<String, Object> startStyle;
     Hashtable<String, Object> edgeStyle;
     
-    mxCell startVertex;
-    mxCell endVertex;
+    Vertex startVertex;
+    Vertex endVertex;
     
 	mxGraphComponent graphComponent;
 	mxGraph xgraph;
 	ListenableUndirectedWeightedGraph<String, CustomEdge> graph;
 	
 	Object parent;
+	
+	GraphBackend graphBackend;
 	
     public GraphHandeler()
     {
@@ -76,6 +61,7 @@ public class GraphHandeler
         graphComponent.setConnectable(false);
         this.add(graphComponent,BorderLayout.CENTER);
         
+        this.graphBackend = new GraphBackend();
         //disable a few features of jgraph
         xgraph.setAllowDanglingEdges(false);
         xgraph.setCellsResizable(false);
@@ -123,46 +109,71 @@ public class GraphHandeler
 
         //the above is a bit double but useful example code for our tool selection
         
-        String c1 = "v1";
-        String c2 = "v2";
-        String c3 = "v3";
-        String c4 = "v4";
+        graph.getModel().beginUpdate();
+        try
+        {
+            GraphBackend.Vertex v1 = addVertex("A", 40, 20, 80, 80);
+            GraphBackend.Vertex v2 = addVertex("B", 340, 250, 80, 80);
+            GraphBackend.Vertex v3 = addVertex("C", 320, 20, 80, 80);
+            GraphBackend.Vertex v4 = addVertex("D", 20, 250, 80, 80);
+            GraphBackend.Vertex v5 = addVertex("E", 170, 450, 80, 80);
+            
+            setAsEnd(v5);
+            setAsStart(v1);
+            
+            this.addEdge(v1, v2);
+            addEdge(v2, v3);
+            addEdge(v2, v4);
+            addEdge(v4, v3);
+            addEdge(v4, v1);
+            addEdge(v5, v1);
+            addEdge(v5, v2);
+            addEdge(v5, v3);
+            addEdge(v5, v4);
+            
+        }
+        finally
+        {
+            graph.getModel().endUpdate();
+        }
         
-        graph.addVertex(c1);
-        graph.addVertex(c2);
-        graph.addVertex(c3);
-        graph.addVertex(c4);
-        
-        graph.addEdge(c1, c2);
-        graph.addEdge(c3, c2);
-        graph.addEdge(c4, c1);
-
+        this.setBackground(new Color(1, 0, 0));
         // positioning via jgraphx layouts
         mxCompactTreeLayout layout = new mxCompactTreeLayout(xgraph);
         layout.execute(xgraph.getDefaultParent());
         
     }
     
-    public Object addVertex(String name,double x,double y,double width,double height){
-    	return xgraph.insertVertex(xgraph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
+    public GraphBackend.Vertex addVertex(String name,double x,double y,double width,double height){
+    	Object vertex = graph.insertVertex(graph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
+    	return this.graphBackend.addVertex(vertex);
     }
     
-    public void setAsEnd(mxCell vertex){
+    public GraphBackend.Edge addEdge(GraphBackend.Vertex from,GraphBackend.Vertex to){
+    	Object edge = graph.insertEdge(graph.getDefaultParent(), null, null, from.graphXVertex, to.graphXVertex, "Edge");
+    	return this.graphBackend.addEdge(from, to, edge);
+    }
+    
+    public GraphBackend.Edge addEdge(GraphBackend.Vertex from,GraphBackend.Vertex to,float weight){
+    	Object edge = graph.insertEdge(graph.getDefaultParent(), null, null, from.graphXVertex, to.graphXVertex, "Edge");
+    	return this.graphBackend.addEdge(from, to, weight, edge);
+    }
+    
+    public void setAsEnd(Vertex vertex){
     	if(this.endVertex!= null){
-    		xgraph.setCellStyle("STDvertex", new Object[]{endVertex});
+    		graph.setCellStyle("STDvertex", new Object[]{endVertex.graphXVertex});
     	}
     	this.endVertex = vertex;
-    	xgraph.setCellStyle("ENDvertex",new Object[]{vertex});
+    	graph.setCellStyle("ENDvertex",new Object[]{vertex.graphXVertex});
     }
     
-    public void setAsStart(mxCell vertex){
+    public void setAsStart(Vertex vertex){
     	if(this.startVertex != null){
-    		xgraph.setCellStyle("STDvertex", new Object[]{startVertex});
+    		graph.setCellStyle("STDvertex", new Object[]{startVertex.graphXVertex});
     	}
     	this.startVertex = vertex;
-    	xgraph.setCellStyle("STARTvertex",new Object[]{vertex});
+    	graph.setCellStyle("STARTvertex",new Object[]{vertex.graphXVertex});
     }
     
 }
 
-//End JGraphXAdapterDemo.java
