@@ -13,6 +13,7 @@
 package com.grafr;
 
 import com.mxgraph.layout.*;
+import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.*;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
@@ -106,10 +107,15 @@ public class GraphHandeler
         startStyle = new Hashtable<>(stdStyle);
         startStyle.put(mxConstants.STYLE_STROKEWIDTH, 12);
         startStyle.put(mxConstants.STYLE_STROKECOLOR, "#000066");
-        
+        //edges
         edgeStyle = new Hashtable<String, Object>(stylesheet.getDefaultEdgeStyle());
         edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 6);
-        
+        //edge text
+        edgeStyle.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
+        edgeStyle.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
+        edgeStyle.put(mxConstants.STYLE_FONTSIZE, 20);
+        edgeStyle.put(mxConstants.STYLE_FONTCOLOR, "#000000");
+        edgeStyle.put(mxConstants.STYLE_ALIGN, mxConstants.ALIGN_LEFT);
         
         //assign style to string
         stylesheet.setDefaultVertexStyle(stdStyle);
@@ -126,7 +132,7 @@ public class GraphHandeler
         graph.getModel().beginUpdate();
         try
         {
-            Object v1 = addVertex("A", 40, 20, 80, 80);
+            mxCell v1 = (mxCell) addVertex("A", 40, 20, 80, 80);
             Object v2 = addVertex("B", 340, 250, 80, 80);
             Object v3 = addVertex("C", 320, 20, 80, 80);
             Object v4 = addVertex("D", 20, 250, 80, 80);
@@ -134,18 +140,27 @@ public class GraphHandeler
             
             setAsEnd(v5);
             setAsStart(v1);
+            setVertexColor(v3, "#FF0000");
+            v1.setValue("K");
+
+            int x = 5;
+            mxCell e1 = (mxCell) graph.insertEdge(parent, null, x, v1, v2, "Edge");
+            mxCell e2 = (mxCell) graph.insertEdge(parent, null, x, v2, v3, "Edge");
+            mxCell e3 = (mxCell) graph.insertEdge(parent, null, x, v2, v4, "Edge");
+            mxCell e4 = (mxCell) graph.insertEdge(parent, null, x, v4, v3, "Edge");
+            mxCell e5 = (mxCell) graph.insertEdge(parent, null, x, v4, v1, "Edge");
+            mxCell e6 = (mxCell) graph.insertEdge(parent, null, x, v5, v1, "Edge");
+            mxCell e7 = (mxCell) graph.insertEdge(parent, null, x, v5, v2, "Edge");
+            mxCell e8 = (mxCell) graph.insertEdge(parent, null, x, v5, v3, "Edge");
+            mxCell e9 = (mxCell) graph.insertEdge(parent, null, x, v5, v4, "Edge");
             
-            graph.insertEdge(parent, null, null, v1, v2, "Edge");
-            graph.insertEdge(parent, null, null, v2, v3, "Edge");
-            graph.insertEdge(parent, null, null, v2, v4, "Edge");
-            graph.insertEdge(parent, null, null, v4, v3, "Edge");
-            graph.insertEdge(parent, null, null, v4, v1, "Edge");
-            graph.insertEdge(parent, null, null, v5, v1, "Edge");
-            graph.insertEdge(parent, null, null, v5, v2, "Edge");
-            graph.insertEdge(parent, null, null, v5, v3, "Edge");
-            graph.insertEdge(parent, null, null, v5, v4, "Edge");
+ 
+
+            setEdgeColor(e1, "#FF0000");
+            setEdgeWeight(e1, 20);
+            graph.setKeepEdgesInBackground(true);
             
-            
+        
         }
         finally
         {
@@ -187,13 +202,23 @@ public class GraphHandeler
     	graph.setCellStyle("STARTvertex",new Object[]{vertex});
     }
     
-    //colors edge or vertex with given color
-    public void colorComponent(Object target, String color){
-    	graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, color, new Object[]{target});
-    	
-    	graphComponent.refresh();
+    //colors vertex with given color
+    public void setVertexColor(Object vertex, String color){
+    	graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, color, new Object[]{vertex});	
+    	graph.refresh();//seems useless
     }
     
+    
+    //colors edge with given color
+    public void setEdgeColor(Object edge, String color){
+    	graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, color, new Object[]{edge});	
+    	graph.refresh();//seems useless
+    }    
+    
+    //sets the weight for a given edge
+    public void setEdgeWeight(mxCell edge, int weight){
+    	edge.setValue(weight);
+    }
 }
 
 

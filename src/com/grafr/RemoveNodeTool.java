@@ -1,10 +1,13 @@
 package com.grafr;
 
-public class RemoveNodeTool implements AbstractTool {
+import com.mxgraph.model.mxCell;
 
+public class RemoveNodeTool implements AbstractTool {
+	mxCell cell;
+	
 	@Override
 	public void onClickVertex() {
-		// TODO Auto-generated method stub
+		
 
 	}
 
