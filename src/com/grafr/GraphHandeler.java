@@ -65,7 +65,7 @@ public class GraphHandeler
         // create a JGraphT graph
         ListenableGraph<String, DefaultEdge> g =
             new ListenableDirectedGraph<String, DefaultEdge>(
-                DefaultEdge.class);
+              DefaultEdge.class);
 
         // create a visualization using JGraph, via an adapter
         jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);

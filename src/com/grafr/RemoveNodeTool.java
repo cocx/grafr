@@ -1,5 +1,8 @@
 package com.grafr;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import com.mxgraph.model.mxCell;
 
 public class RemoveNodeTool implements AbstractTool {
@@ -7,8 +10,19 @@ public class RemoveNodeTool implements AbstractTool {
 	
 	@Override
 	public void onClickVertex() {
-		
-
+		/*graphComponent.getGraphControl().addMouseListener(new MouseAdapter() 
+		{
+		@Override
+		    public void mouseReleased(MouseEvent e) 
+		    {    
+		        mxCell cell =(mxCell) getGraphComponent().getCellAt(e.getX(), e.getY());
+		        if(cell != null && cell.equals(YOUR_VERTEX))
+		        {
+		            //specific thing you want to do on click
+		        }
+		    }
+		});
+*/
 	}
 
 	@Override

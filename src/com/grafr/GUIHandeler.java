@@ -32,7 +32,9 @@ public class GUIHandeler {
 	//right panel
 	private JPanel rightPanel;
 	private JButton btnNewButton_2;	
-    //bottom panel
+    //center panel
+	GraphHandeler graph;
+	//bottom panel
 	/**
 	 * Create the application.
 	 */
@@ -133,7 +135,7 @@ public class GUIHandeler {
 	
 		rightPanel.add(btnNewButton_2);
 		
-        GraphHandeler graph = new GraphHandeler();    
+        graph = new GraphHandeler();    
 
         frame.getContentPane().add(graph, BorderLayout.CENTER);
         frame.setVisible(true);
