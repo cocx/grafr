@@ -100,9 +100,12 @@ public class GraphHandeler
         endStyle = new Hashtable<String, Object>(stdStyle);
         //vertex style
         endStyle.put(mxConstants.STYLE_SHAPE, mxConstants.SHAPE_DOUBLE_ELLIPSE);
+        endStyle.put(mxConstants.STYLE_STROKECOLOR, "#000066");
         
+        //start vertex
         startStyle = new Hashtable<>(stdStyle);
-        startStyle.put(mxConstants.STYLE_FILLCOLOR, "green");
+        startStyle.put(mxConstants.STYLE_STROKEWIDTH, 12);
+        startStyle.put(mxConstants.STYLE_STROKECOLOR, "#000066");
         
         edgeStyle = new Hashtable<String, Object>(stylesheet.getDefaultEdgeStyle());
         edgeStyle.put(mxConstants.STYLE_STROKEWIDTH, 6);
@@ -141,9 +144,6 @@ public class GraphHandeler
             graph.insertEdge(parent, null, null, v5, v2, "Edge");
             graph.insertEdge(parent, null, null, v5, v3, "Edge");
             graph.insertEdge(parent, null, null, v5, v4, "Edge");
-            
-            graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, "red",new Object[]{v4});
-            graph.setCellStyle("ENDvertex", new Object[]{v4});
             
             
         }
@@ -186,6 +186,14 @@ public class GraphHandeler
     	this.startVertex = vertex;
     	graph.setCellStyle("STARTvertex",new Object[]{vertex});
     }
+    
+    //colors edge or vertex with given color
+    public void colorComponent(Object target, String color){
+    	graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, color, new Object[]{target});
+    	
+    	graphComponent.refresh();
+    }
+    
 }
 
-//End JGraphXAdapterDemo.java
+

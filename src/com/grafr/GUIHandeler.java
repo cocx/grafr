@@ -23,14 +23,16 @@ import javax.swing.border.LineBorder;
 public class GUIHandeler {
 
 	public JFrame frame;
+	//left panel
 	private JPanel leftPanel;
 	private JButton AddNodeButton;
 	private JButton RemoveNodeButton;
-	private JButton btnNewButton_2;
-	private JButton btnAddLine;
+	private JButton AddLineButton;
+	private JButton RemoveLineButton;
+	//right panel
 	private JPanel rightPanel;
-	
-
+	private JButton btnNewButton_2;	
+    //bottom panel
 	/**
 	 * Create the application.
 	 */
@@ -43,8 +45,8 @@ public class GUIHandeler {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(600, 400, 800, 600);
-		//frame.setPreferredSize(new Dimension(800, 600));
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setMinimumSize(new Dimension(800, 600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -61,10 +63,7 @@ public class GUIHandeler {
 		
 		AddNodeButton = new JButton("    Add Node    ");
 		AddNodeButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
-		AddNodeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 0;
@@ -77,20 +76,53 @@ public class GUIHandeler {
 		gbc_btnNewButton_1.gridx = 0;
 		gbc_btnNewButton_1.gridy = 1;
 		leftPanel.add(RemoveNodeButton, gbc_btnNewButton_1);
+
+		RemoveNodeButton.setIcon(new ImageIcon("res/remove_node.png"));
 		
-		RemoveNodeButton.addActionListener(new ActionListener() {
+		AddLineButton = new JButton("     Add Line     ");
+		GridBagConstraints gbc_btnAddLine = new GridBagConstraints();
+		gbc_btnAddLine.insets = new Insets(0, 0, 5, 0);
+		gbc_btnAddLine.gridx = 0;
+		gbc_btnAddLine.gridy = 2;
+		AddLineButton.setIcon(new ImageIcon("res/Line.png"));
+		leftPanel.add(AddLineButton, gbc_btnAddLine);
+
+		RemoveLineButton = new JButton("  Remove Line   ");
+		GridBagConstraints gbc_btnRemoveLine = new GridBagConstraints();
+		gbc_btnRemoveLine.gridx = 0;
+		gbc_btnRemoveLine.gridy = 3;
+		RemoveLineButton.setIcon(new ImageIcon("res/Line.png"));
+		leftPanel.add(RemoveLineButton, gbc_btnRemoveLine);
+		
+		//button listeners left panel
+		AddNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ToolHandeler.setTool(new AddNodeTool());
 			}
 		});
 		
-		RemoveNodeButton.setIcon(new ImageIcon("res/remove_node.png"));
 		
-		btnAddLine = new JButton("     Add Line     ");
-		GridBagConstraints gbc_btnAddLine = new GridBagConstraints();
-		gbc_btnAddLine.gridx = 0;
-		gbc_btnAddLine.gridy = 2;
-		btnAddLine.setIcon(new ImageIcon("res/Line.png"));
-		leftPanel.add(btnAddLine, gbc_btnAddLine);
+		RemoveNodeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ToolHandeler.setTool(new RemoveNodeTool());
+			}
+		});
+		
+		
+		AddLineButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ToolHandeler.setTool(new AddLineTool());
+			}
+		});
+		
+		
+		RemoveLineButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ToolHandeler.setTool(new RemoveLineTool());
+			}
+		});
+		
+
 		
 		rightPanel = new JPanel();
 		rightPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
