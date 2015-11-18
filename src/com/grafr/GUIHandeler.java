@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 
 public class GUIHandeler {
 
-	public JFrame frame;
+	public static JFrame frame;
 	//left panel
 	private JPanel leftPanel;
 	private JButton AddNodeButton;
@@ -34,6 +34,7 @@ public class GUIHandeler {
 	private JButton btnNewButton_2;	
     //center panel
 	GraphHandeler graph;
+	ToolHandeler toolhandeler;
 	//bottom panel
 	/**
 	 * Create the application.
@@ -136,9 +137,8 @@ public class GUIHandeler {
 		rightPanel.add(btnNewButton_2);
 		
         graph = new GraphHandeler();    
-
+        toolhandeler = new ToolHandeler();
         frame.getContentPane().add(graph, BorderLayout.CENTER);
         frame.setVisible(true);
-	}
-
+	}    
 }

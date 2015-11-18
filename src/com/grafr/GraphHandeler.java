@@ -47,7 +47,7 @@ public class GraphHandeler
     extends JPanel
 {
     private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
-    mxStylesheet stylesheet;
+	mxStylesheet stylesheet;
     Hashtable<String, Object> stdStyle;
     Hashtable<String, Object> endStyle;
     Hashtable<String, Object> startStyle;
@@ -56,7 +56,7 @@ public class GraphHandeler
     Object startVertex;
     Object endVertex;
     
-	mxGraphComponent graphComponent;
+	static mxGraphComponent graphComponent;
 	mxGraph graph;
 	Object parent;
 	
@@ -172,7 +172,6 @@ public class GraphHandeler
         this.setLayout(new BorderLayout());
         
         graphComponent = new mxGraphComponent(graph);
-        
         graphComponent.setConnectable(false);
         this.add(graphComponent,BorderLayout.CENTER);
 
@@ -181,6 +180,12 @@ public class GraphHandeler
 
         layout.execute(jgxAdapter.getDefaultParent());
     }
+    
+    public static mxGraphComponent getGraphComponent(){
+		return graphComponent;
+    	    	
+    }
+    
     
     public Object addVertex(String name,double x,double y,double width,double height){
     	return graph.insertVertex(graph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
