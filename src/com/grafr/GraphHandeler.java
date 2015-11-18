@@ -57,7 +57,7 @@ public class GraphHandeler
     Object endVertex;
     
 	static mxGraphComponent graphComponent;
-	mxGraph graph;
+	static mxGraph graph;
 	Object parent;
 	
     public GraphHandeler()

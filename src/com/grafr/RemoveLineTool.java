@@ -12,7 +12,7 @@ public class RemoveLineTool implements AbstractTool {
 
 	@Override
 	public void onClickEdge(mxCell e) {
-		// TODO Auto-generated method stub
+		GraphHandeler.graph.removeCells(new Object[]{e});
 
 	}
 

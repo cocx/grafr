@@ -24,13 +24,13 @@ public class ToolHandeler {
 	
 	
 	
-	//set tool to default tool	
+	//starts all listeners
 	public void start(){
 		g = GraphHandeler.getGraphComponent();
 		currentTool = new SelecterTool();
 		g.getGraphControl().addMouseListener(new MouseAdapter(){//gives shit ton of errors if you click canvas
 			public void mouseReleased(MouseEvent e){
-				cell =(mxCell) g.getCellAt(e.getX(), e.getY());
+				cell = (mxCell) g.getCellAt(e.getX(), e.getY());
 				
 				if (cell.isVertex()){
 			    	currentTool.onClickVertex(cell);
