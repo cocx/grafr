@@ -4,7 +4,13 @@ import java.awt.EventQueue;
 
 public class Grafr {
 	
+	static GUIHandeler window;
+	static GraphHandeler graph;
+	static ToolHandeler toolhandeler;
 	public static void main(String[] args) {
-		GUIHandeler window = new GUIHandeler();
+		window = new GUIHandeler();
+		graph = new GraphHandeler();
+		toolhandeler = new ToolHandeler();
+		window.show();
 	}
 }

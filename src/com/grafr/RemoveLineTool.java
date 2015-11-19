@@ -12,8 +12,7 @@ public class RemoveLineTool implements AbstractTool {
 
 	@Override
 	public void onClickEdge(mxCell e) {
-		GraphHandeler.graph.removeCells(new Object[]{e});
-
+		Grafr.graph.removeEdge(Grafr.graph.graphBackend.getEdge(e));
 	}
 
 	@Override

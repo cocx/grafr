@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 
 public class GUIHandeler {
 
-	public static JFrame frame;
+	public JFrame frame;
 	//left panel
 	private JPanel leftPanel;
 	private JButton AddNodeButton;
@@ -33,8 +33,8 @@ public class GUIHandeler {
 	private JPanel rightPanel;
 	private JButton btnNewButton_2;	
     //center panel
-	GraphHandeler graph;
-	ToolHandeler toolhandeler;
+	
+
 	//bottom panel
 	/**
 	 * Create the application.
@@ -100,28 +100,28 @@ public class GUIHandeler {
 		//button listeners left panel
 		AddNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ToolHandeler.setTool(new AddNodeTool());
+				Grafr.toolhandeler.setTool(new AddNodeTool());
 			}
 		});
 		
 		
 		RemoveNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ToolHandeler.setTool(new RemoveNodeTool());
+				Grafr.toolhandeler.setTool(new RemoveNodeTool());
 			}
 		});
 		
 		
 		AddLineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ToolHandeler.setTool(new AddLineTool());
+				Grafr.toolhandeler.setTool(new AddLineTool());
 			}
 		});
 		
 		
 		RemoveLineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ToolHandeler.setTool(new RemoveLineTool());
+				Grafr.toolhandeler.setTool(new RemoveLineTool());
 			}
 		});
 		
@@ -135,10 +135,11 @@ public class GUIHandeler {
 		btnNewButton_2 = new JButton("New button");
 	
 		rightPanel.add(btnNewButton_2);
-		
-        graph = new GraphHandeler();    
-        toolhandeler = new ToolHandeler();
-        frame.getContentPane().add(graph, BorderLayout.CENTER);
-        frame.setVisible(true);
+  
+        
 	}    
+	
+	public void show(){
+		frame.setVisible(true);
+	}
 }

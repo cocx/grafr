@@ -18,8 +18,7 @@ public class AddNodeTool implements AbstractTool {
 
 	@Override
 	public void onClickCanvas(int x, int y) {
-		// TODO Auto-generated method stub
-
+		Grafr.graph.addVertex("Default", x-40, y-40);
 	}
 
 }

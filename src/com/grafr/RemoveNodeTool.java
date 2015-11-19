@@ -6,7 +6,7 @@ public class RemoveNodeTool implements AbstractTool {
 	
 	@Override
 	public void onClickVertex(mxCell c) {
-		GraphHandeler.graph.removeCells(new Object[]{c}, true);
+		Grafr.graph.removeVertex(Grafr.graph.graphBackend.getVertex(c));
 	}
 
 	@Override
