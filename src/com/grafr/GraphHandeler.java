@@ -248,4 +248,8 @@ public class GraphHandeler extends JPanel {
 		graphBackend.removeEdge(edge.edge);
 		graph.removeCells(new Object[]{edge.edge});
 	}
+	
+	public void clear(){
+		graph.removeCells(graph.getChildCells(graph.getDefaultParent(), true, true));
+	}
 }

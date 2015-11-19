@@ -26,11 +26,7 @@ public class ToolHandeler {
 	public void start() {
 		g = Grafr.graph.getGraphComponent();
 		currentTool = new SelecterTool();
-		g.getGraphControl().addMouseListener(new MouseAdapter() {// gives shit
-																	// ton of
-																	// errors if
-																	// you click
-																	// canvas
+		g.getGraphControl().addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				mxCell cell = (mxCell) g.getCellAt(e.getX(), e.getY());
 
