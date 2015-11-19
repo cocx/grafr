@@ -53,12 +53,16 @@ public class GraphHandeler
     Hashtable<String, Object> startStyle;
     Hashtable<String, Object> edgeStyle;
     
-    Object startVertex;
-    Object endVertex;
+    static Object startVertex;
+    static Object endVertex;
     
 	static mxGraphComponent graphComponent;
 	static mxGraph graph;
 	Object parent;
+	
+	static String vertexNames [] = {"A", "B", "C", "D", "E", "F", "G", "H"};
+	static int nameCount = 0;
+	
 	
     public GraphHandeler()
     {
@@ -133,13 +137,13 @@ public class GraphHandeler
         try
         {
             mxCell v1 = (mxCell) addVertex("A", 40, 20, 80, 80);
-            Object v2 = addVertex("B", 340, 250, 80, 80);
-            Object v3 = addVertex("C", 320, 20, 80, 80);
-            Object v4 = addVertex("D", 20, 250, 80, 80);
-            Object v5 = addVertex("E", 170, 450, 80, 80);
+            mxCell v2 = (mxCell) addVertex("B", 340, 250, 80, 80);
+            mxCell v3 = (mxCell) addVertex("C", 320, 20, 80, 80);
+            mxCell v4 = (mxCell) addVertex("D", 20, 250, 80, 80);
+            mxCell v5 = (mxCell) addVertex("E", 170, 450, 80, 80);
             
             setAsEnd(v5);
-            setAsStart(v1);
+
             setVertexColor(v3, "#FF0000");
             v1.setValue("K");
 
@@ -187,24 +191,26 @@ public class GraphHandeler
     }
     
     
-    public Object addVertex(String name,double x,double y,double width,double height){
+    public static Object addVertex(String name,double x,double y,double width,double height){
     	return graph.insertVertex(graph.getDefaultParent(), null,name, x, y, width, height,"STDvertex");
     }
     
-    public void setAsEnd(Object vertex){
-    	if(this.endVertex!= null){
-    		graph.setCellStyle("STDvertex", new Object[]{endVertex});
-    	}
-    	this.endVertex = vertex;
-    	graph.setCellStyle("ENDvertex",new Object[]{vertex});
-    }
     
-    public void setAsStart(Object vertex){
-    	if(this.startVertex != null){
+    public static void setAsStart(Object vertex){
+    	if(startVertex != null){
     		graph.setCellStyle("STDvertex", new Object[]{startVertex});
     	}
-    	this.startVertex = vertex;
+    	startVertex = vertex;
     	graph.setCellStyle("STARTvertex",new Object[]{vertex});
+    }
+
+    
+    public static void setAsEnd(Object vertex){
+    	if(endVertex!= null){
+    		graph.setCellStyle("STDvertex", new Object[]{endVertex});
+    	}
+    	endVertex = vertex;
+    	graph.setCellStyle("ENDvertex",new Object[]{vertex});
     }
     
     //colors vertex with given color
@@ -224,6 +230,10 @@ public class GraphHandeler
     public void setEdgeWeight(mxCell edge, int weight){
     	edge.setValue(weight);
     }
+
+	public static void clear() {
+		graph.removeCells(graph.getChildCells(graph.getDefaultParent(), true, true));
+	}
 }
 
 

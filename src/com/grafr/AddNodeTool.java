@@ -18,8 +18,8 @@ public class AddNodeTool implements AbstractTool {
 
 	@Override
 	public void onClickCanvas(int x, int y) {
-		// TODO Auto-generated method stub
-
+		GraphHandeler.addVertex(GraphHandeler.vertexNames[GraphHandeler.nameCount], x-40, y-40, 80, 80);
+		GraphHandeler.nameCount++;
 	}
 
 }

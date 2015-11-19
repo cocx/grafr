@@ -25,17 +25,23 @@ public class GUIHandeler {
 	public static JFrame frame;
 	//left panel
 	private JPanel leftPanel;
+	private JButton selectorToolButton;
 	private JButton AddNodeButton;
 	private JButton RemoveNodeButton;
 	private JButton AddLineButton;
 	private JButton RemoveLineButton;
+	private JButton setAsStartButton;
+	private JButton setAsEndButton;
 	//right panel
 	private JPanel rightPanel;
-	private JButton btnNewButton_2;	
+	private JButton DijkstraButton;	
     //center panel
 	GraphHandeler graph;
 	ToolHandeler toolhandeler;
 	//bottom panel
+	private JPanel bottomPanel;
+	private JButton resetGraphButton;
+	private JButton resetAlgorithmButton;
 	/**
 	 * Create the application.
 	 */
@@ -49,7 +55,7 @@ public class GUIHandeler {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setMinimumSize(new Dimension(800, 600));
+		frame.setMinimumSize(new Dimension(1000, 800));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -63,39 +69,48 @@ public class GUIHandeler {
 		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		leftPanel.setLayout(gbl_panel);
+        //Starting values GridBag left panel
+		GridBagConstraints gbc_west = new GridBagConstraints();
+		gbc_west.anchor = GridBagConstraints.NORTH;
+		gbc_west.insets = new Insets(0, 0, 5, 0);
+		gbc_west.gridy = 0;
+		
+		selectorToolButton = new JButton ("Move Nodes");
+		selectorToolButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		leftPanel.add(selectorToolButton, gbc_west);
 		
 		AddNodeButton = new JButton("    Add Node    ");
 		AddNodeButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
-
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 0;
-		leftPanel.add(AddNodeButton, gbc_btnNewButton);
+        gbc_west.gridy++;
+		leftPanel.add(AddNodeButton, gbc_west);
 		
 		RemoveNodeButton = new JButton("Remove Node");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_1.gridx = 0;
-		gbc_btnNewButton_1.gridy = 1;
-		leftPanel.add(RemoveNodeButton, gbc_btnNewButton_1);
-
 		RemoveNodeButton.setIcon(new ImageIcon("res/remove_node.png"));
+		gbc_west.gridy++;
+		leftPanel.add(RemoveNodeButton, gbc_west);
+
 		
 		AddLineButton = new JButton("     Add Line     ");
-		GridBagConstraints gbc_btnAddLine = new GridBagConstraints();
-		gbc_btnAddLine.insets = new Insets(0, 0, 5, 0);
-		gbc_btnAddLine.gridx = 0;
-		gbc_btnAddLine.gridy = 2;
 		AddLineButton.setIcon(new ImageIcon("res/Line.png"));
-		leftPanel.add(AddLineButton, gbc_btnAddLine);
+		gbc_west.gridy++;
+		leftPanel.add(AddLineButton, gbc_west);
 
 		RemoveLineButton = new JButton("  Remove Line   ");
-		GridBagConstraints gbc_btnRemoveLine = new GridBagConstraints();
-		gbc_btnRemoveLine.gridx = 0;
-		gbc_btnRemoveLine.gridy = 3;
 		RemoveLineButton.setIcon(new ImageIcon("res/Line.png"));
-		leftPanel.add(RemoveLineButton, gbc_btnRemoveLine);
+		gbc_west.gridy++;
+		leftPanel.add(RemoveLineButton, gbc_west);
+
+		
+		setAsStartButton = new JButton("set Node as Start");
+		setAsStartButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		gbc_west.gridy++;
+		leftPanel.add(setAsStartButton, gbc_west);
+		
+		setAsEndButton = new JButton("set Node as Endt");
+		setAsEndButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		gbc_west.gridy++;
+		leftPanel.add(setAsEndButton, gbc_west);
+		
 		
 		//button listeners left panel
 		AddNodeButton.addActionListener(new ActionListener() {
@@ -125,16 +140,57 @@ public class GUIHandeler {
 			}
 		});
 		
-
+		setAsStartButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ToolHandeler.setTool(new SetAsStartTool());
+			}
+		});
+		
+		setAsEndButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ToolHandeler.setTool(new SetAsEndTool());
+			}
+		});
 		
 		rightPanel = new JPanel();
 		rightPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		rightPanel.setBackground(Color.LIGHT_GRAY);
+		rightPanel.setLayout(gbl_panel);
 		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
 		
-		btnNewButton_2 = new JButton("New button");
-	
-		rightPanel.add(btnNewButton_2);
+		DijkstraButton = new JButton("Dijkstra's Algorithm");
+		rightPanel.add(DijkstraButton);
+		
+		
+		bottomPanel = new JPanel();
+		bottomPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
+		bottomPanel.setBackground(Color.LIGHT_GRAY);
+		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
+		
+		resetGraphButton = new JButton("Reset Graph");
+		resetGraphButton.setIcon(new ImageIcon("res/remove_node.png"));
+		GridBagConstraints gbc_south = new GridBagConstraints();
+		gbc_south.insets = new Insets(0, 0, 5, 0);
+		gbc_south.gridx = 1;
+		gbc_south.gridy = 0;
+		bottomPanel.add(resetGraphButton, gbc_south);
+        
+		resetAlgorithmButton = new JButton("Reset Algorithm");
+		resetAlgorithmButton.setIcon(new ImageIcon("res/remove_node.png"));
+		bottomPanel.add(resetAlgorithmButton, gbc_south);		
+		
+		JButton testbutton = new JButton("Reset Algorithm");
+		testbutton.setIcon(new ImageIcon("res/remove_node.png"));
+		bottomPanel.add(testbutton, gbc_south);
+		
+		
+		//button listeners south panel
+		resetGraphButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GraphHandeler.clear();
+			}
+		});
+		
 		
         graph = new GraphHandeler();    
         toolhandeler = new ToolHandeler();
