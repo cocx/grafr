@@ -1,7 +1,9 @@
 package com.grafr;
 
+import com.mxgraph.model.mxCell;
+
 public interface AbstractTool {
-	public void onClickVertex();
-	public void onClickEdge();
-	public void onClickCanvas();
+	public void onClickVertex(mxCell c);
+	public void onClickEdge(mxCell e);
+	public void onClickCanvas(int x, int y);
 }
