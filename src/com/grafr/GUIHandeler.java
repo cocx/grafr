@@ -32,6 +32,7 @@ public class GUIHandeler {
 	private JButton RemoveLineButton;
 	private JButton setAsStartButton;
 	private JButton setAsEndButton;
+	private JButton editValueButton;
 	//right panel
 	private JPanel rightPanel;
 	private JButton DijkstraButton; 
@@ -106,6 +107,11 @@ public class GUIHandeler {
 		gbc_west.gridy++;
 		leftPanel.add(setAsEndButton, gbc_west);
 		
+		editValueButton = new JButton("Edit values");
+		editValueButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		gbc_west.gridy++;
+		leftPanel.add(editValueButton, gbc_west);
+		
 		
 		
 		//button listeners left panel
@@ -148,6 +154,12 @@ public class GUIHandeler {
 				Grafr.toolhandeler.setTool(new SetAsEndTool());
 			}
 		});		
+		
+		editValueButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Grafr.toolhandeler.setTool(new EditValueTool());
+			}
+		});
 		
 
 		
