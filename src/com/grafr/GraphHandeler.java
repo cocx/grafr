@@ -80,6 +80,7 @@ public class GraphHandeler extends JPanel {
 		stylesheet = graph.getStylesheet();
 		stdStyle = new Hashtable<String, Object>(stylesheet.getDefaultVertexStyle());
 		// text style
+		
 		stdStyle.put(mxConstants.DEFAULT_FONTFAMILIES, "Arial");
 		stdStyle.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
 		stdStyle.put(mxConstants.STYLE_FONTSIZE, 20);
@@ -216,10 +217,20 @@ public class GraphHandeler extends JPanel {
 		graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, color, new Object[] { vertex.vertex });
 		graph.refresh();// seems useless
 	}
+	
+	public void setVertexColor(mxCell vertex, String color) {
+		graph.setCellStyles(mxConstants.STYLE_FILLCOLOR, color, new Object[] { vertex });
+		graph.refresh();// seems useless
+	}
 
 	// colors edge with given color
 	public void setEdgeColor(Edge edge, String color) {
 		graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, color, new Object[] { edge.edge });
+		graph.refresh();// seems useless
+	}
+	
+	public void setEdgeColor(mxCell edge, String color) {
+		graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, color, new Object[] { edge });
 		graph.refresh();// seems useless
 	}
 
