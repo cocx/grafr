@@ -10,7 +10,6 @@ import com.mxgraph.swing.mxGraphComponent;
 
 public class ToolHandeler {
 	private AbstractTool currentTool;
-	private mxCell currentSelected;
 	mxGraphComponent g;
 
 	public ToolHandeler() {
@@ -19,6 +18,8 @@ public class ToolHandeler {
 
 	// tool selection
 	void setTool(AbstractTool tool) {
+		if(currentTool != null)
+			currentTool.clean();
 		currentTool = tool;
 	}
 

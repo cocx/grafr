@@ -21,4 +21,10 @@ public class AddNodeTool implements AbstractTool {
 		Grafr.graph.addVertex("Default", x-40, y-40);
 	}
 
+	@Override
+	public void clean() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

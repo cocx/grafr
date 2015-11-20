@@ -37,4 +37,10 @@ public class AddLineTool implements AbstractTool {
 
 	}
 
+	@Override
+	public void clean() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
