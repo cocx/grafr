@@ -1,20 +1,29 @@
 package com.grafr;
 
 import javax.swing.JFrame;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JButton;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
+
 import javax.swing.JPanel;
+
 import java.awt.Insets;
+
 import javax.swing.JTextPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTree;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
@@ -56,26 +65,22 @@ public class GUIHandeler {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		leftPanel = new JPanel();
+		leftPanel = new JPanel(new GridLayout(8,1));
 		leftPanel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		leftPanel.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(leftPanel, BorderLayout.WEST);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{103, 0};
-		gbl_panel.rowHeights = new int[]{23, 23, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		leftPanel.setLayout(gbl_panel);
 		GridBagConstraints gbc_west = new GridBagConstraints();
 		gbc_west.anchor = GridBagConstraints.NORTH;
-		gbc_west.insets = new Insets(0, 0, 5, 0);
+		gbc_west.insets = new Insets(0, 5, 5, 5);
+		gbc_west.weighty=1;
+		gbc_west.weightx=1;
 		gbc_west.gridy = 0;
 		
 		selectorToolButton = new JButton ("Move Nodes");
-		selectorToolButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		selectorToolButton.setIcon(new ImageIcon("res/move_node.png"));
 		leftPanel.add(selectorToolButton, gbc_west);
 		
-		AddNodeButton = new JButton("    Add Node    ");
+		AddNodeButton = new JButton("Add Node");
 		AddNodeButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
         gbc_west.gridy++;
 		leftPanel.add(AddNodeButton, gbc_west);
@@ -86,29 +91,29 @@ public class GUIHandeler {
 		leftPanel.add(RemoveNodeButton, gbc_west);
 
 		
-		AddLineButton = new JButton("     Add Line     ");
+		AddLineButton = new JButton("Add Line");
 		AddLineButton.setIcon(new ImageIcon("res/Line.png"));
 		gbc_west.gridy++;
 		leftPanel.add(AddLineButton, gbc_west);
 
-		RemoveLineButton = new JButton("  Remove Line   ");
-		RemoveLineButton.setIcon(new ImageIcon("res/Line.png"));
+		RemoveLineButton = new JButton("Remove Line");
+		RemoveLineButton.setIcon(new ImageIcon("res/remove_line_2.png"));
 		gbc_west.gridy++;
 		leftPanel.add(RemoveLineButton, gbc_west);
 
 		
 		setAsStartButton = new JButton("set Node as Start");
-		setAsStartButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		setAsStartButton.setIcon(new ImageIcon("res/start_node.png"));
 		gbc_west.gridy++;
 		leftPanel.add(setAsStartButton, gbc_west);
 		
-		setAsEndButton = new JButton("set Node as End");
-		setAsEndButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		setAsEndButton = new JButton("  set Node as End  ");
+		setAsEndButton.setIcon(new ImageIcon("res/finish_node.png"));
 		gbc_west.gridy++;
 		leftPanel.add(setAsEndButton, gbc_west);
 		
 		editValueButton = new JButton("Edit values");
-		editValueButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		editValueButton.setIcon(new ImageIcon("res/edit_values.png"));
 		gbc_west.gridy++;
 		leftPanel.add(editValueButton, gbc_west);
 		
