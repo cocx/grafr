@@ -21,6 +21,7 @@ public class ToolHandeler {
 		if(currentTool != null)
 			currentTool.clean();
 		currentTool = tool;
+		currentTool.create();
 	}
 
 	// starts all listeners

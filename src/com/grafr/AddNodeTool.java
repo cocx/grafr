@@ -27,4 +27,10 @@ public class AddNodeTool implements AbstractTool {
 		
 	}
 
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

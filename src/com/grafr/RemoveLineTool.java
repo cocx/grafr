@@ -27,4 +27,10 @@ public class RemoveLineTool implements AbstractTool {
 		
 	}
 
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -6,7 +6,7 @@ public class SetAsStartTool implements AbstractTool {
 
 	@Override
 	public void onClickVertex(mxCell c) {
-		 Grafr.graph.setAsStart(Grafr.graph.graphBackend.getVertex(c));
+		 Grafr.graph.setAsStart(Grafr.graph.graphBackend.getVertex(c)); 
 
 	}
 
@@ -24,6 +24,12 @@ public class SetAsStartTool implements AbstractTool {
 
 	@Override
 	public void clean() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void create() {
 		// TODO Auto-generated method stub
 		
 	}

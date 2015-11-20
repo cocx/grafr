@@ -4,7 +4,8 @@ import com.mxgraph.model.mxCell;
 
 public class SelecterTool implements AbstractTool {
 	
-	public SelecterTool() {
+	@Override
+	public void create() {
 		Grafr.graph.graph.setCellsSelectable(true);
 	}
 	
@@ -31,4 +32,5 @@ public class SelecterTool implements AbstractTool {
 		Grafr.graph.graph.setCellsSelectable(false);
 	}
 
+	
 }

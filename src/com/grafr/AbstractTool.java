@@ -7,4 +7,5 @@ public interface AbstractTool {
 	public void onClickVertex(mxCell c);
 	public void onClickEdge(mxCell e);
 	public void onClickCanvas(int x, int y);
+	public void create();
 }

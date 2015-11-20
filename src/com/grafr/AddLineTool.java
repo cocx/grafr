@@ -7,7 +7,7 @@ import com.mxgraph.util.mxConstants;
 public class AddLineTool implements AbstractTool {
 	mxCell currentSelected;
 	
-	public AddLineTool() {
+	public void create() {
 		currentSelected = null;
 	}
 	
