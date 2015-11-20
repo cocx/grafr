@@ -58,6 +58,7 @@ public class GUIHandeler {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Grafr");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setMinimumSize(new Dimension(800, 600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +77,7 @@ public class GUIHandeler {
 
 		selectorToolButton = new JButton("Move Nodes");
 		selectorToolButton.setIcon(new ImageIcon("res/move_node.png"));
+		selectorToolButton.setEnabled(false);
 		leftPanel.add(selectorToolButton, gbc_west);
 
 		AddNodeButton = new JButton("Add Node");
@@ -196,7 +198,7 @@ public class GUIHandeler {
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 
 		resetGraphButton = new JButton("Reset Graph");
-		resetGraphButton.setIcon(new ImageIcon("res/remove_node.png"));
+		resetGraphButton.setIcon(new ImageIcon("res/reset_graph.png"));
 		GridBagConstraints gbc_south = new GridBagConstraints();
 		gbc_south.insets = new Insets(0, 0, 5, 0);
 		gbc_south.gridx = 1;
@@ -204,11 +206,11 @@ public class GUIHandeler {
 		bottomPanel.add(resetGraphButton, gbc_south);
 
 		resetAlgorithmButton = new JButton("Reset Algorithm");
-		resetAlgorithmButton.setIcon(new ImageIcon("res/remove_node.png"));
+		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
 
 		JButton nextStepButton = new JButton("Next Step");
-		nextStepButton.setIcon(new ImageIcon("res/remove_node.png"));
+		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
 		bottomPanel.add(nextStepButton, gbc_south);
 
 		// button listeners south panel

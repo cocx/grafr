@@ -6,20 +6,23 @@ import com.mxgraph.util.mxConstants;
 
 public class AddLineTool implements AbstractTool {
 	mxCell currentSelected;
-	
+
 	public void create() {
 		currentSelected = null;
 	}
-	
+
 	@Override
 	public void onClickVertex(mxCell c) {
-		if (currentSelected == null){
+		if (currentSelected == null) {
 			currentSelected = c;
 			Grafr.graph.setVertexColor(c, "#EEEEEE");
-		}else{
-			Vertex from = Grafr.graph.graphBackend.getVertex(currentSelected);
-			Vertex to = Grafr.graph.graphBackend.getVertex(c);
-			Grafr.graph.addEdge(from, to);
+		} else {
+			if (currentSelected != c) {
+				Vertex from = Grafr.graph.graphBackend
+						.getVertex(currentSelected);
+				Vertex to = Grafr.graph.graphBackend.getVertex(c);
+				Grafr.graph.addEdge(from, to);
+			}
 			Grafr.graph.setVertexColor(currentSelected, "#C3D9FF");
 			currentSelected = null;
 		}
@@ -40,7 +43,7 @@ public class AddLineTool implements AbstractTool {
 	@Override
 	public void clean() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

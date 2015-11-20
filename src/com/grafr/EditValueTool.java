@@ -24,6 +24,7 @@ public class EditValueTool implements AbstractTool {
 	@Override
 	public void onClickEdge(mxCell e) {
 		int weight;
+		try {
 		weight = Integer.parseInt(JOptionPane.showInputDialog(Grafr.graph,
 			    "Please give the weight for the edge.",
 			    "",
@@ -37,6 +38,12 @@ public class EditValueTool implements AbstractTool {
 					    "",
 					    JOptionPane.ERROR_MESSAGE);
 			}
+		}catch(NumberFormatException nfe){
+			JOptionPane.showMessageDialog(Grafr.graph,
+				    "Please insert a valid number",
+				    "",
+				    JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	@Override
 	public void onClickCanvas(int x, int y) {
