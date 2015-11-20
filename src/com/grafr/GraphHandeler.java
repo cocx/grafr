@@ -47,19 +47,19 @@ import com.grafr.GraphBackend.Vertex;
  */
 public class GraphHandeler extends JPanel {
 	private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
-	mxStylesheet stylesheet;
-	Hashtable<String, Object> stdStyle;
-	Hashtable<String, Object> endStyle;
-	Hashtable<String, Object> startStyle;
-	Hashtable<String, Object> edgeStyle;
+	private mxStylesheet stylesheet;
+	private Hashtable<String, Object> stdStyle;
+	private Hashtable<String, Object> endStyle;
+	private Hashtable<String, Object> startStyle;
+	private Hashtable<String, Object> edgeStyle;
 
 	Vertex startVertex;
 	Vertex endVertex;
 
-	static mxGraphComponent graphComponent;
-	static mxGraph graph;
+	mxGraphComponent graphComponent;
+	mxGraph graph;
 	GraphBackend graphBackend;
-	Object parent;
+	private Object parent;
 
 	public GraphHandeler() {
 		// create a JGraphT graph
@@ -250,6 +250,7 @@ public class GraphHandeler extends JPanel {
 	}
 	
 	public void clear(){
+		graphBackend.clear();
 		graph.removeCells(graph.getChildCells(graph.getDefaultParent(), true, true));
 	}
 }

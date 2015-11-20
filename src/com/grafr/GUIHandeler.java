@@ -112,6 +112,13 @@ public class GUIHandeler {
 		gbc_west.gridy++;
 		leftPanel.add(editValueButton, gbc_west);
 		
+		selectorToolButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.toolhandeler.setTool(new SelecterTool());
+			}
+		});
 		
 		
 		//button listeners left panel
@@ -160,8 +167,6 @@ public class GUIHandeler {
 				Grafr.toolhandeler.setTool(new EditValueTool());
 			}
 		});
-		
-
 		
 		rightPanel = new JPanel();
 		rightPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));

@@ -22,4 +22,10 @@ public class SetAsStartTool implements AbstractTool {
 
 	}
 
+	@Override
+	public void clean() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

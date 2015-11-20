@@ -17,7 +17,7 @@ public class EditValueTool implements AbstractTool {
 		                JOptionPane.QUESTION_MESSAGE);
 		if (name != null){
 		c.setValue(name);
-		GraphHandeler.graph.refresh();
+		Grafr.graph.graph.refresh();
 		}
 	}
 
@@ -30,7 +30,7 @@ public class EditValueTool implements AbstractTool {
 			    JOptionPane.QUESTION_MESSAGE));
 			if (weight > 0){
 				Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
-				GraphHandeler.graph.refresh();
+				Grafr.graph.graph.refresh();
 			}else{
 				JOptionPane.showMessageDialog(Grafr.graph,
 					    "Weights must be larger than zero",
@@ -42,6 +42,12 @@ public class EditValueTool implements AbstractTool {
 	public void onClickCanvas(int x, int y) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void clean() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

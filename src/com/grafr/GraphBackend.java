@@ -98,4 +98,10 @@ public class GraphBackend {
 		ed.from.edges_from.remove(ed);
 		edgesByGraphx.remove(edge);
 	}
+	
+	public void clear(){
+		this.edgesByGraphx.clear();
+		this.nodes.clear();
+		this.nodesByGraphx.clear();
+	}
 }
