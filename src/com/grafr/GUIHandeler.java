@@ -197,14 +197,19 @@ public class GUIHandeler {
 		bottomPanel.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 
-		resetGraphButton = new JButton("Reset Graph");
-		resetGraphButton.setIcon(new ImageIcon("res/reset_graph.png"));
 		GridBagConstraints gbc_south = new GridBagConstraints();
 		gbc_south.insets = new Insets(0, 0, 5, 0);
 		gbc_south.gridx = 1;
 		gbc_south.gridy = 0;
+		
+		JButton screenshot = new JButton("Upload Graph");
+		screenshot.setIcon(new ImageIcon("res/screenshot.png"));
+		bottomPanel.add(screenshot, gbc_south);
+		
+		resetGraphButton = new JButton("Reset Graph");
+		resetGraphButton.setIcon(new ImageIcon("res/reset_graph.png"));
 		bottomPanel.add(resetGraphButton, gbc_south);
-
+		
 		resetAlgorithmButton = new JButton("Reset Algorithm");
 		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
@@ -212,6 +217,9 @@ public class GUIHandeler {
 		JButton nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
 		bottomPanel.add(nextStepButton, gbc_south);
+		
+
+
 
 		// button listeners south panel
 		resetGraphButton.addActionListener(new ActionListener() {

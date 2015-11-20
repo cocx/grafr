@@ -21,7 +21,6 @@ import com.mxgraph.view.mxStylesheet;
 
 import java.util.HashMap;
 import java.util.Hashtable;
-
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -143,10 +142,10 @@ public class GraphHandeler extends JPanel {
 
 			setAsEnd(v5);
 			setAsStart(v1);
-			setVertexColor(v3, "#FF0000");
-			v1.vertex.setValue("K");
+//			setVertexColor(v3, "#FF0000");
+//			v1.vertex.setValue("K");
 
-			int x = 5;
+			int x = 1;
 			Edge e1 = addEdge(v1, v2, x);
 			addEdge(v2, v3, x);
 			addEdge(v2, v4, x);
@@ -157,8 +156,8 @@ public class GraphHandeler extends JPanel {
 			addEdge(v5, v3, x);
 			addEdge(v5, v4, x);
 
-			setEdgeColor(e1, "#FF0000");
-			setEdgeWeight(e1, 20);
+//			setEdgeColor(e1, "#FF0000");
+//			setEdgeWeight(e1, 20);
 			graph.setKeepEdgesInBackground(true);
 
 		} finally {
@@ -194,13 +193,18 @@ public class GraphHandeler extends JPanel {
 	public Edge addEdge(Vertex from, Vertex to) {
 		Object edge = graph.insertEdge(graph.getDefaultParent(), null, null,
 				from.vertex, to.vertex, "Edge");
-		return graphBackend.addEdge(from, to, (mxCell) edge);
+		Edge ed = graphBackend.addEdge(from, to, 1, (mxCell) edge);
+		setEdgeWeight(ed, 1);
+		return ed;
 	}
 
-	public Edge addEdge(Vertex from, Vertex to, float weight) {
+	public Edge addEdge(Vertex from, Vertex to, int weight) {
 		Object edge = graph.insertEdge(graph.getDefaultParent(), null, null,
 				from.vertex, to.vertex, "Edge");
-		return graphBackend.addEdge(from, to, weight, (mxCell) edge);
+		
+		Edge ed = graphBackend.addEdge(from, to, weight, (mxCell) edge);
+		setEdgeWeight(ed, weight);
+		return ed;
 	}
 
 	public void setAsEnd(Vertex vertex) {

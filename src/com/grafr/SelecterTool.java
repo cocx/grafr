@@ -7,6 +7,8 @@ public class SelecterTool implements AbstractTool {
 	@Override
 	public void create() {
 		Grafr.graph.graph.setCellsSelectable(true);
+		Grafr.graph.graph.setCellsMovable(true);
+		Grafr.graph.graph.refresh();
 	}
 	
 	@Override
@@ -30,6 +32,8 @@ public class SelecterTool implements AbstractTool {
 	@Override
 	public void clean() {
 		Grafr.graph.graph.setCellsSelectable(false);
+		Grafr.graph.graph.setCellsMovable(false);
+		Grafr.graph.graph.refresh();
 	}
 
 	
