@@ -18,7 +18,7 @@ public class ToolHandeler {
 
 	// tool selection
 	void setTool(AbstractTool tool) {
-		if(currentTool != null)
+		if (currentTool != null)
 			currentTool.clean();
 		currentTool = tool;
 		currentTool.create();
@@ -31,20 +31,32 @@ public class ToolHandeler {
 		g.getGraphControl().addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
 				mxCell cell = (mxCell) g.getCellAt(e.getX(), e.getY());
-
-				if (cell != null) {
+				if (e.getClickCount() == 2) {
 					if (cell.isVertex()) {
-						currentTool.onClickVertex(cell);
+						currentTool.onDoubleClickVertex(cell);
 						System.out.println("is vertex");
 						return;
 					}
 					if (cell.isEdge()) {
-						currentTool.onClickEdge(cell);
+						currentTool.onDoubleClickEdge(cell);
 						System.out.println("is edge");
 						return;
+					}	
+				} else {
+					if (cell != null) {
+						if (cell.isVertex()) {
+							currentTool.onClickVertex(cell);
+							System.out.println("is vertex");
+							return;
+						}
+						if (cell.isEdge()) {
+							currentTool.onClickEdge(cell);
+							System.out.println("is edge");
+							return;
+						}
+					} else {
+						currentTool.onClickCanvas(e.getX(), e.getY());
 					}
-				}else{
-					currentTool.onClickCanvas(e.getX(), e.getY());
 				}
 			}
 		});

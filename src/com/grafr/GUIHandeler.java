@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JTree;
+import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 
@@ -34,16 +35,14 @@ public class GUIHandeler {
 	// left panel
 	private JPanel leftPanel;
 	private JButton selectorToolButton;
-	private JButton AddNodeButton;
-	private JButton RemoveNodeButton;
-	private JButton AddLineButton;
-	private JButton RemoveLineButton;
+	private JButton addNodeButton;
+	private JButton removeButton;
+	private JButton addLineButton;
 	private JButton setAsStartButton;
 	private JButton setAsEndButton;
-	private JButton editValueButton;
 	// right panel
 	private JPanel rightPanel;
-	private JButton DijkstraButton;
+	private JButton dijkstraButton;
 	// bottom panel
 	private JPanel bottomPanel;
 	private JButton resetGraphButton;
@@ -78,85 +77,75 @@ public class GUIHandeler {
 		selectorToolButton = new JButton("Move Nodes");
 		selectorToolButton.setIcon(new ImageIcon("res/move_node.png"));
 		selectorToolButton.setEnabled(false);
-		leftPanel.add(selectorToolButton, gbc_west);
+		selectorToolButton.setHorizontalAlignment(SwingConstants.LEFT);
+		leftPanel.add(getSelectorToolButton(), gbc_west);
 
-		AddNodeButton = new JButton("Add Node");
-		AddNodeButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		addNodeButton = new JButton("Add Node");
+		addNodeButton.setIcon(new ImageIcon("res/Button-Blank-Green-icon.png"));
+		addNodeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		gbc_west.gridy++;
-		leftPanel.add(AddNodeButton, gbc_west);
+		leftPanel.add(addNodeButton, gbc_west);
 
-		RemoveNodeButton = new JButton("Remove Node");
-		RemoveNodeButton.setIcon(new ImageIcon("res/remove_node.png"));
+		removeButton = new JButton("Remove");
+		removeButton.setIcon(new ImageIcon("res/remove_node.png"));
+		removeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		gbc_west.gridy++;
-		leftPanel.add(RemoveNodeButton, gbc_west);
+		leftPanel.add(removeButton, gbc_west);
 
-		AddLineButton = new JButton("Add Line");
-		AddLineButton.setIcon(new ImageIcon("res/Line.png"));
+		addLineButton = new JButton("Add Line");
+		addLineButton.setHorizontalAlignment(SwingConstants.LEFT);
+		addLineButton.setIcon(new ImageIcon("res/Line.png"));
 		gbc_west.gridy++;
-		leftPanel.add(AddLineButton, gbc_west);
-
-		RemoveLineButton = new JButton("Remove Line");
-		RemoveLineButton.setIcon(new ImageIcon("res/remove_line_2.png"));
-		gbc_west.gridy++;
-		leftPanel.add(RemoveLineButton, gbc_west);
+		leftPanel.add(addLineButton, gbc_west);
 
 		setAsStartButton = new JButton("set Node as Start");
+		setAsStartButton.setHorizontalAlignment(SwingConstants.LEFT);
 		setAsStartButton.setIcon(new ImageIcon("res/start_node.png"));
 		gbc_west.gridy++;
 		leftPanel.add(setAsStartButton, gbc_west);
 
 		setAsEndButton = new JButton("  set Node as End  ");
+		setAsEndButton.setHorizontalAlignment(SwingConstants.LEFT);
 		setAsEndButton.setIcon(new ImageIcon("res/finish_node.png"));
 		gbc_west.gridy++;
 		leftPanel.add(setAsEndButton, gbc_west);
 
-		editValueButton = new JButton("Edit values");
-		editValueButton.setIcon(new ImageIcon("res/edit_values.png"));
-		gbc_west.gridy++;
-		leftPanel.add(editValueButton, gbc_west);
 		
 		// button listeners left panel
-		selectorToolButton.addActionListener(new ActionListener() {
+		getSelectorToolButton().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				selectorToolButton.setEnabled(false);
+				getSelectorToolButton().setEnabled(false);
 				Grafr.toolhandeler.setTool(new SelecterTool());
 			}
 		});
 
-		AddNodeButton.addActionListener(new ActionListener() {
+		addNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				AddNodeButton.setEnabled(false);
+				addNodeButton.setEnabled(false);
 
 				Grafr.toolhandeler.setTool(new AddNodeTool());
 			}
 		});
 
-		RemoveNodeButton.addActionListener(new ActionListener() {
+		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				RemoveNodeButton.setEnabled(false);
-				Grafr.toolhandeler.setTool(new RemoveNodeTool());
+				removeButton.setEnabled(false);
+				Grafr.toolhandeler.setTool(new RemoveTool());
 			}
 		});
 
-		AddLineButton.addActionListener(new ActionListener() {
+		addLineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				AddLineButton.setEnabled(false);
+				addLineButton.setEnabled(false);
 				Grafr.toolhandeler.setTool(new AddLineTool());
 			}
 		});
 
-		RemoveLineButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setButtonEnabled();
-				RemoveLineButton.setEnabled(false);
-				Grafr.toolhandeler.setTool(new RemoveLineTool());
-			}
-		});
 
 		setAsStartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -174,22 +163,15 @@ public class GUIHandeler {
 			}
 		});
 
-		editValueButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setButtonEnabled();
-				editValueButton.setEnabled(false);
-				Grafr.toolhandeler.setTool(new EditValueTool());
-			}
-		});
 
 		rightPanel = new JPanel();
 		rightPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		rightPanel.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
 
-		DijkstraButton = new JButton("Dijkstra's Algorithm");
+		dijkstraButton = new JButton("Dijkstra's Algorithm");
 
-		rightPanel.add(DijkstraButton);
+		rightPanel.add(dijkstraButton);
 
 		// south panel
 		bottomPanel = new JPanel();
@@ -235,13 +217,19 @@ public class GUIHandeler {
 	}
 
 	public void setButtonEnabled() {
-		selectorToolButton.setEnabled(true);
-		AddNodeButton.setEnabled(true);
-		RemoveNodeButton.setEnabled(true);
-		AddLineButton.setEnabled(true);
-		RemoveLineButton.setEnabled(true);
+		getSelectorToolButton().setEnabled(true);
+		addNodeButton.setEnabled(true);
+		removeButton.setEnabled(true);
+		addLineButton.setEnabled(true);
 		setAsStartButton.setEnabled(true);
 		setAsEndButton.setEnabled(true);
-		editValueButton.setEnabled(true);
+	}
+
+	public JButton getSelectorToolButton() {
+		return selectorToolButton;
+	}
+
+	public void setSelectorToolButton(JButton selectorToolButton) {
+		this.selectorToolButton = selectorToolButton;
 	}
 }
