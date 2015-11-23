@@ -1,32 +1,19 @@
 package com.grafr;
 
-import javax.swing.JFrame;
-
 import java.awt.BorderLayout;
-
-import javax.swing.JButton;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridLayout;
-
-import javax.swing.JPanel;
-
-import java.awt.Insets;
-
-import javax.swing.JTextPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JTree;
-import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class GUIHandeler {

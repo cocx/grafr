@@ -12,31 +12,25 @@
  */
 package com.grafr;
 
-import com.mxgraph.layout.*;
-import com.mxgraph.model.mxCell;
-import com.mxgraph.swing.*;
-import com.mxgraph.util.mxConstants;
-import com.mxgraph.view.mxGraph;
-import com.mxgraph.view.mxStylesheet;
-
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.Hashtable;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
-import org.jgrapht.*;
-import org.jgrapht.ext.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.ListenableGraph;
+import org.jgrapht.ext.JGraphXAdapter;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.ListenableDirectedGraph;
 
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
+import com.mxgraph.layout.mxCompactTreeLayout;
+import com.mxgraph.model.mxCell;
+import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.util.mxConstants;
+import com.mxgraph.view.mxGraph;
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * A demo applet that shows how to use JGraphX to visualize JGraphT graphs.
