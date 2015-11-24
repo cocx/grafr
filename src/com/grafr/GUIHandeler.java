@@ -32,9 +32,11 @@ public class GUIHandeler {
 	private JButton dijkstraButton;
 	// bottom panel
 	private JPanel bottomPanel;
+	private JButton screenshot;
 	private JButton resetGraphButton;
 	private JButton resetAlgorithmButton;
-
+	private JButton nextStepButton;
+	
 	public GUIHandeler() {
 		initialize();
 	}
@@ -171,7 +173,7 @@ public class GUIHandeler {
 		gbc_south.gridx = 1;
 		gbc_south.gridy = 0;
 		
-		JButton screenshot = new JButton("Upload Graph");
+		screenshot = new JButton("Upload Graph");
 		screenshot.setIcon(new ImageIcon("res/screenshot.png"));
 		bottomPanel.add(screenshot, gbc_south);
 		
@@ -183,7 +185,7 @@ public class GUIHandeler {
 		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
 
-		JButton nextStepButton = new JButton("Next Step");
+		nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
 		bottomPanel.add(nextStepButton, gbc_south);
 		
@@ -191,6 +193,12 @@ public class GUIHandeler {
 
 
 		// button listeners south panel
+		screenshot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Grafr.screenshotHandeler.writeToDisc(Grafr.graph.graphComponent);
+			}
+		});
+		
 		resetGraphButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Grafr.graph.clear();
