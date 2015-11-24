@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="lib/jgrapht-0.9.1/lib/jgrapht-core-0.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/jgraphx-3.4.0.3/lib/jgraphx.jar"/>
 	<classpathentry kind="lib" path="lib/jgrapht-0.9.1/lib/jgrapht-ext-0.9.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Apache-common"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
