@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,6 +48,7 @@ public class GUIHandeler {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("Grafr");
+		frame.setIconImage(Toolkit.getDefaultToolkit().createImage("res/head.png"));
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setMinimumSize(new Dimension(800, 600));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
