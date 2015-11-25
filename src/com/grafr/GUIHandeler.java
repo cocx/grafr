@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -33,9 +34,12 @@ public class GUIHandeler {
 	private JButton dijkstraButton;
 	// bottom panel
 	private JPanel bottomPanel;
-	private JButton screenshot;
+	private JButton openButton;
+	private JButton saveButton;
+	private JButton screenshotButton;
 	private JButton resetGraphButton;
 	private JButton resetAlgorithmButton;
+	private JButton previousStepButton;
 	private JButton nextStepButton;
 	
 	public GUIHandeler() {
@@ -67,7 +71,7 @@ public class GUIHandeler {
 
 		selectorToolButton = new JButton("Move Nodes");
 		selectorToolButton.setIcon(new ImageIcon("res/move_node.png"));
-		selectorToolButton.setEnabled(false);
+		selectorToolButton.setBackground(Color.green);
 		selectorToolButton.setHorizontalAlignment(SwingConstants.LEFT);
 		leftPanel.add(getSelectorToolButton(), gbc_west);
 
@@ -107,7 +111,7 @@ public class GUIHandeler {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				getSelectorToolButton().setEnabled(false);
+				selectorToolButton.setBackground(Color.green);
 				Grafr.toolhandeler.setTool(new SelecterTool());
 			}
 		});
@@ -115,7 +119,7 @@ public class GUIHandeler {
 		addNodeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				addNodeButton.setEnabled(false);
+				addNodeButton.setBackground(Color.green);
 
 				Grafr.toolhandeler.setTool(new AddNodeTool());
 			}
@@ -124,7 +128,7 @@ public class GUIHandeler {
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				removeButton.setEnabled(false);
+				removeButton.setBackground(Color.green);
 				Grafr.toolhandeler.setTool(new RemoveTool());
 			}
 		});
@@ -132,7 +136,7 @@ public class GUIHandeler {
 		addLineButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				addLineButton.setEnabled(false);
+				addLineButton.setBackground(Color.green);
 				Grafr.toolhandeler.setTool(new AddLineTool());
 			}
 		});
@@ -141,7 +145,7 @@ public class GUIHandeler {
 		setAsStartButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				setAsStartButton.setEnabled(false);
+				setAsStartButton.setBackground(Color.green);
 				Grafr.toolhandeler.setTool(new SetAsStartTool());
 			}
 		});
@@ -149,7 +153,7 @@ public class GUIHandeler {
 		setAsEndButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setButtonEnabled();
-				setAsEndButton.setEnabled(false);
+				setAsEndButton.setBackground(Color.green);
 				Grafr.toolhandeler.setTool(new SetAsEndTool());
 			}
 		});
@@ -175,9 +179,19 @@ public class GUIHandeler {
 		gbc_south.gridx = 1;
 		gbc_south.gridy = 0;
 		
-		screenshot = new JButton("Upload Graph");
-		screenshot.setIcon(new ImageIcon("res/screenshot.png"));
-		bottomPanel.add(screenshot, gbc_south);
+		saveButton = new JButton("Save");
+		saveButton.setIcon(new ImageIcon("res/save.png"));
+		saveButton.setEnabled(false);
+		bottomPanel.add(saveButton, gbc_south);
+		
+		openButton = new JButton("Open");
+		openButton.setIcon(new ImageIcon("res/open.png"));
+		openButton.setEnabled(false);
+		bottomPanel.add(openButton, gbc_south);
+		
+		screenshotButton = new JButton("Upload Graph");
+		screenshotButton.setIcon(new ImageIcon("res/screenshot.png"));
+		bottomPanel.add(screenshotButton, gbc_south);
 		
 		resetGraphButton = new JButton("Reset Graph");
 		resetGraphButton.setIcon(new ImageIcon("res/reset_graph.png"));
@@ -186,16 +200,19 @@ public class GUIHandeler {
 		resetAlgorithmButton = new JButton("Reset Algorithm");
 		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
+		
+		previousStepButton = new JButton("Previous Step");
+		previousStepButton.setIcon(new ImageIcon("res/prev_step.png"));
+		previousStepButton.setEnabled(false);
+		bottomPanel.add(previousStepButton, gbc_south);
 
 		nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
 		bottomPanel.add(nextStepButton, gbc_south);
 		
 
-
-
 		// button listeners south panel
-		screenshot.addActionListener(new ActionListener() {
+		screenshotButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Grafr.screenshotHandeler.writeToDisc(Grafr.graph.graphComponent);
 			}
@@ -203,7 +220,11 @@ public class GUIHandeler {
 		
 		resetGraphButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Grafr.graph.clear();
+				int temp=JOptionPane.showConfirmDialog(Grafr.graph, 
+				"Are you sure you want to reset the whole graph?","",2);
+				if (temp==JOptionPane.OK_OPTION) {
+					Grafr.graph.clear();
+				}
 			}
 		});
 
@@ -214,12 +235,12 @@ public class GUIHandeler {
 	}
 
 	public void setButtonEnabled() {
-		getSelectorToolButton().setEnabled(true);
-		addNodeButton.setEnabled(true);
-		removeButton.setEnabled(true);
-		addLineButton.setEnabled(true);
-		setAsStartButton.setEnabled(true);
-		setAsEndButton.setEnabled(true);
+		getSelectorToolButton().setBackground(new JButton().getBackground());
+		addNodeButton.setBackground(new JButton().getBackground());
+		removeButton.setBackground(new JButton().getBackground());
+		addLineButton.setBackground(new JButton().getBackground());
+		setAsStartButton.setBackground(new JButton().getBackground());
+		setAsEndButton.setBackground(new JButton().getBackground());
 	}
 
 	public JButton getSelectorToolButton() {

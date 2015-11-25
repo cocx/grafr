@@ -5,14 +5,14 @@ import javax.swing.JOptionPane;
 import com.mxgraph.model.mxCell;
 
 public class SelecterTool implements AbstractTool {
-	
+
 	@Override
 	public void create() {
 		Grafr.graph.graph.setCellsSelectable(true);
 		Grafr.graph.graph.setCellsMovable(true);
 		Grafr.graph.graph.refresh();
 	}
-	
+
 	@Override
 	public void onClickVertex(mxCell c) {
 		// TODO Auto-generated method stub
@@ -42,39 +42,45 @@ public class SelecterTool implements AbstractTool {
 	public void onDoubleClickVertex(mxCell c) {
 		String name;
 		name = JOptionPane.showInputDialog(Grafr.graph,
-		                "Please write the name for the node.",
-		                "",
-		                JOptionPane.QUESTION_MESSAGE);
+				"Please write the name for the node.",
+				"",
+				JOptionPane.QUESTION_MESSAGE);
 		if (name != null){
-		c.setValue(name);
-		Grafr.graph.graph.refresh();
+			c.setValue(name);
+			Grafr.graph.graph.refresh();
 		}
 	}
-	
+
 	@Override
 	public void onDoubleClickEdge(mxCell e) {
 		int weight;
-		try {
-		weight = Integer.parseInt(JOptionPane.showInputDialog(Grafr.graph,
-			    "Please give the weight for the edge.",
-			    "",
-			    JOptionPane.QUESTION_MESSAGE));
-			if (weight > 0){
-				Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
-				Grafr.graph.graph.refresh();
-			}else{
+		String temp;
+		temp=JOptionPane.showInputDialog(Grafr.graph,
+				"Please give the weight for the edge.",
+				"",
+				JOptionPane.QUESTION_MESSAGE);
+		if(temp!=null){
+			try {
+				weight = Integer.parseInt(temp);
+				if (weight > 0){
+					Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
+					Grafr.graph.graph.refresh();
+				}else{
+					JOptionPane.showMessageDialog(Grafr.graph,
+							"Weights must be larger than zero",
+							"",
+							JOptionPane.ERROR_MESSAGE);
+					onDoubleClickEdge(e);
+				}
+			}catch(NumberFormatException nfe){
 				JOptionPane.showMessageDialog(Grafr.graph,
-					    "Weights must be larger than zero",
-					    "",
-					    JOptionPane.ERROR_MESSAGE);
-			}
-		}catch(NumberFormatException nfe){
-			JOptionPane.showMessageDialog(Grafr.graph,
-				    "Please insert a valid number",
-				    "",
-				    JOptionPane.ERROR_MESSAGE);
-		}		
+						"Please insert a valid number",
+						"",
+						JOptionPane.ERROR_MESSAGE);
+				onDoubleClickEdge(e);
+			}	
+		}
 	}
 
-	
+
 }
