@@ -12,6 +12,7 @@ public class ToolHandeler {
 	private AbstractTool currentTool;
 	mxGraphComponent g;
 
+
 	public ToolHandeler() {
 		start();
 	}
@@ -22,6 +23,17 @@ public class ToolHandeler {
 			currentTool.clean();
 		currentTool = tool;
 		currentTool.create();
+	}
+
+	public void enable(){
+		setTool(new SelecterTool());
+		Grafr.window.setButtonEnabled();
+		Grafr.window.getSelectorToolButton().setEnabled(false);
+		
+	}
+	public void disable(){
+		Grafr.window.setButtonDisable();
+		setTool(new NullTool());
 	}
 
 	// starts all listeners

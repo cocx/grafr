@@ -161,8 +161,14 @@ public class GUIHandeler {
 		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
 
 		dijkstraButton = new JButton("Dijkstra's Algorithm");
-
 		rightPanel.add(dijkstraButton);
+		
+		dijkstraButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.algoHandeler.setAlgoritme(new Dijkstra());
+			}
+		});
 
 		// south panel
 		bottomPanel = new JPanel();
@@ -186,10 +192,27 @@ public class GUIHandeler {
 		resetAlgorithmButton = new JButton("Reset Algorithm");
 		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
+		
+		resetAlgorithmButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.algoHandeler.clear();
+				
+			}
+		});
 
 		nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
 		bottomPanel.add(nextStepButton, gbc_south);
+		
+		nextStepButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.algoHandeler.next();
+			}
+		});
 		
 
 
@@ -204,6 +227,9 @@ public class GUIHandeler {
 		resetGraphButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Grafr.graph.clear();
+				if(Grafr.algoHandeler.isAlgoRunning()){
+					Grafr.algoHandeler.clear();
+				}
 			}
 		});
 
@@ -220,6 +246,15 @@ public class GUIHandeler {
 		addLineButton.setEnabled(true);
 		setAsStartButton.setEnabled(true);
 		setAsEndButton.setEnabled(true);
+	}
+	
+	public void setButtonDisable() {
+		getSelectorToolButton().setEnabled(false);
+		addNodeButton.setEnabled(false);
+		removeButton.setEnabled(false);
+		addLineButton.setEnabled(false);
+		setAsStartButton.setEnabled(false);
+		setAsEndButton.setEnabled(false);
 	}
 
 	public JButton getSelectorToolButton() {

@@ -12,11 +12,13 @@ public class GraphBackend {
 		int id;
 		
 		ArrayList<Edge> edges_from;
+		ArrayList<Edge> edges_to;
 		
 	public Vertex(mxCell vertex){
 			this.vertex = vertex;
 			id = NextID++;
 			this.edges_from = new ArrayList<>();
+			this.edges_to = new ArrayList<>();
 		}
 		static int NextID = 0;
 	}
@@ -24,10 +26,10 @@ public class GraphBackend {
 	static public class Edge{
 		Vertex from;
 		Vertex to;
-		float weight;
+		int weight;
 		mxCell edge;
 		
-		public Edge(mxCell edge,Vertex from,Vertex to,float weight){
+		public Edge(mxCell edge,Vertex from,Vertex to,int weight){
 			this.from = from;
 			this.to = to;
 			this.weight = weight;
@@ -59,15 +61,12 @@ public class GraphBackend {
 		return n_edge;
 	}
 	
-	public Edge addEdge(Vertex from,Vertex to,float weight,mxCell edge){
+	public Edge addEdge(Vertex from,Vertex to,int weight,mxCell edge){
 		Edge n_edge = new Edge(edge,from, to, weight);
 		from.edges_from.add(n_edge);
+		to.edges_to.add(n_edge);
 		this.edgesByGraphx.put(edge, n_edge);
 		return n_edge;
-	}
-	
-	public Vertex getVertex(int id){
-		return this.nodes.get(id);
 	}
 	
 	public Vertex getVertex(mxCell vertex){
@@ -78,17 +77,30 @@ public class GraphBackend {
 		return this.edgesByGraphx.get(edge);
 	}
 	
-	public void removeVertex(int id){
-		Vertex vertex = this.nodes.get(id);
+	public void removeVertex(Vertex vertex){
 		for(Edge e: vertex.edges_from){
 			this.edgesByGraphx.remove(e.edge);
+			e.to.edges_to.remove(e);
+		}
+		for(Edge e: vertex.edges_to){
+			this.edgesByGraphx.remove(e.edge);
+			e.from.edges_from.remove(e);
 		}
 		nodesByGraphx.remove(vertex.vertex);
-		this.nodes.remove(id);
+		nodes.remove(vertex.id);
 	}
 	
 	public void removeVertex(mxCell vert){
+		
 		Vertex vertex = this.nodesByGraphx.get(vert);
+		for(Edge e: vertex.edges_from){
+			this.edgesByGraphx.remove(e.edge);
+			e.to.edges_to.remove(e);
+		}
+		for(Edge e: vertex.edges_to){
+			this.edgesByGraphx.remove(e.edge);
+			e.from.edges_from.remove(e);
+		}
 		this.nodes.remove(vertex.id);
 		this.nodesByGraphx.remove(vertex);
 	}
@@ -96,6 +108,7 @@ public class GraphBackend {
 	public void removeEdge(mxCell edge){
 		Edge ed = this.edgesByGraphx.get(edge);
 		ed.from.edges_from.remove(ed);
+		ed.to.edges_to.remove(ed);
 		edgesByGraphx.remove(edge);
 	}
 	
