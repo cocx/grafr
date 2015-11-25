@@ -2,6 +2,7 @@ package com.grafr;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
@@ -20,17 +21,21 @@ public class Dijkstra implements AbstractAlgoritme {
 		Init,
 		Measure,
 		Select,
+		End,
+		Found,
 	};
 	AlgoState state;
 	
 	HashMap<Edge, Integer> weigths;
+	HashMap<Vertex, Edge> selectedFrom;
 	HashSet<Vertex> visited;
 	
 	Vertex current;
 	int currentPathLength;
 	
 	Edge currentMeasure;
-	int lowest_weight;
+	
+	Edge path;
 	
 	
 	@Override
@@ -40,12 +45,13 @@ public class Dijkstra implements AbstractAlgoritme {
 		this.start = start;
 		this.end = end;
 		this.state = AlgoState.Init;
-		this.lowest_weight = Integer.MIN_VALUE;
 		weigths = new HashMap<>();
 		visited = new HashSet<>();
+		selectedFrom = new HashMap<>();
 		for(Edge e: g.edgesByGraphx.values()){
 			weigths.put(e, Integer.MAX_VALUE);
 		}
+		currentPathLength = 0;
 	}
 
 	@Override
@@ -72,7 +78,10 @@ public class Dijkstra implements AbstractAlgoritme {
 		{
 			System.out.println("measure");
 			Edge newMeasure;
-			if(currentMeasure == null){
+			if(current.edges_from.size() == 0){
+				state = AlgoState.Select;
+				break;
+			}else if(currentMeasure == null){
 				//start of measure cycle
 				newMeasure = current.edges_from.get(0);
 			}else{
@@ -92,26 +101,55 @@ public class Dijkstra implements AbstractAlgoritme {
 			}
 			//show which one were use in to measure
 			Grafr.graph.setEdgeColor(newMeasure, "green");
-			if(newMeasure.weight < this.lowest_weight)
-				lowest_weight = newMeasure.weight;
+			this.weigths.put(newMeasure,this.currentPathLength + newMeasure.weight);
+			Grafr.graph.setEdgeWeight(newMeasure, this.currentPathLength + newMeasure.weight);
+			Grafr.graph.refresh();
 			currentMeasure = newMeasure;
-			
 		}
 			break;
 		case Select:
 		{
 			System.out.println("Select");
-			Edge path = current.edges_from.get(0);
-			for(Edge e: current.edges_from){
-				if(e.weight == lowest_weight){
-					path = e;
-					break;
+			if(path != null)
+				Grafr.graph.setEdgeColor(path, "#888888");
+			path = null;
+			int min = Integer.MAX_VALUE;
+			for(Map.Entry<Edge, Integer> m: this.weigths.entrySet()){
+				if (min > m.getValue()){
+					if(!visited.contains(m.getKey().to)){
+						min = m.getValue();
+						path = m.getKey();
+					}
 				}
 			}
-			Grafr.graph.setVertexColor(current, "#888888");
-			Grafr.graph.setEdgeColor(path, "yellow");
-			setCurrent(path.to);
-			state = AlgoState.Measure;
+			if(path == null){
+				state = AlgoState.End;
+			}else{
+				if(path.to == end ){
+					state = AlgoState.Found;
+					selectedFrom.put(path.to, path);
+					setCurrent(end);
+				}else{
+					this.currentPathLength = this.weigths.get(path).intValue();
+					Grafr.graph.setVertexColor(current, "#888888");
+					Grafr.graph.setEdgeColor(path, "yellow");
+					setCurrent(path.to);
+					selectedFrom.put(path.to, path);
+					state = AlgoState.Measure;
+				}
+			}
+		}
+		break;
+		case Found:
+		{
+			if(current == start){
+				state = AlgoState.End;
+				break;
+			}
+			Edge selected = selectedFrom.get(current);
+			Grafr.graph.setEdgeColor(selected, "red");
+			current = selected.from;
+
 		}
 		break;
 		default:

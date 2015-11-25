@@ -37,6 +37,7 @@ public class AlgoritmeHandeler {
 		
 		for(Edge e: Grafr.graph.graphBackend.edgesByGraphx.values()){
 			Grafr.graph.resetEdgeStyle(e);
+			Grafr.graph.setEdgeWeight(e, e.weight);
 		}
 		for(Vertex e: Grafr.graph.graphBackend.nodes.values()){
 			Grafr.graph.resetVertexStyle(e);
