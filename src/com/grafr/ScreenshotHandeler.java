@@ -5,12 +5,19 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.CharBuffer;
+import java.util.List;
+import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
+import javax.net.ssl.HttpsURLConnection;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.codec.binary.Base64;
@@ -31,13 +38,20 @@ public class ScreenshotHandeler {
 		}
 		
 	}
+
+	private BufferedImage getBufferedImage(Component c){
+		BufferedImage image = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		return image;
+	}
+	
 	
 	public void upload(BufferedImage image) throws Exception {
-	    String IMGUR_POST_URI = "http://api.imgur.com/2/upload.xml";
+	    String IMGUR_POST_URI = "https://api.imgur.com/2/upload.xml";
 	    String IMGUR_API_KEY = "KEY";
 
 	    String file = "imgs/default.png";
-	    
+        String charset = null;
+        
 	    try {
 	        ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	        System.out.println("Writing image...");
@@ -49,12 +63,18 @@ public class ScreenshotHandeler {
 	        data += "&" + URLEncoder.encode("key", "UTF-8") + "=" + URLEncoder.encode(IMGUR_API_KEY, "UTF-8");
 	        System.out.println("Connecting...");
 
-	        URLConnection conn = url.openConnection();
+	        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 	        conn.setDoOutput(true);
 	        OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 	        System.out.println("Sending data...");
 	        wr.write(data);
 	        wr.flush();
+	        System.out.println("Fetching URL...");
+	        int status = conn.getResponseCode();
+	        for (Entry<String, List<String>> header : conn.getHeaderFields().entrySet()) {
+	            System.out.println(header.getKey() + "=" + header.getValue());
+	        }
+			
 	        System.out.println("Finished.");
 	    } catch(Exception e){
 	        e.printStackTrace();
@@ -62,10 +82,28 @@ public class ScreenshotHandeler {
 	}
 
 
-	private BufferedImage getBufferedImage(Component c){
-		BufferedImage image = new BufferedImage(c.getWidth(), c.getHeight(), BufferedImage.TYPE_INT_ARGB);
-		return image;
-	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public void writeToDisc(Component c) {
 		try {
@@ -86,5 +124,5 @@ public class ScreenshotHandeler {
 		ImageIO.write(image, format, new File("imgs/" + filename));
 	}
 	
-	
+
 }
