@@ -48,6 +48,8 @@ public class ScreenshotHandeler {
 	public void upload(BufferedImage image) throws Exception {
 	    String IMGUR_POST_URI = "https://api.imgur.com/2/upload.xml";
 	    String IMGUR_API_KEY = "KEY";
+	    String IMGUR_CLIENT_ID = "c48fa296e7c4fb8";
+	    String IMGUR_CLIENT_SECRET = "401c5c2dbcca413609552e054ba1ecf318598735";
 
 	    String file = "imgs/default.png";
         String charset = null;
