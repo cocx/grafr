@@ -1,5 +1,8 @@
 package com.grafr;
 
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
 
@@ -22,6 +25,14 @@ public class AlgoritmeHandeler {
 			
 	public void next(){
 		if (!running){
+			if(Grafr.graph.startVertex == null){
+				JOptionPane.showMessageDialog(Grafr.graph,"Please add a start node.","",JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			if(Grafr.graph.endVertex == null){
+				JOptionPane.showMessageDialog(Grafr.graph,"Please add a end node.","",JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			running = true;
 			Grafr.toolhandeler.disable();
 			current.init(Grafr.graph.graphBackend,Grafr.graph.startVertex,Grafr.graph.endVertex);

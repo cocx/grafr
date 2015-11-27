@@ -1,8 +1,10 @@
 package com.grafr;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import com.mxgraph.model.mxCell;
@@ -28,8 +30,7 @@ public class ToolHandeler {
 	public void enable(){
 		setTool(new SelecterTool());
 		Grafr.window.setButtonEnabled();
-		Grafr.window.getSelectorToolButton().setEnabled(false);
-		
+		Grafr.window.getSelectorToolButton().setBackground(Color.green);
 	}
 	public void disable(){
 		Grafr.window.setButtonDisable();

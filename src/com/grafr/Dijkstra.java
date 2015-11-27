@@ -143,11 +143,13 @@ public class Dijkstra implements AbstractAlgoritme {
 		case Found:
 		{
 			if(current == start){
+				Grafr.graph.setVertexColor(current, "red");
 				state = AlgoState.End;
 				break;
 			}
 			Edge selected = selectedFrom.get(current);
 			Grafr.graph.setEdgeColor(selected, "red");
+			Grafr.graph.setVertexColor(current, "red");
 			current = selected.from;
 
 		}

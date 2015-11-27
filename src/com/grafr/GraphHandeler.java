@@ -126,38 +126,6 @@ public class GraphHandeler extends JPanel {
 		// the above is a bit double but useful example code for our tool
 		// selection
 
-		graph.getModel().beginUpdate();
-		try {
-			Vertex v1 = addVertex("A", 40, 20);
-			Vertex v2 = addVertex("B", 340, 250);
-			Vertex v3 = addVertex("C", 320, 20);
-			Vertex v4 = addVertex("D", 20, 250);
-			Vertex v5 = addVertex("E", 170, 450);
-
-			setAsEnd(v5);
-			setAsStart(v1);
-//			setVertexColor(v3, "#FF0000");
-//			v1.vertex.setValue("K");
-
-			int x = 1;
-			Edge e1 = addEdge(v1, v2, x);
-			addEdge(v2, v3, x);
-			addEdge(v2, v4, x);
-			addEdge(v4, v3, x);
-			addEdge(v4, v1, x);
-			addEdge(v5, v1, x);
-			addEdge(v5, v2, x);
-			addEdge(v5, v3, x);
-			addEdge(v5, v4, x);
-
-//			setEdgeColor(e1, "#FF0000");
-//			setEdgeWeight(e1, 20);
-			graph.setKeepEdgesInBackground(true);
-
-		} finally {
-			graph.getModel().endUpdate();
-		}
-
 		this.setBackground(new Color(1, 0, 0));
 
 		this.setLayout(new BorderLayout());
@@ -269,6 +237,11 @@ public class GraphHandeler extends JPanel {
 
 	public void removeVertex(Vertex vertex) {
 		graphBackend.removeVertex(vertex);
+		if(vertex == startVertex){
+			startVertex = null;
+		}else if(vertex == endVertex){
+			endVertex= null;
+		}
 		graph.removeCells(new Object[] { vertex.vertex });
 	}
 

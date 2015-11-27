@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
@@ -176,14 +175,14 @@ public class GUIHandeler {
 		});
 
 		// south panel
-		bottomPanel = new JPanel(new GridLayout(1,9));
+		bottomPanel = new JPanel();
 		bottomPanel.setBorder(new LineBorder(new Color(0, 0, 0), 5));
 		bottomPanel.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(bottomPanel, BorderLayout.SOUTH);
 
 		GridBagConstraints gbc_south = new GridBagConstraints();
-		gbc_south.insets = new Insets(5, 5, 5, 5);
-		gbc_south.gridx = 0;
+		gbc_south.insets = new Insets(0, 0, 5, 0);
+		gbc_south.gridx = 1;
 		gbc_south.gridy = 0;
 		
 		saveButton = new JButton("Save");
@@ -194,24 +193,21 @@ public class GUIHandeler {
 		openButton = new JButton("Open");
 		openButton.setIcon(new ImageIcon("res/open.png"));
 		openButton.setEnabled(false);
-		gbc_south.gridx++;
 		bottomPanel.add(openButton, gbc_south);
 		
 		screenshotButton = new JButton("Upload Graph");
 		screenshotButton.setIcon(new ImageIcon("res/screenshot.png"));
-		gbc_south.gridx++;
 		bottomPanel.add(screenshotButton, gbc_south);
 		
 		resetGraphButton = new JButton("Reset Graph");
 		resetGraphButton.setIcon(new ImageIcon("res/reset_graph.png"));
-		gbc_south.gridx++;
 		bottomPanel.add(resetGraphButton, gbc_south);
 		
 		resetAlgorithmButton = new JButton("Reset Algorithm");
 		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
-		gbc_south.gridx++;
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
 		
+<<<<<<< HEAD
 		resetAlgorithmButton.addActionListener(new ActionListener() {
 			
 			@Override
@@ -220,11 +216,12 @@ public class GUIHandeler {
 				
 			}
 		});
-
+=======
 		previousStepButton = new JButton("Previous Step");
 		previousStepButton.setIcon(new ImageIcon("res/prev_step.png"));
 		previousStepButton.setEnabled(false);
 		bottomPanel.add(previousStepButton, gbc_south);
+>>>>>>> LayoutFixed
 
 		nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
@@ -242,21 +239,25 @@ public class GUIHandeler {
 		// button listeners south panel
 		screenshotButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Grafr.screenshotHandeler.upload(Grafr.graph.graphComponent);
+				Grafr.screenshotHandeler.writeToDisc(Grafr.graph.graphComponent);
 			}
 		});
 		
 		resetGraphButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
+				Grafr.graph.clear();
+				if(Grafr.algoHandeler.isAlgoRunning()){
+					Grafr.algoHandeler.clear();
+=======
 				int temp=JOptionPane.showConfirmDialog(Grafr.graph, 
 				"Are you sure you want to reset the whole graph?","",2);
 				if (temp==JOptionPane.OK_OPTION) {
-                                    Grafr.graph.clear();
-                                    if(Grafr.algoHandeler.isAlgoRunning()){
-                                            Grafr.algoHandeler.clear();
+					Grafr.graph.clear();
+>>>>>>> LayoutFixed
 				}
 			}
-		}});
+		});
 
 	}
 
@@ -265,12 +266,6 @@ public class GUIHandeler {
 	}
 
 	public void setButtonEnabled() {
-		getSelectorToolButton().setEnabled(true);
-		addNodeButton.setEnabled(true);
-		removeButton.setEnabled(true);
-		addLineButton.setEnabled(true);
-		setAsStartButton.setEnabled(true);
-		setAsEndButton.setEnabled(true);
 		getSelectorToolButton().setBackground(new JButton().getBackground());
 		addNodeButton.setBackground(new JButton().getBackground());
 		removeButton.setBackground(new JButton().getBackground());
@@ -286,12 +281,6 @@ public class GUIHandeler {
 		addLineButton.setEnabled(false);
 		setAsStartButton.setEnabled(false);
 		setAsEndButton.setEnabled(false);
-		getSelectorToolButton().setBackground(new JButton().getBackground());
-		addNodeButton.setBackground(new JButton().getBackground());
-		removeButton.setBackground(new JButton().getBackground());
-		addLineButton.setBackground(new JButton().getBackground());
-		setAsStartButton.setBackground(new JButton().getBackground());
-		setAsEndButton.setBackground(new JButton().getBackground());
 	}
 
 	public JButton getSelectorToolButton() {
