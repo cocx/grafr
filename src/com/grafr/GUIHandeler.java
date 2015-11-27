@@ -237,7 +237,7 @@ public class GUIHandeler {
 		// button listeners south panel
 		screenshotButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Grafr.screenshotHandeler.writeToDisc(Grafr.graph.graphComponent);
+				Grafr.screenshotHandeler.upload(Grafr.graph.graphComponent);
 			}
 		});
 		
