@@ -1,5 +1,7 @@
 package com.grafr;
 
+import java.awt.Color;
+
 import javax.swing.JOptionPane;
 
 import com.mxgraph.model.mxCell;
@@ -8,7 +10,11 @@ public class SetAsEndTool implements AbstractTool {
 
 	@Override
 	public void onClickVertex(mxCell c) {
-		 Grafr.graph.setAsEnd(Grafr.graph.graphBackend.getVertex(c));
+		Grafr.graph.setAsEnd(Grafr.graph.graphBackend.getVertex(c));
+		Grafr.toolhandeler.setTool(new SelecterTool());
+		Grafr.window.setButtonEnabled();
+		Grafr.window.getSelectorToolButton().setBackground(Color.green);
+
 
 	}
 

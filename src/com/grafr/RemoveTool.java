@@ -1,5 +1,7 @@
 package com.grafr;
 
+import java.awt.Color;
+
 import com.mxgraph.model.mxCell;
 
 public class RemoveTool implements AbstractTool {
@@ -9,7 +11,7 @@ public class RemoveTool implements AbstractTool {
 		Grafr.graph.removeVertex(Grafr.graph.graphBackend.getVertex(c));
 		Grafr.toolhandeler.setTool(new SelecterTool());
 		Grafr.window.setButtonEnabled();
-		Grafr.window.getSelectorToolButton().setEnabled(false);
+		Grafr.window.getSelectorToolButton().setBackground(Color.green);
 	}
 
 	@Override
@@ -17,7 +19,7 @@ public class RemoveTool implements AbstractTool {
 		Grafr.graph.removeEdge(Grafr.graph.graphBackend.getEdge(e));
 		Grafr.toolhandeler.setTool(new SelecterTool());
 		Grafr.window.setButtonEnabled();
-		Grafr.window.getSelectorToolButton().setEnabled(false);
+		Grafr.window.getSelectorToolButton().setBackground(Color.green);
 	}
 
 	@Override
