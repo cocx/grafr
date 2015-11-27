@@ -54,6 +54,7 @@ public class SelecterTool implements AbstractTool {
 	@Override
 	public void onDoubleClickEdge(mxCell e) {
 		int weight;
+//<<<<<<< HEAD
 		String temp;
 		temp=JOptionPane.showInputDialog(Grafr.graph,
 				"Please give the weight for the edge.",
@@ -64,6 +65,7 @@ public class SelecterTool implements AbstractTool {
 				weight = Integer.parseInt(temp);
 				if (weight > 0){
 					Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
+					Grafr.graph.graphBackend.edgesByGraphx.get(e).weight = weight;
 					Grafr.graph.graph.refresh();
 				}else{
 					JOptionPane.showMessageDialog(Grafr.graph,
@@ -73,6 +75,18 @@ public class SelecterTool implements AbstractTool {
 					onDoubleClickEdge(e);
 				}
 			}catch(NumberFormatException nfe){
+//=======
+//		try {
+//		weight = Integer.parseInt(JOptionPane.showInputDialog(Grafr.graph,
+//			    "Please give the weight for the edge.",
+//			    "",
+//			    JOptionPane.QUESTION_MESSAGE));
+//			if (weight > 0){
+//				Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
+//				Grafr.graph.graphBackend.edgesByGraphx.get(e).weight = weight;
+//				Grafr.graph.graph.refresh();
+//			}else{
+//>>>>>>> refs/heads/GetThatDijkstraWorking
 				JOptionPane.showMessageDialog(Grafr.graph,
 						"Please insert a valid number",
 						"",

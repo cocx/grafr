@@ -41,7 +41,7 @@ public class GUIHandeler {
 	private JButton resetAlgorithmButton;
 	private JButton previousStepButton;
 	private JButton nextStepButton;
-	
+
 	public GUIHandeler() {
 		initialize();
 	}
@@ -105,7 +105,7 @@ public class GUIHandeler {
 		gbc_west.gridy++;
 		leftPanel.add(setAsEndButton, gbc_west);
 
-		
+
 		// button listeners left panel
 		getSelectorToolButton().addActionListener(new ActionListener() {
 			@Override
@@ -165,8 +165,14 @@ public class GUIHandeler {
 		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
 
 		dijkstraButton = new JButton("Dijkstra's Algorithm");
-
 		rightPanel.add(dijkstraButton);
+
+		dijkstraButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.algoHandeler.setAlgoritme(new Dijkstra());
+			}
+		});
 
 		// south panel
 		bottomPanel = new JPanel();
@@ -178,38 +184,62 @@ public class GUIHandeler {
 		gbc_south.insets = new Insets(0, 0, 5, 0);
 		gbc_south.gridx = 1;
 		gbc_south.gridy = 0;
-		
+
 		saveButton = new JButton("Save");
 		saveButton.setIcon(new ImageIcon("res/save.png"));
 		saveButton.setEnabled(false);
 		bottomPanel.add(saveButton, gbc_south);
-		
+
 		openButton = new JButton("Open");
 		openButton.setIcon(new ImageIcon("res/open.png"));
 		openButton.setEnabled(false);
 		bottomPanel.add(openButton, gbc_south);
-		
+
 		screenshotButton = new JButton("Upload Graph");
 		screenshotButton.setIcon(new ImageIcon("res/screenshot.png"));
 		bottomPanel.add(screenshotButton, gbc_south);
-		
+
 		resetGraphButton = new JButton("Reset Graph");
 		resetGraphButton.setIcon(new ImageIcon("res/reset_graph.png"));
 		bottomPanel.add(resetGraphButton, gbc_south);
-		
+
 		resetAlgorithmButton = new JButton("Reset Algorithm");
 		resetAlgorithmButton.setIcon(new ImageIcon("res/reset_algoritme.png"));
 		bottomPanel.add(resetAlgorithmButton, gbc_south);
-		
+		resetAlgorithmButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.algoHandeler.clear();
+
+			}
+		});
+
 		previousStepButton = new JButton("Previous Step");
 		previousStepButton.setIcon(new ImageIcon("res/prev_step.png"));
 		previousStepButton.setEnabled(false);
 		bottomPanel.add(previousStepButton, gbc_south);
 
+
 		nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));
 		bottomPanel.add(nextStepButton, gbc_south);
-		
+
+		nextStepButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				getSelectorToolButton().setBackground(new JButton().getBackground());
+				addNodeButton.setBackground(new JButton().getBackground());
+				removeButton.setBackground(new JButton().getBackground());
+				addLineButton.setBackground(new JButton().getBackground());
+				setAsStartButton.setBackground(new JButton().getBackground());
+				setAsEndButton.setBackground(new JButton().getBackground());
+				Grafr.algoHandeler.next();
+				
+			}
+		});
+
 
 		// button listeners south panel
 		screenshotButton.addActionListener(new ActionListener() {
@@ -217,13 +247,17 @@ public class GUIHandeler {
 				Grafr.screenshotHandeler.writeToDisc(Grafr.graph.graphComponent);
 			}
 		});
-		
+
 		resetGraphButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				int temp=JOptionPane.showConfirmDialog(Grafr.graph, 
-				"Are you sure you want to reset the whole graph?","",2);
+						"Are you sure you want to reset the whole graph?","",2);
 				if (temp==JOptionPane.OK_OPTION) {
 					Grafr.graph.clear();
+					if(Grafr.algoHandeler.isAlgoRunning()){
+						Grafr.algoHandeler.clear();
+					}
 				}
 			}
 		});
@@ -241,6 +275,21 @@ public class GUIHandeler {
 		addLineButton.setBackground(new JButton().getBackground());
 		setAsStartButton.setBackground(new JButton().getBackground());
 		setAsEndButton.setBackground(new JButton().getBackground());
+		selectorToolButton.setEnabled(true);
+		addNodeButton.setEnabled(true);
+		removeButton.setEnabled(true);
+		addLineButton.setEnabled(true);
+		setAsStartButton.setEnabled(true);
+		setAsEndButton.setEnabled(true);
+	}
+
+	public void setButtonDisable() {
+		getSelectorToolButton().setEnabled(false);
+		addNodeButton.setEnabled(false);
+		removeButton.setEnabled(false);
+		addLineButton.setEnabled(false);
+		setAsStartButton.setEnabled(false);
+		setAsEndButton.setEnabled(false);
 	}
 
 	public JButton getSelectorToolButton() {

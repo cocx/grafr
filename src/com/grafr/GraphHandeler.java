@@ -200,6 +200,17 @@ public class GraphHandeler extends JPanel {
 		setEdgeWeight(ed, weight);
 		return ed;
 	}
+	public void resetVertexStyle(Vertex vertex){
+		graph.setCellStyle("STDvertex", new Object[] { vertex.vertex });
+	}
+	
+	public void resetEdgeStyle(Edge edge){
+		graph.setCellStyle("Edge", new Object[] { edge.edge});
+	}
+	
+	public void refresh(){
+		graph.refresh();
+	}
 
 	public void setAsEnd(Vertex vertex) {
 		if (this.endVertex != null) {
@@ -257,7 +268,7 @@ public class GraphHandeler extends JPanel {
 	}
 
 	public void removeVertex(Vertex vertex) {
-		graphBackend.removeVertex(vertex.id);
+		graphBackend.removeVertex(vertex);
 		graph.removeCells(new Object[] { vertex.vertex });
 	}
 
