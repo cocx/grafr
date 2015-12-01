@@ -47,7 +47,12 @@ public class SetAsStartTool implements AbstractTool {
 				"Please write the name for the node.",
 				"",
 				JOptionPane.QUESTION_MESSAGE);
-		if (name != null){
+		if (name.length() > 7){
+			JOptionPane.showMessageDialog(Grafr.graph,
+					"Names cannot be longer than 7 characters.",
+					"",
+					JOptionPane.ERROR_MESSAGE);
+		}else if (name != null){
 			c.setValue(name);
 			Grafr.graph.graph.refresh();
 		}

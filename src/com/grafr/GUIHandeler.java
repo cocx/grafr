@@ -188,12 +188,10 @@ public class GUIHandeler {
 		
 		saveButton = new JButton("Save");
 		saveButton.setIcon(new ImageIcon("res/save.png"));
-		saveButton.setEnabled(false);
 		bottomPanel.add(saveButton, gbc_south);
 		
 		openButton = new JButton("Open");
 		openButton.setIcon(new ImageIcon("res/open.png"));
-		openButton.setEnabled(false);
 		gbc_south.gridx++;
 		bottomPanel.add(openButton, gbc_south);
 		
@@ -223,7 +221,6 @@ public class GUIHandeler {
 
 		previousStepButton = new JButton("Previous Step");
 		previousStepButton.setIcon(new ImageIcon("res/prev_step.png"));
-		previousStepButton.setEnabled(false);
 		bottomPanel.add(previousStepButton, gbc_south);
 
 		nextStepButton = new JButton("Next Step");
