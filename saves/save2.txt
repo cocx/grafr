@@ -1,0 +1,12 @@
+NODES: 
+Id: 2, Name: A, Position: x: 316 y: 131
+Id: 3, Name: B, Position: x: 1200 y: 213
+Id: 4, Name: C, Position: x: 673 y: 521
+EDGES: 
+IDFrom: 2, IDTo: 4, Weight: 1
+IDFrom: 2, IDTo: 3, Weight: 1
+IDFrom: 3, IDTo: 4, Weight: 1
+START VERTEX: 
+NULL
+END VERTEX: 
+NULL
