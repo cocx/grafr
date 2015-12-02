@@ -21,10 +21,12 @@ public class SaveLoadHandeler {
 		String number;
 		number = JOptionPane.showInputDialog(Grafr.graph, "Choose a number to store your graph under.", "",
 				JOptionPane.QUESTION_MESSAGE);
-		if (Integer.parseInt(number) > 99) {
-			JOptionPane.showMessageDialog(Grafr.graph, "Pick a number below 100.", "", JOptionPane.ERROR_MESSAGE);
-		} else if (number != null) {
-			saveContentToFile(graphToString(), Integer.parseInt(number));
+		if (number != null) {
+			if (Integer.parseInt(number) > 99) {
+				JOptionPane.showMessageDialog(Grafr.graph, "Pick a number below 100.", "", JOptionPane.ERROR_MESSAGE);
+			} else {
+				saveContentToFile(graphToString(), Integer.parseInt(number));
+			}
 		}
 	}
 
@@ -32,15 +34,21 @@ public class SaveLoadHandeler {
 		String number;
 		number = JOptionPane.showInputDialog(Grafr.graph, "Choose a number to load your graph from.", "",
 				JOptionPane.QUESTION_MESSAGE);
-		if (Integer.parseInt(number) > 99) {
-			JOptionPane.showMessageDialog(Grafr.graph, "Pick a number below 100.", "", JOptionPane.ERROR_MESSAGE);
-		} else if (number != null) {
-			Vertex.NextID = 0;
-			Grafr.graph.clear();
-			if (Grafr.algoHandeler.isAlgoRunning()) {
-				Grafr.algoHandeler.clear();
+		if (number != null) {
+			if (Integer.parseInt(number) > 99) {
+				JOptionPane.showMessageDialog(Grafr.graph, "Pick a number below 100.", "", JOptionPane.ERROR_MESSAGE);
+			} else {
+				if (new File("saves/" + filename + Integer.parseInt(number) + ".txt").exists()) {
+					Vertex.NextID = 0;
+					Grafr.graph.clear();
+					if (Grafr.algoHandeler.isAlgoRunning()) {
+						Grafr.algoHandeler.clear();
+					}
+					fileToGraph(Integer.parseInt(number));
+				}else{
+					JOptionPane.showMessageDialog(Grafr.graph, "File does not exist!", "", JOptionPane.ERROR_MESSAGE);
+				}
 			}
-			fileToGraph(Integer.parseInt(number));
 		}
 	}
 
@@ -59,7 +67,7 @@ public class SaveLoadHandeler {
 				stringGraph += "x: " + c.vertex.getGeometry().getX();
 				stringGraph += " y: " + c.vertex.getGeometry().getY();
 				stringGraph += System.lineSeparator();
-			}else{
+			} else {
 				miss++;
 			}
 		}
@@ -137,9 +145,6 @@ public class SaveLoadHandeler {
 					line = br.readLine();
 					while (line != null && !line.startsWith("EDGES: ")) {
 						id = Integer.parseInt(line.substring(line.indexOf("Id: ") + 4, line.indexOf(", Name: ")));
-						if (id > max){
-							max = id;
-						}
 						name = line.substring(line.indexOf("Name: ") + 6, line.indexOf(",", line.indexOf("Name: ")));
 						x = Double.parseDouble(
 								line.substring(line.indexOf("x: ") + 3, line.indexOf("y: ", line.indexOf("x: "))));
@@ -147,8 +152,9 @@ public class SaveLoadHandeler {
 						v = Grafr.graph.addVertex(name, x, y);
 						idOldToNew.put(id, v.id);
 						line = br.readLine();
+						max++;
 					}
-					 Vertex.NextID = max + 1;
+					Vertex.NextID = max + 1;
 				}
 				if (line.startsWith("EDGES: ")) {
 					line = br.readLine();

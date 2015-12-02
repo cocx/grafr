@@ -69,7 +69,7 @@ public class SelecterTool implements AbstractTool {
 				weight = Integer.parseInt(temp);
 				if (weight > 0){
 					Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
-                                        Grafr.graph.graphBackend.edgesByGraphx.get(e).weight = weight;
+                    Grafr.graph.graphBackend.edgesByGraphx.get(e).weight = weight;
 					Grafr.graph.graph.refresh();
 				}else{
 					JOptionPane.showMessageDialog(Grafr.graph,
