@@ -241,10 +241,6 @@ public class GUIHandeler {
 
 		openButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Grafr.graph.clear();
-				if (Grafr.algoHandeler.isAlgoRunning()) {
-					Grafr.algoHandeler.clear();
-				}
 				Grafr.SLHandeler.load();
 			}
 		});
