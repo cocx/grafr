@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
+import com.mxgraph.model.mxCell;
 
 public class SaveLoadHandeler {
 	String filename = "save";
@@ -105,8 +106,10 @@ public class SaveLoadHandeler {
 	private void fileToGraph(int number) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("saves/" + filename + number + ".txt"));
+			Edge e;
 			String line = br.readLine();
 			String name;
+			String id;
 			double x;
 			double y;
 			int from;
@@ -116,36 +119,44 @@ public class SaveLoadHandeler {
 				if (line.startsWith("NODES: ")){
 					line = br.readLine();
 					while (line != null && !line.startsWith("EDGES: ")){
+						//Idea is to later on swap back the unique id's for non unique names
+						id = line.substring(line.indexOf("Id: ") + 4, line.indexOf(", Name: "));
 						name = line.substring(line.indexOf("Name: ") + 6, line.indexOf(",",line.indexOf("Name: ")));
 						x = Double.parseDouble(line.substring(line.indexOf("x: ") + 3, line.indexOf("y: ", line.indexOf("x: "))));
 						y = Double.parseDouble(line.substring(line.indexOf("y: ") + 3, line.length()));
-						Grafr.graph.addVertex(name, x, y);
+						Grafr.graph.addVertex(id, x, y);
 						line = br.readLine();
 					}
 				}
 				if (line.startsWith("EDGES: ")){
 					line = br.readLine();
 					while (line != null && !line.startsWith("START VERTEX: ")){
-						System.out.println(line);
 						from = Integer.parseInt(line.substring(line.indexOf("IDFrom: ") + 8, line.indexOf(", IDTo: ")));						
 						to = Integer.parseInt(line.substring(line.indexOf("IDTo: ") + 6, line.indexOf(", Weight: ")));
 						weight = Integer.parseInt(line.substring(line.indexOf("Weight: ") + 8, line.length()));
-						//Grafr.graph.addEdge(from, weight, to);
+						//add edges via unique value fields
+						e = Grafr.graph.addEdge(Grafr.graph.graphBackend.getVertex((mxCell)Grafr.graph.graph.getModel().getValue(from)), 
+								            Grafr.graph.graphBackend.getVertex((mxCell)Grafr.graph.graph.getModel().getValue(to)));
+						Grafr.graph.setEdgeWeight(e, weight);
 						line = br.readLine();
 					}
 				}
 				if (line.startsWith("START VERTEX: ")){
 					line = br.readLine();
 					if (line != null && !line.startsWith("END VERTEX: ")){
+						//set start via unique value field
 						//Grafr.graph.setAsStart(Integer.parseInt(line));
 					}
 				}
 				if (line.startsWith("END VERTEX: ")){
 					line = br.readLine();
 					if (line != null){
+						//set end via unique value field
 						//Grafr.graph.setAsEnd(Integer.parseInt(line));
 					}
 				}
+				//either go through the file completely again and switch all labels
+				//or load labels from a hashmap where the names are saved via their unique id's
 			}
 			br.close();
 		} catch (IOException e) {
