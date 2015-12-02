@@ -1,0 +1,29 @@
+NODES: 
+Id: 100, Name: Default, Position: x: 557.0 y: 176.0
+Id: 101, Name: Default, Position: x: 320.0 y: 390.0
+Id: 102, Name: Default, Position: x: 1049.0 y: 397.0
+Id: 103, Name: Default, Position: x: 903.0 y: 173.0
+Id: 104, Name: Default, Position: x: 420.0 y: 650.0
+Id: 105, Name: Default, Position: x: 670.0 y: 410.0
+Id: 106, Name: Default, Position: x: 848.0 y: 698.0
+Id: 114, Name: Default, Position: x: 1237.0 y: 141.0
+Id: 115, Name: Default, Position: x: 1202.0 y: 679.0
+Id: 116, Name: Default, Position: x: 523.0 y: 859.0
+EDGES: 
+IDFrom: 100, IDTo: 105, Weight: 1
+IDFrom: 101, IDTo: 104, Weight: 1
+IDFrom: 102, IDTo: 103, Weight: 1
+IDFrom: 102, IDTo: 115, Weight: 1
+IDFrom: 102, IDTo: 114, Weight: 1
+IDFrom: 103, IDTo: 100, Weight: 1
+IDFrom: 103, IDTo: 114, Weight: 1
+IDFrom: 104, IDTo: 106, Weight: 1
+IDFrom: 104, IDTo: 116, Weight: 1
+IDFrom: 105, IDTo: 101, Weight: 1
+IDFrom: 106, IDTo: 102, Weight: 1
+IDFrom: 106, IDTo: 116, Weight: 1
+IDFrom: 106, IDTo: 115, Weight: 1
+START VERTEX: 
+105
+END VERTEX: 
+104
