@@ -9,11 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 
-import javax.swing.JOptionPane;
-
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
-import com.mxgraph.model.mxCell;
 
 public class SaveLoadHandeler {
 	String filename = "save";

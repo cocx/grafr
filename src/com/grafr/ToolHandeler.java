@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 
@@ -42,6 +39,7 @@ public class ToolHandeler {
 		g = Grafr.graph.getGraphComponent();
 		currentTool = new SelecterTool();
 		g.getGraphControl().addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseReleased(MouseEvent e) {
 				mxCell cell = (mxCell) g.getCellAt(e.getX(), e.getY());
 				if (e.getClickCount() == 2) {

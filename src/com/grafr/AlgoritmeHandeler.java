@@ -1,6 +1,5 @@
 package com.grafr;
 
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import com.grafr.GraphBackend.Edge;

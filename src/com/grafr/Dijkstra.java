@@ -129,6 +129,10 @@ public class Dijkstra implements AbstractAlgoritme {
 				if(path.to == end ){
 					state = AlgoState.Found;
 					selectedFrom.put(path.to, path);
+					Grafr.graph.setVertexColor(current, "#888888");
+					for (Edge e: current.edges_to){
+						Grafr.graph.setEdgeColor(e, "#888888");
+					}
 					setCurrent(end);
 				}else{
 					this.currentPathLength = this.weigths.get(path).intValue();
@@ -155,7 +159,9 @@ public class Dijkstra implements AbstractAlgoritme {
 			Grafr.graph.setEdgeColor(selected, "red");
 			Grafr.graph.setVertexColor(current, "red");
 			current = selected.from;
-
+			if(state != AlgoState.End){
+				next();
+			}
 		}
 		break;
 		default:
@@ -170,9 +176,5 @@ public class Dijkstra implements AbstractAlgoritme {
 		Grafr.graph.setVertexColor(v, "green");
 		visited.add(v);
 		return old;
-	}
-
-	private void setMeasured(Vertex v){
-		current = v;
 	}
 }

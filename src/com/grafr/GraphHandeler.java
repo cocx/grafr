@@ -39,6 +39,10 @@ import com.mxgraph.view.mxStylesheet;
  * @since July 9, 2013
  */
 public class GraphHandeler extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2209744022191239720L;
 	private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
 	private mxStylesheet stylesheet;
 	private Hashtable<String, Object> stdStyle;
@@ -52,7 +56,6 @@ public class GraphHandeler extends JPanel {
 	mxGraphComponent graphComponent;
 	mxGraph graph;
 	GraphBackend graphBackend;
-	private Object parent;
 
 	public GraphHandeler() {
 		// create a JGraphT graph
@@ -70,7 +73,6 @@ public class GraphHandeler extends JPanel {
 		graph.setCellsResizable(false);
 		graph.setCellsEditable(false);
 
-		parent = graph.getDefaultParent();
 		stylesheet = graph.getStylesheet();
 		stdStyle = new Hashtable<String, Object>(
 				stylesheet.getDefaultVertexStyle());
