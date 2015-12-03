@@ -1,5 +1,6 @@
 package com.grafr;
 
+import java.awt.FileDialog;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -16,70 +17,62 @@ import com.mxgraph.model.mxCell;
 
 public class SaveLoadHandeler {
 	String filename = "save";
+	FileDialog file = new FileDialog(Grafr.window.frame,"Choose a file.");
 
 	public void save() {
-		String number;
-		number = JOptionPane.showInputDialog(Grafr.graph, "Choose a number to store your graph under.", "",
-				JOptionPane.QUESTION_MESSAGE);
-		if (number != null) {
-			if (Integer.parseInt(number) > 99) {
-				JOptionPane.showMessageDialog(Grafr.graph, "Pick a number below 100.", "", JOptionPane.ERROR_MESSAGE);
-			} else {
-				saveContentToFile(graphToString(), Integer.parseInt(number));
+		File save;
+		file.setMode(FileDialog.SAVE);
+		file.setVisible(true);
+		if(file.getDirectory() != null){
+			try{
+				save = new File(file.getDirectory()+file.getFile());
+			}catch(Exception e){
+				e.printStackTrace();
+				return;
 			}
+			saveContentToFile(graphToString(), save);
 		}
 	}
 
 	public void load() {
-		String number;
-		number = JOptionPane.showInputDialog(Grafr.graph, "Choose a number to load your graph from.", "",
-				JOptionPane.QUESTION_MESSAGE);
-		if (number != null) {
-			if (Integer.parseInt(number) > 99) {
-				JOptionPane.showMessageDialog(Grafr.graph, "Pick a number below 100.", "", JOptionPane.ERROR_MESSAGE);
-			} else {
-				if (new File("saves/" + filename + Integer.parseInt(number) + ".txt").exists()) {
-					Vertex.NextID = 0;
-					Grafr.graph.clear();
-					if (Grafr.algoHandeler.isAlgoRunning()) {
-						Grafr.algoHandeler.clear();
-					}
-					fileToGraph(Integer.parseInt(number));
-				}else{
-					JOptionPane.showMessageDialog(Grafr.graph, "File does not exist!", "", JOptionPane.ERROR_MESSAGE);
-				}
+		File save;
+		file.setMode(FileDialog.LOAD);
+		file.setVisible(true);
+		if(file.getDirectory() != null){
+			Grafr.graph.clear();
+			try{
+				save = new File(file.getDirectory()+file.getFile());
+			}catch(Exception e){
+				e.printStackTrace();
+				return;
 			}
+			fileToGraph(save);
 		}
 	}
 
 	private String graphToString() {
 		String stringGraph = null;
-		Vertex c;
 		Edge e;
-		int miss = 0;
 		stringGraph = "NODES: " + System.lineSeparator();
-		for (int i = 0; i < Grafr.graph.graphBackend.nodes.size() + miss; i++) {
-			c = Grafr.graph.graphBackend.nodes.get(i);
+		for (Vertex c: Grafr.graph.graphBackend.nodes.values()) {
+			//c = Grafr.graph.graphBackend.nodes.get(i);
 			if (c != null) {
-				stringGraph += "Id: " + c.vertex.getId();
+				stringGraph += "Id: " + c.id;
 				stringGraph += ", Name: " + c.vertex.getValue();
 				stringGraph += ", Position: ";
 				stringGraph += "x: " + c.vertex.getGeometry().getX();
 				stringGraph += " y: " + c.vertex.getGeometry().getY();
 				stringGraph += System.lineSeparator();
-			} else {
-				miss++;
 			}
 		}
 		stringGraph += "EDGES: " + System.lineSeparator();
-		for (int i = 0; i < Grafr.graph.graphBackend.nodes.size(); i++) {
-			c = Grafr.graph.graphBackend.nodes.get(i);
+		for (Vertex c: Grafr.graph.graphBackend.nodes.values()) {
 			if (c != null) {
 				for (int j = 0; j < c.edges_from.size(); j++) {
 					e = c.edges_from.get(j);
 					if (e != null) {
-						stringGraph += "IDFrom: " + e.from.vertex.getId();
-						stringGraph += ", IDTo: " + e.to.vertex.getId();
+						stringGraph += "IDFrom: " + e.from.id;
+						stringGraph += ", IDTo: " + e.to.id;
 						stringGraph += ", Weight: " + e.weight;
 						stringGraph += System.lineSeparator();
 					}
@@ -101,20 +94,9 @@ public class SaveLoadHandeler {
 		return stringGraph;
 	}
 
-	private void saveContentToFile(String content, int number) {
-		File save;
+	private void saveContentToFile(String content, File save) {
 		try {
-			save = new File("saves/" + filename + number + ".txt");
-			if (save.exists()) {
-				int a = JOptionPane.showConfirmDialog(null,
-						"Save already in use" + System.lineSeparator() + "Do you wish to overwrite?", "",
-						JOptionPane.ERROR_MESSAGE);
-				if (a == 0) {
-					save.createNewFile();
-				} else {
-					return;
-				}
-			}
+			save.createNewFile();
 			FileWriter fw = new FileWriter(save.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(content);
@@ -124,9 +106,9 @@ public class SaveLoadHandeler {
 		}
 	}
 
-	private void fileToGraph(int number) {
+	private void fileToGraph(File save) {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("saves/" + filename + number + ".txt"));
+			BufferedReader br = new BufferedReader(new FileReader(save));
 			HashMap<Integer, Integer> idOldToNew = new HashMap<Integer, Integer>();
 			Vertex v;
 			String line = br.readLine();
@@ -139,7 +121,6 @@ public class SaveLoadHandeler {
 			int from;
 			int to;
 			int weight;
-			int max = 0;
 			if (line != null) {
 				if (line.startsWith("NODES: ")) {
 					line = br.readLine();
@@ -152,9 +133,7 @@ public class SaveLoadHandeler {
 						v = Grafr.graph.addVertex(name, x, y);
 						idOldToNew.put(id, v.id);
 						line = br.readLine();
-						max++;
 					}
-					Vertex.NextID = max + 1;
 				}
 				if (line.startsWith("EDGES: ")) {
 					line = br.readLine();

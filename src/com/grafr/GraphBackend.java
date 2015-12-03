@@ -15,8 +15,10 @@ public class GraphBackend {
 		ArrayList<Edge> edges_to;
 
 		public Vertex(mxCell vertex) {
+			System.out.println(NextID);
 			this.vertex = vertex;
-			id = NextID++;
+			id = NextID;
+			NextID++;
 			this.edges_from = new ArrayList<>();
 			this.edges_to = new ArrayList<>();
 		}
@@ -113,6 +115,7 @@ public class GraphBackend {
 	}
 
 	public void clear() {
+		Vertex.NextID = 0;
 		this.edgesByGraphx.clear();
 		this.nodes.clear();
 		this.nodesByGraphx.clear();

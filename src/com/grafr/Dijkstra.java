@@ -89,15 +89,16 @@ public class Dijkstra implements AbstractAlgoritme {
 				if(index+1 == current.edges_from.size()){
 					//end of measure cycle
 					state = AlgoState.Select;
-					Grafr.graph.setEdgeColor(currentMeasure, "#888888");
+					Grafr.graph.setEdgeColor(currentMeasure, "#9900ff");
 					currentMeasure = null;
+					next();//really bad but it works
 					break;
 				}else{
 					//there are more
 					newMeasure = current.edges_from.get(index+1);
 				}
 				//set the old edge color to gray
-				Grafr.graph.setEdgeColor(currentMeasure, "#888888");
+				Grafr.graph.setEdgeColor(currentMeasure, "#9900ff");
 			}
 			//show which one were use in to measure
 			Grafr.graph.setEdgeColor(newMeasure, "green");
@@ -111,7 +112,7 @@ public class Dijkstra implements AbstractAlgoritme {
 		{
 			System.out.println("Select");
 			if(path != null)
-				Grafr.graph.setEdgeColor(path, "#888888");
+				Grafr.graph.setEdgeColor(path, "#9900ff");
 			path = null;
 			int min = Integer.MAX_VALUE;
 			for(Map.Entry<Edge, Integer> m: this.weigths.entrySet()){
@@ -132,6 +133,9 @@ public class Dijkstra implements AbstractAlgoritme {
 				}else{
 					this.currentPathLength = this.weigths.get(path).intValue();
 					Grafr.graph.setVertexColor(current, "#888888");
+					for (Edge e: current.edges_to){
+						Grafr.graph.setEdgeColor(e, "#888888");
+					}
 					Grafr.graph.setEdgeColor(path, "yellow");
 					setCurrent(path.to);
 					selectedFrom.put(path.to, path);

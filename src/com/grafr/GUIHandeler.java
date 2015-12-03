@@ -219,6 +219,15 @@ public class GUIHandeler {
 		previousStepButton = new JButton("Previous Step");
 		previousStepButton.setIcon(new ImageIcon("res/prev_step.png"));
 		bottomPanel.add(previousStepButton, gbc_south);
+		
+		previousStepButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Grafr.algoHandeler.previous();
+				
+			}
+		});
 
 		nextStepButton = new JButton("Next Step");
 		nextStepButton.setIcon(new ImageIcon("res/next_step.png"));

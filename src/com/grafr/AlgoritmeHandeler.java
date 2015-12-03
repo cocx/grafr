@@ -10,10 +10,12 @@ public class AlgoritmeHandeler {
 	
 	private AbstractAlgoritme current; 
 	private boolean running;
+	private int steps_taken;
 	
 	public AlgoritmeHandeler() {
 		current = new Dijkstra();
 		running = false;
+		steps_taken = 0;
 	}
 	
 	public void setAlgoritme(AbstractAlgoritme algo){
@@ -24,6 +26,7 @@ public class AlgoritmeHandeler {
 	}
 			
 	public void next(){
+		steps_taken++;
 		if (!running){
 			if(Grafr.graph.startVertex == null){
 				JOptionPane.showMessageDialog(Grafr.graph,"Please add a start node.","",JOptionPane.ERROR_MESSAGE);
@@ -41,6 +44,7 @@ public class AlgoritmeHandeler {
 	}
 	
 	public void clear(){
+		steps_taken = 0;
 		running = false;
 		current.clear();
 		
@@ -62,4 +66,14 @@ public class AlgoritmeHandeler {
 		return running;
 	}
 	
+	public void previous(){
+		//another lazy hack
+		if(running){
+			int steps = steps_taken-1;
+			this.clear();
+			for (int i = 0; i < steps;i++){
+				this.next();
+			}
+		}
+	}
 }

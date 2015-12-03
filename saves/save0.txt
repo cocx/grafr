@@ -1,5 +1,0 @@
-THIS is a piece of example text,
-Trying some line breaks
-maybe
-this is working i hope
-probably not...
