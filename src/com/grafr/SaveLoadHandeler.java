@@ -81,13 +81,13 @@ public class SaveLoadHandeler {
 		}
 		stringGraph += "START VERTEX: " + System.lineSeparator();
 		if (Grafr.graph.startVertex != null) {
-			stringGraph += Grafr.graph.startVertex.vertex.getId() + System.lineSeparator();
+			stringGraph += Grafr.graph.startVertex.id + System.lineSeparator();
 		} else {
 			stringGraph += "NULL" + System.lineSeparator();
 		}
 		stringGraph += "END VERTEX: " + System.lineSeparator();
 		if (Grafr.graph.endVertex != null) {
-			stringGraph += Grafr.graph.endVertex.vertex.getId() + System.lineSeparator();
+			stringGraph += Grafr.graph.endVertex.id + System.lineSeparator();
 		} else {
 			stringGraph += "NULL" + System.lineSeparator();
 		}
