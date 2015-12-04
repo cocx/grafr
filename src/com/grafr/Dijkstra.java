@@ -137,7 +137,7 @@ public class Dijkstra implements AbstractAlgoritme {
 				}else{
 					this.currentPathLength = this.weigths.get(path).intValue();
 					Grafr.graph.setVertexColor(current, "#888888");
-					for (Edge e: current.edges_to){
+					for (Edge e: current.edges_from){
 						Grafr.graph.setEdgeColor(e, "#888888");
 					}
 					Grafr.graph.setEdgeColor(path, "yellow");
