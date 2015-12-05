@@ -1,15 +1,3 @@
-/* This program and the accompanying materials are dual-licensed under
- * either
- *
- * (a) the terms of the GNU Lesser General Public License version 2.1
- * as published by the Free Software Foundation, or (at your option) any
- * later version.
- *
- * or (per the licensee's choosing)
- *
- * (b) the terms of the Eclipse Public License v1.0 as published by
- * the Eclipse Foundation.
- */
 package com.grafr;
 
 import java.awt.BorderLayout;
@@ -18,32 +6,18 @@ import java.util.Hashtable;
 
 import javax.swing.JPanel;
 
-import org.jgrapht.ListenableGraph;
-import org.jgrapht.ext.JGraphXAdapter;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.ListenableDirectedGraph;
-
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
-import com.mxgraph.layout.mxCompactTreeLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxStylesheet;
 
-/**
- * A demo applet that shows how to use JGraphX to visualize JGraphT graphs.
- * Applet based on JGraphAdapterDemo.
- *
- * @since July 9, 2013
- */
+
 public class GraphHandeler extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 2209744022191239720L;
-	private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
 	private mxStylesheet stylesheet;
 	private Hashtable<String, Object> stdStyle;
 	private Hashtable<String, Object> endStyle;
@@ -58,17 +32,11 @@ public class GraphHandeler extends JPanel {
 	GraphBackend graphBackend;
 
 	public GraphHandeler() {
-		// create a JGraphT graph
-		ListenableGraph<String, DefaultEdge> g = new ListenableDirectedGraph<String, DefaultEdge>(
-				DefaultEdge.class);
-
-		// create a visualization using JGraph, via an adapter
-		jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
 		graph = new mxGraph();
 
 		this.graphBackend = new GraphBackend();
 
-		// disable a few features of jgraph
+		// disable a few features of jgraphx
 		graph.setAllowDanglingEdges(false);
 		graph.setCellsResizable(false);
 		graph.setCellsEditable(false);
@@ -136,10 +104,6 @@ public class GraphHandeler extends JPanel {
 		graphComponent.setConnectable(false);
 		this.add(graphComponent, BorderLayout.CENTER);
 
-		// positioning via jgraphx layouts
-		mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
-
-		layout.execute(jgxAdapter.getDefaultParent());
 
 		Grafr.window.frame.getContentPane().add(this, BorderLayout.CENTER);
 	}
