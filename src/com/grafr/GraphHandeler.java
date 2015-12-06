@@ -18,11 +18,6 @@ import java.util.Hashtable;
 
 import javax.swing.JPanel;
 
-import org.jgrapht.ListenableGraph;
-import org.jgrapht.ext.JGraphXAdapter;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.ListenableDirectedGraph;
-
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
 import com.mxgraph.layout.mxCompactTreeLayout;
@@ -43,7 +38,6 @@ public class GraphHandeler extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 2209744022191239720L;
-	private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
 	private mxStylesheet stylesheet;
 	private Hashtable<String, Object> stdStyle;
 	private Hashtable<String, Object> endStyle;
@@ -58,20 +52,17 @@ public class GraphHandeler extends JPanel {
 	GraphBackend graphBackend;
 
 	public GraphHandeler() {
-		// create a JGraphT graph
-		ListenableGraph<String, DefaultEdge> g = new ListenableDirectedGraph<String, DefaultEdge>(
-				DefaultEdge.class);
-
-		// create a visualization using JGraph, via an adapter
-		jgxAdapter = new JGraphXAdapter<String, DefaultEdge>(g);
+		// create a JGraphx graph
 		graph = new mxGraph();
 
 		this.graphBackend = new GraphBackend();
 
-		// disable a few features of jgraph
+		// disable a few features of jgraphx
 		graph.setAllowDanglingEdges(false);
 		graph.setCellsResizable(false);
 		graph.setCellsEditable(false);
+		graph.setEdgeLabelsMovable(false);
+		graph.setDropEnabled(false);
 
 		stylesheet = graph.getStylesheet();
 		stdStyle = new Hashtable<String, Object>(
@@ -137,9 +128,6 @@ public class GraphHandeler extends JPanel {
 		this.add(graphComponent, BorderLayout.CENTER);
 
 		// positioning via jgraphx layouts
-		mxCompactTreeLayout layout = new mxCompactTreeLayout(jgxAdapter);
-
-		layout.execute(jgxAdapter.getDefaultParent());
 
 		Grafr.window.frame.getContentPane().add(this, BorderLayout.CENTER);
 	}

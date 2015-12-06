@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="com.grafr.Grafr" project="grafr" file="/grafr/src/com/grafr/Grafr.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="104" width="113" x="751" y="37"/>    
+    <position height="-1" width="-1" x="842" y="-55"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="com.grafr.GraphBackend.Edge" project="grafr" 
     file="/grafr/src/com/grafr/GraphBackend.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="637" y="1555"/>    
+    <position height="-1" width="-1" x="662" y="1116"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="com.grafr.GraphBackend" project="grafr" 
     file="/grafr/src/com/grafr/GraphBackend.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="248" width="219" x="725" y="1333"/>    
+    <position height="-1" width="-1" x="1093" y="871"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,8 +30,8 @@
   </class>  
   <class id="4" language="java" name="com.grafr.GraphBackend.Vertex" project="grafr" 
     file="/grafr/src/com/grafr/GraphBackend.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="140" width="97" x="564" y="1783"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="143" width="97" x="568" y="1503"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="com.grafr.GraphHandeler" project="grafr" 
     file="/grafr/src/com/grafr/GraphHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="554" width="265" x="965" y="739"/>    
+    <position height="-1" width="-1" x="1447" y="450"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="com.grafr.GUIHandeler" project="grafr" 
     file="/grafr/src/com/grafr/GUIHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="518" width="197" x="275" y="181"/>    
+    <position height="-1" width="-1" x="229" y="432"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="com.grafr.AlgoritmeHandeler" project="grafr" 
     file="/grafr/src/com/grafr/AlgoritmeHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="199" x="512" y="181"/>    
+    <position height="-1" width="-1" x="881" y="279"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <interface id="8" language="java" name="com.grafr.AbstractTool" project="grafr" 
     file="/grafr/src/com/grafr/AbstractTool.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1923" y="563"/>    
+    <position height="-1" width="-1" x="849" y="-568"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </interface>  
   <interface id="9" language="java" name="com.grafr.AbstractAlgoritme" project="grafr" 
     file="/grafr/src/com/grafr/AbstractAlgoritme.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="122" width="208" x="255" y="739"/>    
+    <position height="-1" width="-1" x="720" y="828"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </interface>  
   <class id="10" language="java" name="com.grafr.Dijkstra" project="grafr" file="/grafr/src/com/grafr/Dijkstra.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="208" x="503" y="739"/>    
+    <position height="-1" width="-1" x="638" y="270"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <enumeration id="11" language="java" name="com.grafr.Dijkstra.AlgoState" project="grafr" 
     file="/grafr/src/com/grafr/Dijkstra.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="390" y="1081"/>    
+    <position height="-1" width="-1" x="428" y="381"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </enumeration>  
   <class id="12" language="java" name="com.grafr.SaveLoadHandeler" project="grafr" 
     file="/grafr/src/com/grafr/SaveLoadHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="194" x="41" y="181"/>    
+    <position height="-1" width="-1" x="-1" y="282"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="com.grafr.ToolHandeler" project="grafr" 
     file="/grafr/src/com/grafr/ToolHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="176" width="151" x="1270" y="181"/>    
+    <position height="-1" width="-1" x="852" y="-303"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="com.grafr.AddLineTool" project="grafr" 
     file="/grafr/src/com/grafr/AddLineTool.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="230" width="187" x="1745" y="739"/>    
+    <position height="-1" width="-1" x="727" y="-884"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="com.grafr.AddNodeTool" project="grafr" 
     file="/grafr/src/com/grafr/AddNodeTool.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="187" x="1518" y="739"/>    
+    <position height="-1" width="-1" x="1408" y="-893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="com.grafr.NullTool" project="grafr" file="/grafr/src/com/grafr/NullTool.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="187" x="1270" y="739"/>    
+    <position height="-1" width="-1" x="500" y="-893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="com.grafr.RemoveTool" project="grafr" file="/grafr/src/com/grafr/RemoveTool.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="187" x="2220" y="739"/>    
+    <position height="-1" width="-1" x="1181" y="-893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="com.grafr.SelecterTool" project="grafr" 
     file="/grafr/src/com/grafr/SelecterTool.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2761" y="848"/>    
+    <position height="-1" width="-1" x="273" y="-893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="com.grafr.SetAsEndTool" project="grafr" 
     file="/grafr/src/com/grafr/SetAsEndTool.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="187" x="1972" y="739"/>    
+    <position height="-1" width="-1" x="954" y="-893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="com.grafr.SetAsStartTool" project="grafr" 
     file="/grafr/src/com/grafr/SetAsStartTool.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="187" x="2447" y="739"/>    
+    <position height="-1" width="-1" x="1635" y="-893"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,7 +183,7 @@
   </class>  
   <class id="21" language="java" name="com.grafr.ScreenshotHandeler" project="grafr" 
     file="/grafr/src/com/grafr/ScreenshotHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="212" width="251" x="751" y="181"/>    
+    <position height="-1" width="-1" x="1146" y="279"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -192,7 +192,7 @@
   </class>  
   <class id="22" language="java" name="com.grafr.ScreenshotHandeler.UploadThread" project="grafr" 
     file="/grafr/src/com/grafr/ScreenshotHandeler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="122" width="174" x="751" y="739"/>    
+    <position height="-1" width="-1" x="1147" y="500"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -200,311 +200,368 @@
     </display>  
   </class>  
   <association id="23">    
-    <bendpoint x="647" y="152"/>    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="24" name="algoHandeler"/>      
+      <attribute id="24" name="toolhandeler"/>      
       <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="27" name="edgesByGraphx"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="29">    
-    <bendpoint x="511" y="684"/>    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="30" name="current"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="33" name="graphBackend"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <bendpoint x="295" y="90"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="36" name="SLHandeler"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="38">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="22"/>  
-  </nesting>  
-  <association id="39">    
-    <bendpoint x="1308" y="127"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="40" name="toolhandeler"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
-    <bendpoint x="533" y="1333"/>    
-    <bendpoint x="543" y="1740"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="43" name="current"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
+  <association id="26">    
+    <bendpoint x="1327" y="767"/>    
+    <bendpoint x="1314" y="1533"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="27" name="endVertex"/>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="45">    
+  <dependency id="29">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="30">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <nesting id="46">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </nesting>  
-  <association id="47">    
-    <bendpoint x="995" y="1333"/>    
-    <bendpoint x="1000" y="1895"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="48" name="startVertex"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="50">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="8"/>  
+  <dependency id="31">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="51">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="52" name="from"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <bendpoint x="974" y="1333"/>    
-    <bendpoint x="966" y="1792"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="55" name="endVertex"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="57">    
-    <bendpoint x="867" y="1715"/>    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="58" name="nodesByGraphx"/>      
-      <multiplicity id="59" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="60">    
-    <bendpoint x="2560" y="594"/>    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="61">    
-    <bendpoint x="1527" y="634"/>    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="62">    
-    <bendpoint x="2345" y="642"/>    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="63">    
-    <bendpoint x="519" y="1633"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="64" name="to"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="66">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <dependency id="67">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="68">    
-    <bendpoint x="737" y="1653"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="69" name="edges_from"/>      
-      <multiplicity id="70" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="71">    
-    <bendpoint x="536" y="1386"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="72" name="currentMeasure"/>      
-      <multiplicity id="73" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="74">    
-    <bendpoint x="410" y="141"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="75" name="window"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="77">    
-    <bendpoint x="491" y="1333"/>    
-    <bendpoint x="509" y="1838"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="78" name="end"/>      
-      <multiplicity id="79" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="80">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="11"/>  
-  </nesting>  
-  <association id="81">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="82" name="state"/>      
-      <multiplicity id="83" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="84">    
-    <bendpoint x="470" y="1333"/>    
-    <bendpoint x="482" y="1926"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="85" name="start"/>      
-      <multiplicity id="86" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="87">    
-    <bendpoint x="574" y="1661"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="88" name="edges_to"/>      
-      <multiplicity id="89" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="90">    
-    <bendpoint x="512" y="1333"/>    
-    <bendpoint x="536" y="1795"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="91" name="visited"/>      
-      <multiplicity id="92" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="93">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="94">    
-    <bendpoint x="676" y="1330"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="95" name="path"/>      
-      <multiplicity id="96" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="97">    
-    <bendpoint x="505" y="1527"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="98" name="selectedFrom"/>      
-      <multiplicity id="99" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="100">    
-    <bendpoint x="694" y="1333"/>    
+  <dependency id="32">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <nesting id="101">    
-    <bendpoint x="792" y="1657"/>    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </nesting>  
-  <dependency id="102">    
-    <bendpoint x="2568" y="1094"/>    
-    <end type="SOURCE" refId="18"/>    
+  <dependency id="33">    
+    <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="5"/>  
   </dependency>  
-  <association id="103">    
+  <association id="34">    
+    <bendpoint x="596" y="1303"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="35" name="to"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
     <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="104" name="currentTool"/>      
-      <multiplicity id="105" minimum="0" maximum="1"/>    
+      <attribute id="38" name="currentTool"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="106">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="107">    
-    <bendpoint x="1032" y="181"/>    
+  <association id="40">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="108" name="graph"/>      
-      <multiplicity id="109" minimum="0" maximum="1"/>    
+      <attribute id="41" name="screenshotHandeler"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="110">    
-    <bendpoint x="816" y="1668"/>    
+  <association id="43">    
+    <bendpoint x="555" y="1346"/>    
+    <bendpoint x="568" y="1231"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="44" name="edges_to"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <bendpoint x="924" y="1131"/>    
+    <bendpoint x="762" y="1366"/>    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="111" name="nodes"/>      
-      <multiplicity id="112" minimum="0" maximum="2147483647"/>    
+      <attribute id="47" name="nodesByGraphx"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="113">    
+  <nesting id="49">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="22"/>  
+  </nesting>  
+  <association id="50">    
+    <bendpoint x="459" y="767"/>    
+    <bendpoint x="451" y="1623"/>    
+    <bendpoint x="534" y="1625"/>    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="114" name="g"/>      
-      <multiplicity id="115" minimum="0" maximum="1"/>    
+      <attribute id="51" name="visited"/>      
+      <multiplicity id="52" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="53">    
+    <bendpoint x="841" y="1435"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="54" name="nodes"/>      
+      <multiplicity id="55" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="56">    
+    <bendpoint x="501" y="767"/>    
+    <bendpoint x="496" y="1514"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="57" name="end"/>      
+      <multiplicity id="58" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="59">    
+    <bendpoint x="710" y="1364"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="60" name="from"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="63" name="edgesByGraphx"/>      
+      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="65">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="66">    
+    <bendpoint x="298" y="-749"/>    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="67">    
+    <bendpoint x="480" y="767"/>    
+    <bendpoint x="471" y="1576"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="68" name="current"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="70">    
+    <bendpoint x="295" y="113"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="71" name="window"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="73">    
+    <bendpoint x="514" y="395"/>    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="11"/>  
+  </nesting>  
+  <association id="74">    
+    <bendpoint x="1414" y="130"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="75" name="graph"/>      
+      <multiplicity id="76" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="77">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="78" name="graphBackend"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="116">    
+  <dependency id="80">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="81">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="82">    
+    <bendpoint x="543" y="767"/>    
+    <bendpoint x="539" y="1035"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="83" name="path"/>      
+      <multiplicity id="84" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="85">    
+    <bendpoint x="1586" y="-708"/>    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <dependency id="86">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="87">    
+    <bendpoint x="1348" y="767"/>    
+    <bendpoint x="1347" y="1555"/>    
+    <bendpoint x="943" y="1715"/>    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="88" name="startVertex"/>      
+      <multiplicity id="89" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="117" name="screenshotHandeler"/>      
+      <attribute id="91" name="algoHandeler"/>      
+      <multiplicity id="92" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="93">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <realization id="94">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <dependency id="95">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <association id="96">    
+    <bendpoint x="469" y="243"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="97" name="state"/>      
+      <multiplicity id="98" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="99">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="100">    
+    <bendpoint x="539" y="1408"/>    
+    <bendpoint x="550" y="1093"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="101" name="edges_from"/>      
+      <multiplicity id="102" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <bendpoint x="49" y="99"/>    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="104" name="SLHandeler"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="106">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="107">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="108" name="g"/>      
+      <multiplicity id="109" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="110">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="111">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="112" name="current"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="114">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <realization id="115">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <association id="116">    
+    <bendpoint x="585" y="767"/>    
+    <bendpoint x="602" y="929"/>    
+    <bendpoint x="785" y="941"/>    
+    <bendpoint x="809" y="1162"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="117" name="currentMeasure"/>      
       <multiplicity id="118" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="119">    
+    <bendpoint x="913" y="1458"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </nesting>  
+  <nesting id="120">    
+    <bendpoint x="819" y="960"/>    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </nesting>  
+  <realization id="121">    
+    <bendpoint x="1300" y="-757"/>    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <dependency id="122">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="123">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="124">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <association id="125">    
+    <bendpoint x="522" y="767"/>    
+    <bendpoint x="521" y="1484"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="126" name="start"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <bendpoint x="564" y="767"/>    
+    <bendpoint x="562" y="913"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="129" name="selectedFrom"/>      
+      <multiplicity id="130" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
