@@ -62,6 +62,7 @@ public class AddLineTool implements AbstractTool {
 			    JOptionPane.QUESTION_MESSAGE));
 			if (weight > 0){
 				Grafr.graph.setEdgeWeight(Grafr.graph.graphBackend.getEdge(e), weight);
+				Grafr.graph.graphBackend.edgesByGraphx.get(e).weight = weight;
 				Grafr.graph.graph.refresh();
 			}else{
 				JOptionPane.showMessageDialog(Grafr.graph,

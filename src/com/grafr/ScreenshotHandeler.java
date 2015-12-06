@@ -1,6 +1,9 @@
 package com.grafr;
 
 import java.awt.Component;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -102,9 +105,14 @@ public class ScreenshotHandeler {
 	        System.out.println(id);
 	        System.out.println(location);
 	        System.out.println(last_location);
-	        
-	        JOptionPane.showInputDialog(Grafr.graph, "Image link", "", JOptionPane.OK_OPTION, null, null, "http://imgur.com/"+id);
-	        
+	        String imageLink = "http://imgur.com/" + id;
+	        CostumPopUpWindow sWindow = new CostumPopUpWindow();
+	        int c = sWindow.show(imageLink);
+			if (c == 1){
+			    StringSelection selection = new StringSelection(imageLink);
+			    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+			    clipboard.setContents(selection, selection);
+			}
 	    } catch(Exception e){
 	        e.printStackTrace();
 	    }

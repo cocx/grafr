@@ -80,6 +80,7 @@ public class Dijkstra implements AbstractAlgoritme {
 			Edge newMeasure;
 			if(current.edges_from.size() == 0){
 				state = AlgoState.Select;
+				next();
 				break;
 			}else if(currentMeasure == null){
 				//start of measure cycle
@@ -111,8 +112,14 @@ public class Dijkstra implements AbstractAlgoritme {
 		case Select:
 		{
 			System.out.println("Select");
-			if(path != null)
-				Grafr.graph.setEdgeColor(path, "#9900ff");
+			if(path != null){
+				Grafr.graph.setEdgeColor(path, "#888888");
+				Edge next = selectedFrom.get(path.from);
+				while(next != null){
+					Grafr.graph.setEdgeColor(next, "#888888");
+					next = selectedFrom.get(next.from);
+				}
+			}
 			path = null;
 			int min = Integer.MAX_VALUE;
 			for(Map.Entry<Edge, Integer> m: this.weigths.entrySet()){
@@ -130,17 +137,17 @@ public class Dijkstra implements AbstractAlgoritme {
 					state = AlgoState.Found;
 					selectedFrom.put(path.to, path);
 					Grafr.graph.setVertexColor(current, "#888888");
-					for (Edge e: current.edges_to){
-						Grafr.graph.setEdgeColor(e, "#888888");
-					}
 					setCurrent(end);
 				}else{
 					this.currentPathLength = this.weigths.get(path).intValue();
 					Grafr.graph.setVertexColor(current, "#888888");
-					for (Edge e: current.edges_from){
-						Grafr.graph.setEdgeColor(e, "#888888");
-					}
 					Grafr.graph.setEdgeColor(path, "yellow");
+					//set the path backwards yellow
+					Edge next = selectedFrom.get(path.from);
+					while(next != null){
+						Grafr.graph.setEdgeColor(next, "yellow");
+						next = selectedFrom.get(next.from);
+					}
 					setCurrent(path.to);
 					selectedFrom.put(path.to, path);
 					state = AlgoState.Measure;
@@ -150,7 +157,15 @@ public class Dijkstra implements AbstractAlgoritme {
 		break;
 		case Found:
 		{
-			if(current == start){
+			if(current == end){
+				for(Vertex v: g.nodes.values()){
+					Grafr.graph.setVertexColor(current, "#888888");
+					for(Edge e: v.edges_to){
+						Grafr.graph.setEdgeColor(e, "#888888");
+					}
+				}
+			}
+			else if(current == start){
 				Grafr.graph.setVertexColor(current, "red");
 				state = AlgoState.End;
 				break;

@@ -1,15 +1,3 @@
-/* This program and the accompanying materials are dual-licensed under
- * either
- *
- * (a) the terms of the GNU Lesser General Public License version 2.1
- * as published by the Free Software Foundation, or (at your option) any
- * later version.
- *
- * or (per the licensee's choosing)
- *
- * (b) the terms of the Eclipse Public License v1.0 as published by
- * the Eclipse Foundation.
- */
 package com.grafr;
 
 import java.awt.BorderLayout;
@@ -20,23 +8,15 @@ import javax.swing.JPanel;
 
 import com.grafr.GraphBackend.Edge;
 import com.grafr.GraphBackend.Vertex;
-import com.mxgraph.layout.mxCompactTreeLayout;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxStylesheet;
 
-/**
- * A demo applet that shows how to use JGraphX to visualize JGraphT graphs.
- * Applet based on JGraphAdapterDemo.
- *
- * @since July 9, 2013
- */
+
 public class GraphHandeler extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 2209744022191239720L;
 	private mxStylesheet stylesheet;
 	private Hashtable<String, Object> stdStyle;
@@ -128,7 +108,6 @@ public class GraphHandeler extends JPanel {
 		this.add(graphComponent, BorderLayout.CENTER);
 
 		// positioning via jgraphx layouts
-
 		Grafr.window.frame.getContentPane().add(this, BorderLayout.CENTER);
 	}
 
