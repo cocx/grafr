@@ -133,6 +133,13 @@ public class Dijkstra implements AbstractAlgoritme {
 			if(path == null){
 				state = AlgoState.End;
 			}else{
+				for(Vertex v: this.visited){
+					for(Edge e: v.edges_from){
+						if(e.to == path.to){
+							Grafr.graph.setEdgeColor(e, "#888888");
+						}
+					}
+				}
 				if(path.to == end ){
 					Edge next = selectedFrom.get(path.from);
 					Grafr.graph.setEdgeColor(path, "yellow");
